@@ -20,15 +20,13 @@ public class MainActivity extends AppCompatActivity {
         Button btnCar;
         Button btnSoccer;
         btnTrivia = findViewById(R.id.btnTrivia);
-//        btnTrivia.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-////            Intent goToChat = new Intent();
-////            goToChat.setClass(ProfileActivity.this, ChatRoomActivity.class);
-//                Intent goToChat = new Intent(MainActivity.this, TriviaActivity.class);
-//                startActivity(goToChat);
-//            }
-//        });
+        btnTrivia.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent goToTriviaActivity = new Intent(MainActivity.this, TriviaActivity.class);
+                startActivity(goToTriviaActivity);
+            }
+        });
 //        btnSongster = findViewById(R.id.btnSongster);
 //        btnSongster.setOnClickListener(new View.OnClickListener(){
 //            @Override
