@@ -6,11 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CarDatabase">
+    tools:context=".CarActivity">
 
     <ListView
+        android:id="@+id/listView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="200dp"/>
 
+    <Button
+        android:id="@+id/btnCardata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="car database"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
 </LinearLayout>
