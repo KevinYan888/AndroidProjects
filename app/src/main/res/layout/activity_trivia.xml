@@ -1,9 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".TriviaActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textGameSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game Setting:"
+        android:textColor="@color/purple_700" />
+    <TextView
+        android:id="@+id/textEpt"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+    <TextView
+        android:id="@+id/textNumberQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How many questions?"
+        android:textColor="@color/purple_700" />
+    <EditText
+        android:id="@+id/textEditNumberQuestion"
+        android:hint="enter number: eg.10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="34dp" />
+    <TextView
+        android:id="@+id/textEpt2"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupStyle"
+        android:layout_width="282dp"
+        android:layout_height="206dp"
+
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="164dp">
+
+        <TextView
+            android:id="@+id/textStyleOfQuestion"
+            android:textColor="@color/purple_700"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Style of question?" />
+
+        <RadioButton
+            android:id="@+id/rbtnStyleTrue"
+            android:layout_width="255dp"
+            android:layout_height="55dp"
+            android:text="True / False"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnStyleMultiple"
+            android:layout_width="255dp"
+            android:layout_height="55dp"
+            android:text="Multiple Choice"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnStyleBoth"
+            android:layout_width="255dp"
+            android:layout_height="55dp"
+            android:text="Both"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:text="Difficulty Level"
+        android:id="@+id/radioGroupLevel"
+        android:layout_width="282dp"
+        android:layout_height="206dp"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="164dp">
+
+        <TextView
+            android:id="@+id/textLevel"
+            android:textColor="@color/purple_700"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Difficulty level?" />
+
+        <RadioButton
+            android:id="@+id/rbtnLevleEasy"
+            android:layout_width="255dp"
+            android:layout_height="55dp"
+            android:text="Easy"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnLevelMedium"
+            android:layout_width="255dp"
+            android:layout_height="55dp"
+            android:text="Medium"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnLevelHard"
+            android:layout_width="255dp"
+            android:layout_height="55dp"
+            android:text="Hard"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnPalyNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Play Now" />
+
+    <Button
+        android:id="@+id/btnGoBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go Back" />
+
+</LinearLayout>
