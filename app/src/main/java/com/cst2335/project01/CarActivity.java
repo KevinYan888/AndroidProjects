@@ -23,6 +23,7 @@ public class CarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_database);
 
@@ -40,7 +41,7 @@ public class CarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String savedString = companyName.getText().toString();
-                goToSearch.putExtra("typeEmails",savedString);
+                goToSearch.putExtra("manufacturerName",savedString);
                 startActivity(goToSearch);
             }
         });
@@ -52,9 +53,9 @@ public class CarActivity extends AppCompatActivity {
         editor.putString("ReserveName", stringToSave);
         editor.commit();
     }
+
     public void onPause() {
         super.onPause();  // Always call the superclass method first
         saveSharedPrefs(companyName.getText().toString());
     }
-
 }
