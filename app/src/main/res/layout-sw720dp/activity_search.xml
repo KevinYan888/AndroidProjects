@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".SearchActivity">
+
+    <ListView
+        android:id="@+id/sListView"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textSize="20dp"
+            android:id="@+id/searchText"
+            android:text="manufacturer name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/sListView"/>
+
+        <EditText
+            android:id="@+id/searchEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="company name"
+            android:autofillHints=""
+            android:layout_below="@+id/searchText"
+            android:layout_toRightOf="@+id/sListView"/>
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="saving"
+            android:layout_below="@+id/searchEdit"
+            android:layout_toRightOf="@+id/sListView"/>
+        <Button
+            android:id="@+id/viewBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="viewing"
+            android:layout_below="@+id/saveBtn"
+            android:layout_toRightOf="@+id/sListView"/>
+        <Button
+            android:id="@+id/shopBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="shopping"
+            android:layout_below="@+id/viewBtn"
+            android:layout_toRightOf="@+id/sListView"/>
+
+    <TextView
+        android:id="@+id/modelID"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medol_ID"
+        android:layout_below="@+id/shopBtn"
+        android:layout_toRightOf="@+id/sListView"/>
+
+    <TextView
+        android:id="@+id/modelName"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medol_Name"
+        android:layout_below="@+id/modelID"
+        android:layout_toRightOf="@+id/sListView"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/modelID"
+        android:layout_toRightOf="@+id/sListView"/>
+
+    </RelativeLayout>
