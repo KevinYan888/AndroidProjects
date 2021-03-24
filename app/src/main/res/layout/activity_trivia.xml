@@ -40,7 +40,7 @@
     <RadioGroup
         android:id="@+id/radioGroupStyle"
         android:layout_width="282dp"
-        android:layout_height="206dp"
+        android:layout_height="205dp"
 
         tools:layout_editor_absoluteX="133dp"
         tools:layout_editor_absoluteY="164dp">
