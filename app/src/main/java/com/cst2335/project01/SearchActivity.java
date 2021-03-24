@@ -20,6 +20,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -34,6 +36,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -44,7 +48,12 @@ public class SearchActivity extends AppCompatActivity {
     ProgressBar progressBar;
     MyListAdapter myAdapter;
 
-    private ArrayList<Message> elements = new ArrayList<>();
+    public  JSONObject object;
+    public 	ListView lv;
+    public ArrayList<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+
+
+    private ArrayList<String> searchResult = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +76,7 @@ public class SearchActivity extends AppCompatActivity {
 
 //        modelID = findViewById(R.id.modelID);
         modelName = findViewById(R.id.modelName);
-        progressBar = findViewById(R.id.progressBar);
+//        progressBar = findViewById(R.id.progressBar);
 //        progressBar.setVisibility(View.VISIBLE );
 
         SearchCar sCar = new SearchCar();//obj
@@ -85,10 +94,10 @@ public class SearchActivity extends AppCompatActivity {
             try {
 
                 //create a URL object of what server to contact:
-                URL url2 = new URL(args[0]);
+                URL url = new URL(args[0]);
 
                 //open the connection
-                HttpURLConnection urlConnection = (HttpURLConnection) url2.openConnection();
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 Log.i("MainActivity", "000000000000000000" ) ;
                 //wait for data:
                 InputStream response = urlConnection.getInputStream();
@@ -99,27 +108,59 @@ public class SearchActivity extends AppCompatActivity {
                 StringBuilder sb = new StringBuilder();
 
                 String line = null;
-//                line = String.valueOf(reader.readLine());
-//                sb.append(line + "\n");
-                sb.append(reader.readLine());
-                while ((line = reader.readLine()) != null)
-                {
+                if((line = reader.readLine()) != null){
                     Log.i("MainActivity", "22222222222222222" ) ;
-                    sb.append(line + "\n");
+                    //将字符串转换成jsonObject对象
+                    JSONObject jsonObject = new JSONObject(String.valueOf(sb.append(line + "\n")));
+//获取到json数据中里的Results数组内容
+                    JSONArray resultJsonArray = jsonObject.getJSONArray("Results");
+                    Log.e("MainActivity", String.valueOf(resultJsonArray) ) ;
+//                    bianli
+                    for(int i=0;i<resultJsonArray.length();i++){
+                        object = resultJsonArray.getJSONObject(i);
 
+                        Map<String, Object> map=new HashMap<String, Object>();
+                        Log.i("MainActivity", "55555555555555555555" ) ;
+                        try {
+                            //获取到json数据中的activity数组里的内容name
+                            String modelId = object.getString("Model_ID");
+                            //获取到json数据中的activity数组里的内容startTime
+                            String modelName=object.getString("Model_Name");
+                            Log.i("MainActivity", "77777777777777777777777777777" ) ;
+                            //存入map
+                            map.put("Model_ID", modelId);
+                            map.put("Model_Name", modelName);
+                            //ArrayList集合
+                            list.add(map);
+                            Log.e("MainActivity", String.valueOf(list) ) ;
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
-                String result = sb.toString(); //result is the whole string
-                Log.i("MainActivity", "33333333333333333333" ) ;
-                // convert string to JSON: Look at slide 27:
-                JSONObject uvReport = new JSONObject(result);
-                //get the double associated with "value"
-//                id= Integer.valueOf(uvReport.getInt("Model_ID"));
-                name = String.valueOf(uvReport.getString("Model_Name"));
-//                name = String.valueOf(uvReport.getDouble("value"));
+
+
+//                while ((line = reader.readLine()) != null)
+//                {
+//                    Log.i("MainActivity", "22222222222222222" ) ;
+//                    sb.append(line + "\n");
+//
+//                }
+//                String result = sb.toString(); //result is the whole string
+//                Log.i("MainActivity", "33333333333333333333" ) ;
+//                // convert string to JSON.
+//                JSONObject uvReport = new JSONObject(result);
+//                //get the double associated with "value"
+//                id= String.valueOf(uvReport.getInt("Model_ID"));
+////                name = String.valueOf(uvReport.getString("Model_Name"));
+////                name = String.valueOf(uvReport.getDouble("value"));
 //                name = uvReport.getString("Model_Name");
-//                toString()
+
+
+
+
                 Log.i("MainActivity", "4444444444444444444" ) ;
-                Log.i("MainActivity", "The uv is now: " +  name) ;
+
             }
             catch (Exception e)
             {
@@ -140,58 +181,10 @@ public class SearchActivity extends AppCompatActivity {
         public void onPostExecute(String fromDoInBackground)
         {
 //            modelID.setText(id);
-            modelName.setText(name);
-            Log.i("HTTP", fromDoInBackground);
-            progressBar.setVisibility(View.INVISIBLE );
+//            modelName.setText(name);
+//            Log.i("HTTP", fromDoInBackground);
+//            progressBar.setVisibility(View.INVISIBLE );
         }
-    }
-
-
-
-    protected void showContact(int position)
-    {
-        Message selectedContact = elements.get(position);
-        View extraStuff = getLayoutInflater().inflate(R.layout.empyty, null);
-        //get the TextViews
-        EditText rowMsg = extraStuff.findViewById(R.id.eText);
-//        EditText rowSend = extraStuff.findViewById(R.id.sBtn);
-        TextView rowId = extraStuff.findViewById(R.id.row_id);
-
-        //set the fields for the alert dialog
-//eText.setText(selectedContact.getMessage());
-//        rowSend.setText(selectedContact.getIsSend());
-        rowMsg.setText(selectedContact.getMessage());
-        rowId.setText("id:" + selectedContact.getId());
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("You clicked on item #" + position)
-
-                //What is the message:
-                .setMessage("The selected row is: " + (position + 1) +
-                        "\n" +
-                        "You can update the fields and then click update to save in the database")
-                // add extra layout elements:showing the contact information
-                .setView(extraStuff)
-                //what the update button does:
-                .setPositiveButton("Update", (click, arg) -> {
-//                        elements.add("HELLO");
-                    selectedContact.update(rowMsg.getText().toString());
-                    updateContact(selectedContact);
-                    myAdapter.notifyDataSetChanged();
-                })
-                //What the delete button does:
-                .setNegativeButton("Delete", (click, arg) -> {
-                    deleteContact(selectedContact); //remove the contact from database
-                    elements.remove(position); //remove the contact from contact list
-                    myAdapter.notifyDataSetChanged(); //there is one less item so update the list
-
-                })
-
-//                    An optional third button:
-                .setNeutralButton("Dissmiss", (click, arg) -> {  })
-
-                //Show the dialog
-                .create().show();
     }
 
     //MyListAdapter is an inner class
@@ -199,48 +192,91 @@ public class SearchActivity extends AppCompatActivity {
         //implement by writing 4 public functions
         @Override
         public int getCount() {
-            return elements.size();
+            return list.size();
         }
 
         @Override//what to show at row
-        public Message getItem(int row) {
+        public Object getItem(int row) {
 //            public Object getItem(int row) {
             {
 //                "This is row" + eText.getText().toString();
-                return elements.get(row);
+                return list.get(row);
 //                return eText.getText().toString();
             }
         }
 
         @Override//return the database id of item i
         public long getItemId(int id) {
-            return (long) (getItem(id).getId());
+            return id;
         }
 
         @Override//how to show it:button, textView, editText, checkbox
         public View getView(int position, View convertView, ViewGroup parent) {
 
             LayoutInflater inflater = getLayoutInflater();
-            Message msg = (Message) getItem(position);
+            Object msg = getItem(position);
 
 //        make a new row in choose gender or send receive button
             View newRow = convertView;//msg.getGender()==0)
-            if(msg.getIsSend()) {
 
-                newRow = inflater.inflate(R.layout.send, parent, false);
-            }else{
-//            if(!msg.getIsSend() ){
-                newRow = inflater.inflate(R.layout.receive, parent, false);
-            }
-
+            newRow = inflater.inflate(R.layout.activity_search, parent, false);
 
             //finding what in the screen and set message into the new row
-            TextView eText = newRow.findViewById(R.id.eText);
-            eText.setText( msg.getMessage());
-            TextView rowId = (TextView)newRow.findViewById(R.id.row_id);
-            rowId.setText("id:" + msg.getId());
+            TextView modelID = newRow.findViewById(R.id.modelID);
+            modelID.setText( list.get(position).get("Model_ID").toString());
+            TextView modelName = (TextView)newRow.findViewById(R.id.modelName);
+            modelName.setText(list.get(position).get("Model_Name").toString());
 //
             return newRow;
         }
     }
+
+
+//    protected void showContact(int position)
+//    {
+//        Message selectedContact = elements.get(position);
+//        View extraStuff = getLayoutInflater().inflate(R.layout.empyty, null);
+//        //get the TextViews
+//        EditText rowMsg = extraStuff.findViewById(R.id.eText);
+////        EditText rowSend = extraStuff.findViewById(R.id.sBtn);
+//        TextView rowId = extraStuff.findViewById(R.id.row_id);
+//
+//        //set the fields for the alert dialog
+////eText.setText(selectedContact.getMessage());
+////        rowSend.setText(selectedContact.getIsSend());
+//        rowMsg.setText(selectedContact.getMessage());
+//        rowId.setText("id:" + selectedContact.getId());
+//
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+//        alertDialogBuilder.setTitle("You clicked on item #" + position)
+//
+//                //What is the message:
+//                .setMessage("The selected row is: " + (position + 1) +
+//                        "\n" +
+//                        "You can update the fields and then click update to save in the database")
+//                // add extra layout elements:showing the contact information
+//                .setView(extraStuff)
+//                //what the update button does:
+//                .setPositiveButton("Update", (click, arg) -> {
+////                        elements.add("HELLO");
+//                    selectedContact.update(rowMsg.getText().toString());
+//                    updateContact(selectedContact);
+//                    myAdapter.notifyDataSetChanged();
+//                })
+//                //What the delete button does:
+//                .setNegativeButton("Delete", (click, arg) -> {
+//                    deleteContact(selectedContact); //remove the contact from database
+//                    elements.remove(position); //remove the contact from contact list
+//                    myAdapter.notifyDataSetChanged(); //there is one less item so update the list
+//
+//                })
+//
+////                    An optional third button:
+//                .setNeutralButton("Dissmiss", (click, arg) -> {  })
+//
+//                //Show the dialog
+//                .create().show();
+//    }
+
+
 }

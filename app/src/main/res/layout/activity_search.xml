@@ -12,6 +12,7 @@
         android:id="@+id/sListView"
         android:layout_width="wrap_content"
         android:layout_height="500dp"/>
+
     <TextView
         android:textSize="20dp"
         android:id="@+id/searchText"
@@ -28,6 +29,8 @@
         android:autofillHints=""
         android:layout_below="@+id/searchText"
         />
+
+
 <Button
     android:id="@+id/searchBtn1"
     android:layout_width="wrap_content"
