@@ -2,13 +2,20 @@ package com.cst2335.project01;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,11 +31,16 @@ import java.util.List;
 //https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple
 //https://opentdb.com/api.php?amount=10&difficulty=medium&type=boolean
 public class TriviaActivity extends AppCompatActivity {
- //  ArrayList<TriviaQuestion> arrayListTriviaQuestions;
-    ArrayList<String> arrayListTemp;
-    //initialize newRound
-    TriviaGameRound newRound = new TriviaGameRound();
+    public String strPlayerName;
+    public int intAmountOfQuestion;
+    public String strTypeOfQuestion;
+    public String strDifficultyOfQuestion;
 
+ //  ArrayList<TriviaQuestion> arrayListTriviaQuestions;
+//    ArrayList<String> arrayListTemp;
+//    //initialize newRound
+//    TriviaGameRound newRound = new TriviaGameRound();
+//    private MyListAdapter myAdapter;
 
 
 
@@ -40,9 +52,9 @@ public class TriviaActivity extends AppCompatActivity {
 
 
         //Number of questions
-        EditText textEditNumberQuestion = findViewById(R.id.textEditNumberQuestion);
+        EditText textEditNumberQuestion = findViewById(R.id.textEditAmountOfQuestion);
         //Number of questions
-        EditText textEditNameOfPlayer = findViewById(R.id.textEditNameOfPlayer);
+        EditText textEditNameOfPlayer = findViewById(R.id.textEditPlayerName);
 
 
         //Game Type(True or false/Multiple choice/Both)
@@ -64,144 +76,67 @@ public class TriviaActivity extends AppCompatActivity {
         radioGroupType.setOnCheckedChangeListener((rg1,i)->{
             RadioButton rb1 = findViewById(radioGroupType.getCheckedRadioButtonId());
             if(String.valueOf(rb1.getText()).contains("true")){
-                newRound.setStrTypeOfGame("boolean");
+                strTypeOfQuestion = "boolean";
             }
             else if(String.valueOf(rb1.getText()).contains("multiple")){
-                newRound.setStrTypeOfGame("multiple");
+                strTypeOfQuestion ="multiple";
             }
             else{
-                newRound.setStrTypeOfGame(String.valueOf(rb1.getText()));
+                strTypeOfQuestion = String.valueOf(rb1.getText());
 
             }
         });
 
         radioGroupDifficulty.setOnCheckedChangeListener((rg2,i)->{
             RadioButton rb2 = findViewById(radioGroupDifficulty.getCheckedRadioButtonId());
-            newRound.setStrDifficultyOfGame(String.valueOf(rb2.getText()));
+            strDifficultyOfQuestion= String.valueOf(rb2.getText());
 
         });
 
         btnPlayNow.setOnClickListener(play->{
 
 
-            newRound.setIntNumberOfQuestions(Integer.parseInt(String.valueOf(textEditNumberQuestion.getText())));
-            newRound.setNameOfPlayer(String.valueOf(textEditNameOfPlayer.getText()));
+          intAmountOfQuestion =  Integer.parseInt(String.valueOf(textEditNumberQuestion.getText()));
+          strPlayerName = String.valueOf(textEditNameOfPlayer.getText());
 
-            MyHTTPRequest req = new MyHTTPRequest();
-            req.execute("https://opentdb.com/api.php?amount="+newRound.getIntNumberOfQuestions()+
-                    "&difficulty="+newRound.getStrDifficultyOfGame()+"&type="+newRound.getStrTypeOfGame());  //Type 1
+            Intent goToLoadQuestions = new Intent(TriviaActivity.this,TriviaLoadQuestions.class);
+            startActivity(goToLoadQuestions);
+
+
 
          //open the next Layout
-         setContentView(R.layout.activity_trivia_listview);
+  //       setContentView(R.layout.activity_trivia_listview);
+//            ListView myList = findViewById(R.id.theListView);
+//            myList.setAdapter( myAdapter = new MyListAdapter());
         });
     }
-    private class MyHTTPRequest extends AsyncTask< String, Integer, String>
-    {
 
 
-        String result;
-        JSONObject jsObjRoot;
-        JSONObject jsObjOneQuestion;
-        JSONArray jsArrQuestionsAndResults;
-        JSONArray jsArrIncorrectAnswers;
-        //Type3                Type1
-        public String doInBackground(String ... args)
-        {
-            try {
-
-                //create a URL object of what server to contact:
-                URL url = new URL(args[0]);
-
-                //open the connection
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-                //wait for data:
-                InputStream response = urlConnection.getInputStream();
-
-                //JSON reading:   Look at slide 26
-                //Build the entire string response:
-                BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
-                StringBuilder sb = new StringBuilder();
-
-                String line = null;
-                while ((line = reader.readLine()) != null)
-                {
-                    sb.append(line + "\n");
-                }
-                  result = sb.toString(); //result is the whole string
-                Log.i("llll",result.toString());
-
-
-                // convert string to JSON
-                jsObjRoot = new JSONObject(result);
-                Log.i("jsObjRoot",jsObjRoot.toString());
-                jsArrQuestionsAndResults = jsObjRoot.getJSONArray("results");
-                Log.i("Results",jsArrQuestionsAndResults.getString(0));
-                for(int i = 0; i < jsArrQuestionsAndResults.length(); i++){
-                    jsObjOneQuestion = jsArrQuestionsAndResults.getJSONObject(i);
-                    Log.i("jsObjOneQuestion",jsObjOneQuestion.toString());
-                    jsArrIncorrectAnswers = jsObjOneQuestion.getJSONArray("incorrect_answers");
-                    Log.i("jsArrIncorrectAnswers",jsArrIncorrectAnswers.toString());
-                    arrayListTemp = new ArrayList<>();
-                    arrayListTemp.clear();
-                    if(jsArrIncorrectAnswers !=null){
-                        for(int j=0; j<jsArrIncorrectAnswers.length();j++){
-                            arrayListTemp.add(jsArrIncorrectAnswers.getString(j));
-                        }
-                    }
-                   // Log.i("arrayListTemp",arrayListTemp.toString());
-
-
-                    Log.i("jsObType",jsObjOneQuestion.getString("type"));
-                    Log.i("difficulty",jsObjOneQuestion.getString("difficulty"));
-                    newRound.arrayListTriviaQuestions = new ArrayList<>();
-                     newRound.arrayListTriviaQuestions.add(new TriviaQuestion(
-                            jsObjOneQuestion.getString("type"),
-                            jsObjOneQuestion.getString("difficulty"),
-                            jsObjOneQuestion.getString("question"),
-                            jsObjOneQuestion.getString("correct_answer"),
-                            arrayListTemp,
-                            "unanswered",
-                             ""));
-                    Log.i("yyy","yyy");
-                    Log.i("listQuestions",newRound.arrayListTriviaQuestions.get(0).getStrCorrectAnswer());
-                    Log.i("listQuestions",newRound.arrayListTriviaQuestions.get(0).getStrDifficultyOfQuestion());
-                    Log.i("listQuestions",newRound.arrayListTriviaQuestions.get(0).strIncorrectAnswers.toString());
-
-                }
-                Log.i("name of player",newRound.getNameOfPlayer());
-                Log.i("difficulty",newRound.strDifficultyOfGame);
-                Log.i("difficulty",newRound.strDifficultyOfGame);
-                Log.i("Round info",newRound.getNameOfPlayer());
-                Log.i("Round info",newRound.getStrDifficultyOfGame());
-
-
-//                }
-
-//                //get the double associated with "value"
-//                String uvRating = jsObjRoot.getString("correct_answer");
+//    private class MyListAdapter extends BaseAdapter {
 //
-//                Log.i("MainActivity", "The uv is now: " + uvRating) ;
+//        public int getCount() { return newRound.arrayListTriviaQuestions.size();}
+//
+//        public Object getItem(int position) { return "This is row " + position; }
+//
+//        public long getItemId(int position) { return (long) position; }
+//
+//        public View getView(int position, View old, ViewGroup parent)
+//        {
+//            LayoutInflater inflater = getLayoutInflater();
+//
+//            //make a new row:
+//            View newView = inflater.inflate(R.layout.activity_trivia_boolean_question, parent, false);
+//
+//            //set what the text should be for this row:
+////            TextView tView = newView.findViewById(R.id.textGoesHere);
+////            tView.setText( getItem(position).toString() );
+////            RadioGroup radioGroupBoolean = newView.findViewById(R.id.radioGroupBoolean);
+////           TextView textNameOfQuestion = newView.findViewById(R.id.textNameOfQuestion);
+////           textNameOfQuestion.setText(newRound.arrayListTriviaQuestions.get(0).strQuestion);
+//            //return it to be put in the table
+//            return newView;
+//        }
+//    }
 
-            }
-            catch (Exception e)
-            {
-
-            }
-
-            return "Done";
-        }
-
-        //Type 2
-        public void onProgressUpdate(Integer ... args)
-        {
-
-        }
-        //Type3
-        public void onPostExecute(String fromDoInBackground)
-        {
-            Log.i("HTTP", fromDoInBackground);
-        }
-    }
 }
 

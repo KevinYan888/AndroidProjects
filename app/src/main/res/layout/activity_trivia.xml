@@ -25,7 +25,7 @@
         android:text="Name of Player:"
         android:textColor="@color/purple_700" />
     <EditText
-        android:id="@+id/textEditNameOfPlayer"
+        android:id="@+id/textEditPlayerName"
         android:hint="Your name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         android:text="How many questions?"
         android:textColor="@color/purple_700" />
     <EditText
-        android:id="@+id/textEditNumberQuestion"
+        android:id="@+id/textEditAmountOfQuestion"
         android:hint="Enter number: eg.10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
