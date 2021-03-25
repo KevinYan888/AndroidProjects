@@ -24,10 +24,12 @@ import java.util.List;
 //https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple
 //https://opentdb.com/api.php?amount=10&difficulty=medium&type=boolean
 public class TriviaActivity extends AppCompatActivity {
-   ArrayList<TriviaQuestion> arrayListTriviaQuestions;
+ //  ArrayList<TriviaQuestion> arrayListTriviaQuestions;
     ArrayList<String> arrayListTemp;
     //initialize newRound
     TriviaGameRound newRound = new TriviaGameRound();
+
+
 
 
     @Override
@@ -39,6 +41,9 @@ public class TriviaActivity extends AppCompatActivity {
 
         //Number of questions
         EditText textEditNumberQuestion = findViewById(R.id.textEditNumberQuestion);
+        //Number of questions
+        EditText textEditNameOfPlayer = findViewById(R.id.textEditNameOfPlayer);
+
 
         //Game Type(True or false/Multiple choice/Both)
         RadioGroup radioGroupType = findViewById(R.id.radioGroupType);
@@ -80,12 +85,14 @@ public class TriviaActivity extends AppCompatActivity {
 
 
             newRound.setIntNumberOfQuestions(Integer.parseInt(String.valueOf(textEditNumberQuestion.getText())));
+            newRound.setNameOfPlayer(String.valueOf(textEditNameOfPlayer.getText()));
 
             MyHTTPRequest req = new MyHTTPRequest();
             req.execute("https://opentdb.com/api.php?amount="+newRound.getIntNumberOfQuestions()+
                     "&difficulty="+newRound.getStrDifficultyOfGame()+"&type="+newRound.getStrTypeOfGame());  //Type 1
 
-
+         //open the next Layout
+         setContentView(R.layout.activity_trivia_listview);
         });
     }
     private class MyHTTPRequest extends AsyncTask< String, Integer, String>
@@ -147,23 +154,27 @@ public class TriviaActivity extends AppCompatActivity {
 
                     Log.i("jsObType",jsObjOneQuestion.getString("type"));
                     Log.i("difficulty",jsObjOneQuestion.getString("difficulty"));
-                    arrayListTriviaQuestions = new ArrayList<>();
-                     arrayListTriviaQuestions.add(new TriviaQuestion(
+                    newRound.arrayListTriviaQuestions = new ArrayList<>();
+                     newRound.arrayListTriviaQuestions.add(new TriviaQuestion(
                             jsObjOneQuestion.getString("type"),
                             jsObjOneQuestion.getString("difficulty"),
                             jsObjOneQuestion.getString("question"),
                             jsObjOneQuestion.getString("correct_answer"),
                             arrayListTemp,
                             "unanswered",
-                            ""));
+                             ""));
                     Log.i("yyy","yyy");
-                    Log.i("listQuestions",arrayListTriviaQuestions.get(0).getStrCorrectAnswer());
-                    Log.i("listQuestions",arrayListTriviaQuestions.get(0).getStrDifficultyOfQuestion());
-                    Log.i("listQuestions",arrayListTriviaQuestions.get(0).getStrIncorrectAnswers().toString());
+                    Log.i("listQuestions",newRound.arrayListTriviaQuestions.get(0).getStrCorrectAnswer());
+                    Log.i("listQuestions",newRound.arrayListTriviaQuestions.get(0).getStrDifficultyOfQuestion());
+                    Log.i("listQuestions",newRound.arrayListTriviaQuestions.get(0).strIncorrectAnswers.toString());
+
                 }
                 Log.i("name of player",newRound.getNameOfPlayer());
                 Log.i("difficulty",newRound.strDifficultyOfGame);
                 Log.i("difficulty",newRound.strDifficultyOfGame);
+                Log.i("Round info",newRound.getNameOfPlayer());
+                Log.i("Round info",newRound.getStrDifficultyOfGame());
+
 
 //                }
 

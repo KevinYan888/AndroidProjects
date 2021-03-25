@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textIsAnswered"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Unanswered"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="86dp"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/textWrong"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Wrong"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="132dp"
+        android:layout_below="@+id/textIsAnswered"/>
+
+    <TextView
+        android:id="@+id/textRight"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Right"
+        tools:layout_editor_absoluteY="178dp"
+        android:layout_below="@+id/textWrong"/>
+    <RadioGroup
+        android:id="@+id/radioGroupBoolean"
+        android:layout_width="282dp"
+        android:layout_height="205dp"
+        android:layout_toRightOf="@+id/textIsAnswered"
+
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="164dp">
+
+        <TextView
+            android:id="@+id/textNameOfQuestion"
+            android:textColor="@color/purple_700"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+        <RadioButton
+            android:id="@+id/rbtnBoolean1"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:text=""
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnBoolean2"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:text=""
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnBoolean3"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:text=""
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+    </RadioGroup>
+</RelativeLayout>

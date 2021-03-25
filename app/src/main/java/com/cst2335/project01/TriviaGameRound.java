@@ -7,14 +7,14 @@ public class TriviaGameRound {
     protected  int intNumberOfQuestions = 5;
     protected String strTypeOfGame;
     protected String strDifficultyOfGame;
-//    protected ArrayList<TriviaQuestion> arrayListTriviaQuestions;
+    protected ArrayList<TriviaQuestion> arrayListTriviaQuestions;
     protected double dblScore;
-//
-//    public TriviaGameRound(){
-//        new TriviaQuestion();
-//
-//        ArrayList<TriviaQuestion> arrayListTriviaQuestions = new ArrayList<TriviaQuestion>();
-//    }
+
+    public TriviaGameRound(){
+        new TriviaQuestion();
+
+        ArrayList<TriviaQuestion> arrayListTriviaQuestions = new ArrayList<TriviaQuestion>();
+    }
 
 
     public String getNameOfPlayer() {
@@ -33,9 +33,6 @@ public class TriviaGameRound {
         return strDifficultyOfGame;
     }
 
-//    public ArrayList<TriviaQuestion> getArrayListTriviaQuestions() {
-//        return arrayListTriviaQuestions;
-//    }
 
     public double getDblScore() {
         return dblScore;
@@ -56,10 +53,6 @@ public class TriviaGameRound {
     public void setStrDifficultyOfGame(String strDifficultyOfGame) {
         this.strDifficultyOfGame = strDifficultyOfGame;
     }
-
-//    public void setArrayListTriviaQuestions(ArrayList<TriviaQuestion> arrayListTriviaQuestions) {
-//        this.arrayListTriviaQuestions = arrayListTriviaQuestions;
-//    }
 
     public void setDblScore(double dblScore) {
         this.dblScore = dblScore;

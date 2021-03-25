@@ -40,9 +40,6 @@ public class TriviaQuestion {
         return strCorrectAnswer;
     }
 
-    public ArrayList<String> getStrIncorrectAnswers() {
-        return strIncorrectAnswers;
-    }
 
     public String getStrStateOfQuestion() {
         return strStateOfQuestion;
@@ -76,9 +73,6 @@ public class TriviaQuestion {
         this.strCorrectAnswer = strCorrectAnswer;
     }
 
-    public void setStrIncorrectAnswers(ArrayList<String> strIncorrectAnswers) {
-        this.strIncorrectAnswers = strIncorrectAnswers;
-    }
 
     public void setStrStateOfQuestion(String strStateOfQuestion) {
         this.strStateOfQuestion = strStateOfQuestion;
