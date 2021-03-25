@@ -39,4 +39,11 @@
    android:layout_below="@+id/searchText"
   android:layout_toRightOf="@+id/searchEdit"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
     </RelativeLayout>
