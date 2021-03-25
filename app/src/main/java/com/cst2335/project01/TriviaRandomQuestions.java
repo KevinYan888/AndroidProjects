@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 //each question create an object of TriviaQuestion
 public class TriviaRandomQuestions {
+    protected  int id;
     protected String strTypeOfQuestion;
     protected String strDifficultyOfQuestion;
     protected String strQuestion;
@@ -12,7 +13,8 @@ public class TriviaRandomQuestions {
 //    protected String strStateOfQuestion;
 //    protected String strAnswerOfPlayer;
 
-    public TriviaRandomQuestions(String ty,String di,String sq, String sc,ArrayList<String> ras){
+    public TriviaRandomQuestions(int id,String ty,String di,String sq, String sc,ArrayList<String> ras){
+        this.id = id;
         this.strTypeOfQuestion = ty;
         this.strDifficultyOfQuestion = di;
         this.strQuestion = sq;
@@ -40,6 +42,13 @@ public class TriviaRandomQuestions {
         return randomAnswers;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public ArrayList<String> getRandomAnswers() {
+        return randomAnswers;
+    }
 //    public String getStrStateOfQuestion() {
 //        return strStateOfQuestion;
 //    }
@@ -69,6 +78,13 @@ public class TriviaRandomQuestions {
         this.randomAnswers = ramdomAnswers;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setRandomAnswers(ArrayList<String> randomAnswers) {
+        this.randomAnswers = randomAnswers;
+    }
 //    public void setStrStateOfQuestion(String strStateOfQuestion) {
 //        this.strStateOfQuestion = strStateOfQuestion;
 //    }

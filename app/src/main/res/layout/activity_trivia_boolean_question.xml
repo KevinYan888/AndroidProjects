@@ -47,7 +47,7 @@
             android:text="" />
 
         <RadioButton
-            android:id="@+id/rbtnBoolean1"
+            android:id="@+id/rbtnTrue"
             android:layout_width="255dp"
             android:layout_height="40dp"
             android:text=""
@@ -55,19 +55,12 @@
             tools:layout_editor_absoluteY="300dp" />
 
         <RadioButton
-            android:id="@+id/rbtnBoolean2"
+            android:id="@+id/rbtnfalse"
             android:layout_width="255dp"
             android:layout_height="40dp"
             android:text=""
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="300dp" />
 
-        <RadioButton
-            android:id="@+id/rbtnBoolean3"
-            android:layout_width="255dp"
-            android:layout_height="40dp"
-            android:text=""
-            tools:layout_editor_absoluteX="60dp"
-            tools:layout_editor_absoluteY="300dp" />
     </RadioGroup>
 </RelativeLayout>

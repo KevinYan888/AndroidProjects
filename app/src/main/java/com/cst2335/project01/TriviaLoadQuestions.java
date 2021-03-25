@@ -6,6 +6,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,6 +27,7 @@ import java.util.Collections;
 
 public class TriviaLoadQuestions extends AppCompatActivity {
 ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
+    private MyListAdapter myAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +39,9 @@ ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
         JsonQuery jq = new JsonQuery();
         jq.execute("https://opentdb.com/api.php?amount=" + bundle.getInt("intAmountOfQuestion") +
                 "&difficulty=" + bundle.getString("strDifficultyOfQuestion") + "&type=" + bundle.getString("strTypeOfQuestion"));  //Type 1
+        ListView myList = (ListView) findViewById(R.id.listView);
+        myList.setAdapter(myAdapter = new MyListAdapter()); //populates the list
+
     }
 
     private class JsonQuery extends AsyncTask<String, Integer, String> {
@@ -92,7 +103,7 @@ ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
 //                    protected String strCorrectAnswer;
 //                    protected ArrayList<String> strIncorrectAnswers;
 //                    protected ArrayList<String> randomAnswers;
-                    arrListRandomQuestions.add(i,new TriviaRandomQuestions(
+                    arrListRandomQuestions.add(i,new TriviaRandomQuestions(i,
                             jsObjOneQuestion.getString("type"),
                             jsObjOneQuestion.getString("difficulty"),
                             jsObjOneQuestion.getString("question"),
@@ -121,8 +132,82 @@ ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
 
         //Type3
         public void onPostExecute(String fromDoInBackground) {
-            Log.i("HTTP", fromDoInBackground);
+
+        myAdapter.notifyDataSetChanged();
+
         }
-//    }
+    }
+    //an inner class
+    class MyListAdapter extends BaseAdapter {
+        @Override //number of items in the list
+        public int getCount() {
+            return arrListRandomQuestions.size();
+        }
+
+        public TriviaRandomQuestions getItem(int position) {
+            return arrListRandomQuestions.get(position);
+        }
+
+        @Override   //how to show it: button, texView, checkbox?
+        public View getView(int position, View view, ViewGroup viewGroup) {
+            LayoutInflater inflater = getLayoutInflater();
+            View newView;
+            TriviaRandomQuestions thisRow = getItem(position);
+            if(thisRow.getStrTypeOfQuestion().equals("boolean") ){
+                newView = inflater.inflate(R.layout.activity_trivia_boolean_question, viewGroup, false);
+
+                TextView nameQuestion = newView.findViewById(R.id.textNameOfQuestion);
+
+                nameQuestion.setText(thisRow.getStrQuestion());
+
+                RadioButton rbtnTrue = newView.findViewById(R.id.rbtnTrue);
+                rbtnTrue.setText(thisRow.getRamdomAnswers().get(0));
+                RadioButton rbtnfalse = newView.findViewById(R.id.rbtnfalse);
+                rbtnfalse.setText(thisRow.getRamdomAnswers().get(1));
+
+                TextView textIsAnswered = newView.findViewById(R.id.textIsAnswered);
+                textIsAnswered.setText("111");
+
+                TextView textWrong = newView.findViewById(R.id.textWrong);
+                textWrong.setText("222");
+
+                TextView textRight = newView.findViewById(R.id.textRight);
+                textRight.setText("333");
+
+
+            }
+            else {
+                newView = inflater.inflate(R.layout.activity_trivia_boolean_question, viewGroup, false);
+
+                TextView nameQuestion = newView.findViewById(R.id.textNameOfQuestion);
+
+                nameQuestion.setText(thisRow.getStrQuestion());
+
+                RadioButton rbtnTrue = newView.findViewById(R.id.rbtnTrue);
+                rbtnTrue.setText(thisRow.getRamdomAnswers().get(0));
+                RadioButton rbtnfalse = newView.findViewById(R.id.rbtnfalse);
+                rbtnfalse.setText(thisRow.getRamdomAnswers().get(1));
+
+                TextView textIsAnswered = newView.findViewById(R.id.textIsAnswered);
+                textIsAnswered.setText("111");
+
+                TextView textWrong = newView.findViewById(R.id.textWrong);
+                textWrong.setText("222");
+
+                TextView textRight = newView.findViewById(R.id.textRight);
+                textRight.setText("333");
+            }
+
+
+//            //finding what's in layout file
+//            TextView thisRowMessage = (TextView)newView.findViewById(R.id.textGoesHere);
+//            thisRowMessage.setText(thisRow.getOneOfChatText());
+
+            return newView;
+        }
+        @Override //returns the database id of item i
+        public long getItemId(int position) {
+            return getItem(position).getId();
+        }
     }
 }
