@@ -163,14 +163,14 @@ public class SearchActivity extends AppCompatActivity {
                     for(int i=0;i<resultJsonArray.length();i++){
                         object = resultJsonArray.getJSONObject(i);
                         try {
-                            //获取到json数据中的activity数组里的内容name
+                            //获取到json数据中的results数组里的内容Model_ID
                             String id = object.getString("Model_ID");
-                            //获取到json数据中的activity数组里的内容startTime
+                            //获取到json数据中的results数组里的内容Model_Name
                             String name=object.getString("Model_Name");
                             //存入map
                             map.put("Model_ID", id);
                             map.put("Model_Name", name);
-                            //ArrayList集合
+                            //add to ArrayList集合
                             list.add(map);
 
                         } catch (JSONException e) {
@@ -189,18 +189,15 @@ public class SearchActivity extends AppCompatActivity {
         //Type 2
         public void onProgressUpdate(Integer ... args)
         {
-            Log.i("HTTP", "i22222222222222222222");
             Log.i("HTTP", "in onProgressUpdate");
         }
         //Type3
         public void onPostExecute(String fromDoInBackground)
         {
-            Log.i("HTTP", "i3333333333333333333333333333");
-
             Log.i("HTTP", fromDoInBackground);
             myAdapter.notifyDataSetChanged();
             progressBar.setVisibility(View.INVISIBLE );
-//            Toast.makeText(this, "Inserted item id:"+ Integer.valueOf(modelID), Toast.LENGTH_LONG).show();
+//          Toast.makeText(this, "Inserted item id:"+ Integer.valueOf(modelID), Toast.LENGTH_LONG).show();
         }
     }
 
