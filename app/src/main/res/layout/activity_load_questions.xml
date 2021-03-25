@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".TriviaLoadQuestions">
 
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="284dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

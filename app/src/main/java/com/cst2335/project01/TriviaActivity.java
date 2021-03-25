@@ -31,12 +31,28 @@ import java.util.List;
 //https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple
 //https://opentdb.com/api.php?amount=10&difficulty=medium&type=boolean
 public class TriviaActivity extends AppCompatActivity {
-    public String strPlayerName;
-    public int intAmountOfQuestion;
-    public String strTypeOfQuestion;
-    public String strDifficultyOfQuestion;
 
- //  ArrayList<TriviaQuestion> arrayListTriviaQuestions;
+    private String strPlayerName;
+    private int intAmountOfQuestion;
+    private String strTypeOfQuestion;
+    private String strDifficultyOfQuestion;
+
+    public String getStrPlayerName() {
+        return strPlayerName;
+    }
+
+    public int getIntAmountOfQuestion() {
+        return intAmountOfQuestion;
+    }
+
+    public String getStrTypeOfQuestion() {
+        return strTypeOfQuestion;
+    }
+
+    public String getStrDifficultyOfQuestion() {
+        return strDifficultyOfQuestion;
+    }
+//  ArrayList<TriviaQuestion> arrayListTriviaQuestions;
 //    ArrayList<String> arrayListTemp;
 //    //initialize newRound
 //    TriviaGameRound newRound = new TriviaGameRound();
@@ -99,8 +115,18 @@ public class TriviaActivity extends AppCompatActivity {
           intAmountOfQuestion =  Integer.parseInt(String.valueOf(textEditNumberQuestion.getText()));
           strPlayerName = String.valueOf(textEditNameOfPlayer.getText());
 
-            Intent goToLoadQuestions = new Intent(TriviaActivity.this,TriviaLoadQuestions.class);
+          //pass info to next activity
+          Bundle bundle = new Bundle();
+          bundle.putString("strPlayerName",strPlayerName);
+            bundle.putInt("intAmountOfQuestion",intAmountOfQuestion);
+            bundle.putString("strTypeOfQuestion",strTypeOfQuestion);
+            bundle.putString("strDifficultyOfQuestion",strDifficultyOfQuestion);
+            bundle.putString("strPlayerName",strPlayerName);
+            Intent goToLoadQuestions = new Intent();
+            goToLoadQuestions.putExtras(bundle);
+            goToLoadQuestions.setClass(TriviaActivity.this,TriviaLoadQuestions.class);
             startActivity(goToLoadQuestions);
+
 
 
 
