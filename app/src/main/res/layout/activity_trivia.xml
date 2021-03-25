@@ -38,7 +38,7 @@
         android:layout_height="10dp" />
 
     <RadioGroup
-        android:id="@+id/radioGroupStyle"
+        android:id="@+id/radioGroupType"
         android:layout_width="282dp"
         android:layout_height="205dp"
 
@@ -46,79 +46,79 @@
         tools:layout_editor_absoluteY="164dp">
 
         <TextView
-            android:id="@+id/textStyleOfQuestion"
+            android:id="@+id/textTypeOfQuestion"
             android:textColor="@color/purple_700"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Style of question?" />
+            android:text="Type of question?" />
 
         <RadioButton
-            android:id="@+id/rbtnStyleTrue"
+            android:id="@+id/rbtnTypeTrue"
             android:layout_width="255dp"
             android:layout_height="55dp"
-            android:text="True / False"
+            android:text="true / false"
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="300dp" />
 
         <RadioButton
-            android:id="@+id/rbtnStyleMultiple"
+            android:id="@+id/rbtnTypeMultiple"
             android:layout_width="255dp"
             android:layout_height="55dp"
-            android:text="Multiple Choice"
+            android:text="multiple choice"
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="300dp" />
 
         <RadioButton
-            android:id="@+id/rbtnStyleBoth"
+            android:id="@+id/rbtnTypeBoth"
             android:layout_width="255dp"
             android:layout_height="55dp"
-            android:text="Both"
+            android:text="both"
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="300dp" />
     </RadioGroup>
 
     <RadioGroup
         android:text="Difficulty Level"
-        android:id="@+id/radioGroupLevel"
+        android:id="@+id/radioGroupDifficulty"
         android:layout_width="282dp"
         android:layout_height="206dp"
         tools:layout_editor_absoluteX="133dp"
         tools:layout_editor_absoluteY="164dp">
 
         <TextView
-            android:id="@+id/textLevel"
+            android:id="@+id/textDifficulty"
             android:textColor="@color/purple_700"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Difficulty level?" />
+            android:text="difficulty level?" />
 
         <RadioButton
-            android:id="@+id/rbtnLevleEasy"
+            android:id="@+id/rbtnDifficultyEasy"
             android:layout_width="255dp"
             android:layout_height="55dp"
-            android:text="Easy"
+            android:text="easy"
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="300dp" />
 
         <RadioButton
-            android:id="@+id/rbtnLevelMedium"
+            android:id="@+id/rbtnDifficultyMedium"
             android:layout_width="255dp"
             android:layout_height="55dp"
-            android:text="Medium"
+            android:text="medium"
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="300dp" />
 
         <RadioButton
-            android:id="@+id/rbtnLevelHard"
+            android:id="@+id/rbtnDifficultyHard"
             android:layout_width="255dp"
             android:layout_height="55dp"
-            android:text="Hard"
+            android:text="hard"
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="300dp" />
     </RadioGroup>
 
     <Button
-        android:id="@+id/btnPalyNow"
+        android:id="@+id/btnPlayNow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Play Now" />
