@@ -16,7 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -39,6 +41,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,12 +54,15 @@ public class SearchActivity extends AppCompatActivity {
     ProgressBar progressBar;
     MyListAdapter myAdapter;
 
+    public static final String MODEL_NAME = "Model_Name";
+
+    public static final String MODEL_ID = "Model_ID";
+
     public  JSONObject object;
     public 	ListView lv;
     public ArrayList<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 
 
-    private ArrayList<String> searchResult = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +89,57 @@ public class SearchActivity extends AppCompatActivity {
             showContact( pos );
             return true;
         });
+
+        //If it returns null then you are on a phone, otherwise it’s on a tablet. Store this in result in a Boolean variable.
+        FrameLayout fLayout = findViewById(R.id.fLayout);
+        boolean isTablet = fLayout != null; //check if the FrameLayout is loaded
+
+        myList.setOnItemClickListener((list, view, pos, id) -> {
+            //Create a bundle to pass data to the new fragment
+            Log.e("1111111111","2222222222222222");
+//            Message newMsg = new Message(searchEdit.getText().toString(),false,id);
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(MODEL_NAME, String.valueOf(list.getItemIdAtPosition(pos)));
+
+            dataToPass.putLong(MODEL_ID, list.getItemIdAtPosition(pos));
+
+            if(isTablet)
+            {
+                CardataFragment carFragment = new CardataFragment(); //add a DetailFragment
+                carFragment.setArguments( dataToPass ); //pass it a bundle for information
+                Log.e("1111111111","33333333333333");
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fLayout, carFragment) //Add the fragment in FrameLayout
+                        .commit(); //actually load the fragment. Calls onCreate() in DetailsFragment
+                Log.e("1111111111","444444444444444444");
+            }
+            else //isPhone
+            {
+                Intent nextActivity = new Intent(SearchActivity.this, EmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+//look at the startActivity() call from step 7 and change the Intent object so that it will transition to EmptyActivity.class.
+                Log.e("1111111111","555555555555555555555");
+                startActivity(nextActivity); //make the transition
+                Log.e("1111111111","66666666666666666666");
+            }
+        });
+
+        Button saving = findViewById(R.id.saving);
+//        saving.setOnClickListener( sb->{
+//                Intent goToSave = new Intent(SearchActivity.this, SavingActivity.class);
+//        startActivity(goToSave);
+//        });
+//        Button viewing = findViewById(R.id.viewing);
+//        viewing.setOnClickListener(vb-> {
+//                Intent goToView = new Intent(SearchActivity.this, ViewingActivity.class);
+//                startActivity(goToView);
+//        });
+//        Button shopping = findViewById(R.id.shopping);
+//        shopping.setOnClickListener( shb->{
+//                Intent goToShop = new Intent(SearchActivity.this, ShoppingActivity.class);
+//        startActivity(goToShop);
+//        });
     }
 
 
@@ -165,13 +222,17 @@ public class SearchActivity extends AppCompatActivity {
                         try {
                             //获取到json数据中的results数组里的内容Model_ID
                             String id = object.getString("Model_ID");
+
                             //获取到json数据中的results数组里的内容Model_Name
                             String name=object.getString("Model_Name");
                             //存入map
                             map.put("Model_ID", id);
+                            Log.e("MainActivity", String.valueOf(id) ) ;
                             map.put("Model_Name", name);
+                            Log.e("MainActivity", String.valueOf(name) ) ;
                             //add to ArrayList集合
                             list.add(map);
+//                            list.addAll((Collection<? extends Map<String, Object>>) map);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
