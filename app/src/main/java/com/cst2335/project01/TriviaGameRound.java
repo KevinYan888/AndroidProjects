@@ -5,10 +5,18 @@ import java.util.ArrayList;
 public class TriviaGameRound {
     protected String nameOfPlayer = "unknown";
     protected  int intNumberOfQuestions = 5;
-    protected String strTypeOfGame = "";
-    protected String strDifficultyOfGame = "";
-    protected ArrayList<TriviaQuestion> arrayListTriviaQuestions = new ArrayList<>();
-    protected double dblScore = 0.00;
+    protected String strTypeOfGame;
+    protected String strDifficultyOfGame;
+//    protected ArrayList<TriviaQuestion> arrayListTriviaQuestions;
+    protected double dblScore;
+//
+//    public TriviaGameRound(){
+//        new TriviaQuestion();
+//
+//        ArrayList<TriviaQuestion> arrayListTriviaQuestions = new ArrayList<TriviaQuestion>();
+//    }
+
+
     public String getNameOfPlayer() {
         return nameOfPlayer;
     }
@@ -25,9 +33,9 @@ public class TriviaGameRound {
         return strDifficultyOfGame;
     }
 
-    public ArrayList<TriviaQuestion> getArrayListTriviaQuestions() {
-        return arrayListTriviaQuestions;
-    }
+//    public ArrayList<TriviaQuestion> getArrayListTriviaQuestions() {
+//        return arrayListTriviaQuestions;
+//    }
 
     public double getDblScore() {
         return dblScore;
@@ -49,9 +57,9 @@ public class TriviaGameRound {
         this.strDifficultyOfGame = strDifficultyOfGame;
     }
 
-    public void setArrayListTriviaQuestions(ArrayList<TriviaQuestion> arrayListTriviaQuestions) {
-        this.arrayListTriviaQuestions = arrayListTriviaQuestions;
-    }
+//    public void setArrayListTriviaQuestions(ArrayList<TriviaQuestion> arrayListTriviaQuestions) {
+//        this.arrayListTriviaQuestions = arrayListTriviaQuestions;
+//    }
 
     public void setDblScore(double dblScore) {
         this.dblScore = dblScore;

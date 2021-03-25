@@ -4,13 +4,23 @@ import java.util.ArrayList;
 
 //each question create an object of TriviaQuestion
 public class TriviaQuestion {
-    protected String strTypeOfQuestion = "";
-    protected String strDifficultyOfQuestion = "";
-    protected String strQuestion = "";
-    protected String strCorrectAnswer = "";
-    protected ArrayList<String> strIncorrectAnswers = new ArrayList<>();
-    protected String strStateOfQuestion = "";
-    protected String strAnswerOfPlayer = "";
+    protected String strTypeOfQuestion;
+    protected String strDifficultyOfQuestion;
+    protected String strQuestion;
+    protected String strCorrectAnswer;
+    protected ArrayList<String> strIncorrectAnswers;
+    protected String strStateOfQuestion;
+    protected String strAnswerOfPlayer;
+
+    public TriviaQuestion(){
+        this.strTypeOfQuestion = "";
+        this.strDifficultyOfQuestion = "";
+        this.strQuestion = "";
+        this.strCorrectAnswer = "";
+        this.strIncorrectAnswers = new ArrayList<>();
+        this.strStateOfQuestion = "";
+        this.strAnswerOfPlayer = "";
+    }
 
     public TriviaQuestion(String type,String diff,String ques,String correct, ArrayList<String> incorrect,String state,String answerOfPlayer){
         this.strTypeOfQuestion = type;

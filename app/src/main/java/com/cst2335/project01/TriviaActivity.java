@@ -24,13 +24,16 @@ import java.util.List;
 //https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple
 //https://opentdb.com/api.php?amount=10&difficulty=medium&type=boolean
 public class TriviaActivity extends AppCompatActivity {
+   ArrayList<TriviaQuestion> arrayListTriviaQuestions;
+    ArrayList<String> arrayListTemp;
     //initialize newRound
     TriviaGameRound newRound = new TriviaGameRound();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
-
 
 
 
@@ -59,7 +62,7 @@ public class TriviaActivity extends AppCompatActivity {
                 newRound.setStrTypeOfGame("boolean");
             }
             else if(String.valueOf(rb1.getText()).contains("multiple")){
-                newRound.setStrTypeOfGame("boolean");
+                newRound.setStrTypeOfGame("multiple");
             }
             else{
                 newRound.setStrTypeOfGame(String.valueOf(rb1.getText()));
@@ -79,13 +82,17 @@ public class TriviaActivity extends AppCompatActivity {
             newRound.setIntNumberOfQuestions(Integer.parseInt(String.valueOf(textEditNumberQuestion.getText())));
 
             MyHTTPRequest req = new MyHTTPRequest();
-            req.execute("https://opentdb.com/api.php?amount="+newRound.getIntNumberOfQuestions()+"&difficulty="+newRound.getStrDifficultyOfGame()+"&type="+newRound.getStrTypeOfGame());  //Type 1
+            req.execute("https://opentdb.com/api.php?amount="+newRound.getIntNumberOfQuestions()+
+                    "&difficulty="+newRound.getStrDifficultyOfGame()+"&type="+newRound.getStrTypeOfGame());  //Type 1
 
 
         });
     }
     private class MyHTTPRequest extends AsyncTask< String, Integer, String>
     {
+
+
+        String result;
         JSONObject jsObjRoot;
         JSONObject jsObjOneQuestion;
         JSONArray jsArrQuestionsAndResults;
@@ -114,24 +121,34 @@ public class TriviaActivity extends AppCompatActivity {
                 {
                     sb.append(line + "\n");
                 }
-                String result = sb.toString(); //result is the whole string
+                  result = sb.toString(); //result is the whole string
+                Log.i("llll",result.toString());
 
 
                 // convert string to JSON
                 jsObjRoot = new JSONObject(result);
+                Log.i("jsObjRoot",jsObjRoot.toString());
                 jsArrQuestionsAndResults = jsObjRoot.getJSONArray("results");
+                Log.i("Results",jsArrQuestionsAndResults.getString(0));
                 for(int i = 0; i < jsArrQuestionsAndResults.length(); i++){
                     jsObjOneQuestion = jsArrQuestionsAndResults.getJSONObject(i);
+                    Log.i("jsObjOneQuestion",jsObjOneQuestion.toString());
                     jsArrIncorrectAnswers = jsObjOneQuestion.getJSONArray("incorrect_answers");
-
-                    ArrayList<String> arrayListTemp = new ArrayList<>();
+                    Log.i("jsArrIncorrectAnswers",jsArrIncorrectAnswers.toString());
+                    arrayListTemp = new ArrayList<>();
+                    arrayListTemp.clear();
                     if(jsArrIncorrectAnswers !=null){
                         for(int j=0; j<jsArrIncorrectAnswers.length();j++){
                             arrayListTemp.add(jsArrIncorrectAnswers.getString(j));
                         }
                     }
+                   // Log.i("arrayListTemp",arrayListTemp.toString());
 
-                    newRound.arrayListTriviaQuestions.add(new TriviaQuestion(
+
+                    Log.i("jsObType",jsObjOneQuestion.getString("type"));
+                    Log.i("difficulty",jsObjOneQuestion.getString("difficulty"));
+                    arrayListTriviaQuestions = new ArrayList<>();
+                     arrayListTriviaQuestions.add(new TriviaQuestion(
                             jsObjOneQuestion.getString("type"),
                             jsObjOneQuestion.getString("difficulty"),
                             jsObjOneQuestion.getString("question"),
@@ -139,18 +156,15 @@ public class TriviaActivity extends AppCompatActivity {
                             arrayListTemp,
                             "unanswered",
                             ""));
-
-
-
+                    Log.i("yyy","yyy");
+                    Log.i("listQuestions",arrayListTriviaQuestions.get(0).getStrCorrectAnswer());
+                    Log.i("listQuestions",arrayListTriviaQuestions.get(0).getStrDifficultyOfQuestion());
+                    Log.i("listQuestions",arrayListTriviaQuestions.get(0).getStrIncorrectAnswers().toString());
                 }
-//    public TriviaQuestion(String type,String diff,String ques,String correct, String[] incorrect,String state,String answerOfPlayer){
-//                    this.strTypeOfQuestion = type;
-//                    this.strDifficultyOfQuestion = diff;
-//                    this.strQuestion = ques;
-//                    this.strCorrectAnswer = correct;
-//                    this.strIncorrectAnswers = incorrect;
-//                    this.strStateOfQuestion = state;
-//                    this.strAnswerOfPlayer = answerOfPlayer;
+                Log.i("name of player",newRound.getNameOfPlayer());
+                Log.i("difficulty",newRound.strDifficultyOfGame);
+                Log.i("difficulty",newRound.strDifficultyOfGame);
+
 //                }
 
 //                //get the double associated with "value"
