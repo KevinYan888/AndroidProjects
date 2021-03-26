@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -26,7 +28,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class TriviaLoadQuestions extends AppCompatActivity {
-ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
+    ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
+    ArrayList<String> arrListAnswersOfPlayer = new ArrayList<String>();
     private MyListAdapter myAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,19 @@ ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
                 "&difficulty=" + bundle.getString("strDifficultyOfQuestion") + "&type=" + bundle.getString("strTypeOfQuestion"));  //Type 1
         ListView myList = (ListView) findViewById(R.id.listView);
         myList.setAdapter(myAdapter = new MyListAdapter()); //populates the list
+
+        Button btnSubmit = findViewById(R.id.btnSubmit);
+        Button btnCancel = findViewById(R.id.btnCancel);
+
+
+
+
+        btnSubmit.setOnClickListener(clk->{
+            for(int i=0; i<arrListRandomQuestions.size();i++){
+
+
+            }
+        });
 
     }
 
@@ -97,12 +113,7 @@ ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
                     }
                     tempArrListRandomQues.add(jsObjOneQuestion.getString("correct_answer"));
                     Collections.shuffle(tempArrListRandomQues);//Random answers
-//                    protected String strTypeOfQuestion;
-//                    protected String strDifficultyOfQuestion;
-//                    protected String strQuestion;
-//                    protected String strCorrectAnswer;
-//                    protected ArrayList<String> strIncorrectAnswers;
-//                    protected ArrayList<String> randomAnswers;
+
                     arrListRandomQuestions.add(i,new TriviaRandomQuestions(i,
                             jsObjOneQuestion.getString("type"),
                             jsObjOneQuestion.getString("difficulty"),
@@ -158,46 +169,77 @@ ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
 
                 TextView nameQuestion = newView.findViewById(R.id.textNameOfQuestion);
 
-                nameQuestion.setText(thisRow.getStrQuestion());
+                nameQuestion.setText(position+1+". "+thisRow.getStrQuestion());
+                RadioGroup radioGroupBoolean = newView.findViewById(R.id.radioGroupBoolean);
 
                 RadioButton rbtnTrue = newView.findViewById(R.id.rbtnTrue);
                 rbtnTrue.setText(thisRow.getRamdomAnswers().get(0));
                 RadioButton rbtnfalse = newView.findViewById(R.id.rbtnfalse);
                 rbtnfalse.setText(thisRow.getRamdomAnswers().get(1));
 
-                TextView textIsAnswered = newView.findViewById(R.id.textIsAnswered);
-                textIsAnswered.setText("111");
+                TextView textStateOfQuestion = newView.findViewById(R.id.textStateOfQuestion);
 
-                TextView textWrong = newView.findViewById(R.id.textWrong);
-                textWrong.setText("222");
+                radioGroupBoolean.setOnCheckedChangeListener((rgb,i)->{
+                    RadioButton isSelected = findViewById(radioGroupBoolean.getCheckedRadioButtonId());
 
-                TextView textRight = newView.findViewById(R.id.textRight);
-                textRight.setText("333");
+                    if(thisRow.getStrCorrectAnswer().equals(isSelected.getText().toString()))
+                    {
+                        //Unanswered/True/False
+                        textStateOfQuestion.setText("True");
 
+                    }
+                    else {
+                        textStateOfQuestion.setText("False");
+                    }
+                    // myAdapter.notifyDataSetChanged();
+                });
 
             }
             else {
-                newView = inflater.inflate(R.layout.activity_trivia_boolean_question, viewGroup, false);
+                newView = inflater.inflate(R.layout.activity_trivia_multiple_question, viewGroup, false);
 
                 TextView nameQuestion = newView.findViewById(R.id.textNameOfQuestion);
 
-                nameQuestion.setText(thisRow.getStrQuestion());
+                nameQuestion.setText(position+1+". "+thisRow.getStrQuestion());
+//                RadioGroup radioGroupMulti = newView.findViewById(R.id.radioGroupMulti);
 
-                RadioButton rbtnTrue = newView.findViewById(R.id.rbtnTrue);
-                rbtnTrue.setText(thisRow.getRamdomAnswers().get(0));
-                RadioButton rbtnfalse = newView.findViewById(R.id.rbtnfalse);
-                rbtnfalse.setText(thisRow.getRamdomAnswers().get(1));
+                RadioButton rbtnMult1 = newView.findViewById(R.id.rbtnMult1);
+                rbtnMult1.setText(thisRow.getRamdomAnswers().get(0));
+                RadioButton rbtnMult2 = newView.findViewById(R.id.rbtnMult2);
+                rbtnMult2.setText(thisRow.getRamdomAnswers().get(1));
+                RadioButton rbtnMult3 = newView.findViewById(R.id.rbtnMult3);
+                rbtnMult3.setText(thisRow.getRamdomAnswers().get(2));
+                RadioButton rbtnMult4 = newView.findViewById(R.id.rbtnMult4);
+                rbtnMult4.setText(thisRow.getRamdomAnswers().get(3));
 
-                TextView textIsAnswered = newView.findViewById(R.id.textIsAnswered);
-                textIsAnswered.setText("111");
 
-                TextView textWrong = newView.findViewById(R.id.textWrong);
-                textWrong.setText("222");
+                TextView textStateOfQuestion = newView.findViewById(R.id.textStateOfQuestion);
+                RadioGroup radioGroupMulti = newView.findViewById(R.id.radioGroupMulti);
 
-                TextView textRight = newView.findViewById(R.id.textRight);
-                textRight.setText("333");
+                radioGroupMulti.setOnCheckedChangeListener((RadioGroup rgb,int CheckedId)->{
+
+ //                  RadioButton isSelected = findViewById(radioGroupMulti.getCheckedRadioButtonId());
+                    RadioButton isSelected = newView.findViewById(CheckedId);
+
+                    if(thisRow.getStrCorrectAnswer().equals(isSelected.getText().toString()))
+                    {
+                        //Unanswered/True/False
+                        textStateOfQuestion.setText("True");
+
+                    }
+                    else {
+                        textStateOfQuestion.setText("False");
+                    }
+                    Log.e("player answer",isSelected.getText().toString());
+                    Log.e("correct answer",thisRow.getStrCorrectAnswer());
+                    Log.i("checkedId",Integer.toString(CheckedId));
+                    Log.i("position",Integer.toString(position));
+                    Log.i("RadioGroup Id",Integer.toString(rgb.getId()));
+
+                });
+
             }
-
+            myAdapter.notifyDataSetChanged();
 
 //            //finding what's in layout file
 //            TextView thisRowMessage = (TextView)newView.findViewById(R.id.textGoesHere);

@@ -52,20 +52,11 @@ public class TriviaActivity extends AppCompatActivity {
     public String getStrDifficultyOfQuestion() {
         return strDifficultyOfQuestion;
     }
-//  ArrayList<TriviaQuestion> arrayListTriviaQuestions;
-//    ArrayList<String> arrayListTemp;
-//    //initialize newRound
-//    TriviaGameRound newRound = new TriviaGameRound();
-//    private MyListAdapter myAdapter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
-
-
 
         //Number of questions
         EditText textEditNumberQuestion = findViewById(R.id.textEditAmountOfQuestion);
@@ -110,8 +101,6 @@ public class TriviaActivity extends AppCompatActivity {
         });
 
         btnPlayNow.setOnClickListener(play->{
-
-
           intAmountOfQuestion =  Integer.parseInt(String.valueOf(textEditNumberQuestion.getText()));
           strPlayerName = String.valueOf(textEditNameOfPlayer.getText());
 
@@ -127,42 +116,8 @@ public class TriviaActivity extends AppCompatActivity {
             goToLoadQuestions.setClass(TriviaActivity.this,TriviaLoadQuestions.class);
             startActivity(goToLoadQuestions);
 
-
-
-
-         //open the next Layout
-  //       setContentView(R.layout.activity_trivia_listview);
-//            ListView myList = findViewById(R.id.theListView);
-//            myList.setAdapter( myAdapter = new MyListAdapter());
         });
     }
-
-
-//    private class MyListAdapter extends BaseAdapter {
-//
-//        public int getCount() { return newRound.arrayListTriviaQuestions.size();}
-//
-//        public Object getItem(int position) { return "This is row " + position; }
-//
-//        public long getItemId(int position) { return (long) position; }
-//
-//        public View getView(int position, View old, ViewGroup parent)
-//        {
-//            LayoutInflater inflater = getLayoutInflater();
-//
-//            //make a new row:
-//            View newView = inflater.inflate(R.layout.activity_trivia_boolean_question, parent, false);
-//
-//            //set what the text should be for this row:
-////            TextView tView = newView.findViewById(R.id.textGoesHere);
-////            tView.setText( getItem(position).toString() );
-////            RadioGroup radioGroupBoolean = newView.findViewById(R.id.radioGroupBoolean);
-////           TextView textNameOfQuestion = newView.findViewById(R.id.textNameOfQuestion);
-////           textNameOfQuestion.setText(newRound.arrayListTriviaQuestions.get(0).strQuestion);
-//            //return it to be put in the table
-//            return newView;
-//        }
-//    }
 
 }
 

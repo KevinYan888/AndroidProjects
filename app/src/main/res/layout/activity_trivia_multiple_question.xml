@@ -9,34 +9,16 @@
         android:id="@+id/textStateOfQuestion"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="@string/unanswered"
+        android:text="Unanswered"
         tools:layout_editor_absoluteX="9dp"
         tools:layout_editor_absoluteY="86dp"
         android:layout_alignParentTop="true"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/textWrong"-->
-<!--        android:layout_width="80dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Wrong"-->
-<!--        tools:layout_editor_absoluteX="9dp"-->
-<!--        tools:layout_editor_absoluteY="132dp"-->
-<!--        android:visibility="invisible"-->
-<!--        android:layout_below="@+id/textIsAnswered"/>-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textRight"-->
-<!--        android:layout_width="80dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Right"-->
-<!--        tools:layout_editor_absoluteY="178dp"-->
-<!--        android:visibility="invisible"-->
-<!--        android:layout_below="@+id/textWrong"/>-->
     <RadioGroup
-        android:id="@+id/radioGroupBoolean"
+        android:id="@+id/radioGroupMulti"
         android:layout_width="282dp"
         android:layout_height="205dp"
-        android:layout_toEndOf="@+id/textStateOfQuestion"
+        android:layout_toRightOf="@+id/textStateOfQuestion"
 
         tools:layout_editor_absoluteX="133dp"
         tools:layout_editor_absoluteY="164dp">
@@ -49,7 +31,7 @@
             android:text="" />
 
         <RadioButton
-            android:id="@+id/rbtnTrue"
+            android:id="@+id/rbtnMult1"
             android:layout_width="255dp"
             android:layout_height="40dp"
             android:text=""
@@ -57,7 +39,23 @@
             tools:layout_editor_absoluteY="300dp" />
 
         <RadioButton
-            android:id="@+id/rbtnfalse"
+            android:id="@+id/rbtnMult2"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:text=""
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnMult3"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:text=""
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnMult4"
             android:layout_width="255dp"
             android:layout_height="40dp"
             android:text=""
