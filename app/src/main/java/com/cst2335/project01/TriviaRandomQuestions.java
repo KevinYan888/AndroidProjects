@@ -10,10 +10,19 @@ public class TriviaRandomQuestions {
     protected String strQuestion;
     protected String strCorrectAnswer;
     protected ArrayList<String> randomAnswers;
-//    protected String strStateOfQuestion;
-//    protected String strAnswerOfPlayer;
+    protected String strStateOfQuestion = "Unanswered";
+    protected String strAnswerOfPlayer;
+    protected String strNameOfPlayer = "Unknown";
 
-    public TriviaRandomQuestions(int id,String ty,String di,String sq, String sc,ArrayList<String> ras){
+    public String getStrNameOfPlayer() {
+        return strNameOfPlayer;
+    }
+
+    public void setStrNameOfPlayer(String strNameOfPlayer) {
+        this.strNameOfPlayer = strNameOfPlayer;
+    }
+
+    public TriviaRandomQuestions(int id, String ty, String di, String sq, String sc, ArrayList<String> ras){
         this.id = id;
         this.strTypeOfQuestion = ty;
         this.strDifficultyOfQuestion = di;
@@ -49,13 +58,13 @@ public class TriviaRandomQuestions {
     public ArrayList<String> getRandomAnswers() {
         return randomAnswers;
     }
-//    public String getStrStateOfQuestion() {
-//        return strStateOfQuestion;
-//    }
-//
-//    public String getStrAnswerOfPlayer() {
-//        return strAnswerOfPlayer;
-//    }
+    public String getStrStateOfQuestion() {
+        return strStateOfQuestion;
+    }
+
+    public String getStrAnswerOfPlayer() {
+        return strAnswerOfPlayer;
+    }
 
     public void setStrTypeOfQuestion(String strTypeOfQuestion) {
         this.strTypeOfQuestion = strTypeOfQuestion;
@@ -85,11 +94,11 @@ public class TriviaRandomQuestions {
     public void setRandomAnswers(ArrayList<String> randomAnswers) {
         this.randomAnswers = randomAnswers;
     }
-//    public void setStrStateOfQuestion(String strStateOfQuestion) {
-//        this.strStateOfQuestion = strStateOfQuestion;
-//    }
-//
-//    public void setStrAnswerOfPlayer(String strAnswerOfPlayer) {
-//        this.strAnswerOfPlayer = strAnswerOfPlayer;
-//    }
+    public void setStrStateOfQuestion(String strStateOfQuestion) {
+        this.strStateOfQuestion = strStateOfQuestion;
+    }
+
+    public void setStrAnswerOfPlayer(String strAnswerOfPlayer) {
+        this.strAnswerOfPlayer = strAnswerOfPlayer;
+    }
 }

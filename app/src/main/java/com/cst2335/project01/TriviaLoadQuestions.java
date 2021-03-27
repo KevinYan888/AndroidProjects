@@ -1,5 +1,6 @@
 package com.cst2335.project01;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,7 +31,10 @@ import java.util.Collections;
 
 public class TriviaLoadQuestions extends AppCompatActivity {
     ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
-    ArrayList<String> arrListAnswersOfPlayer = new ArrayList<String>();
+    int numOfCorrectPlayer;
+    int numOfIncorrectPlayer;
+    int numOfUnansweredPlayer;
+    double scoreOfPlayer;
     private MyListAdapter myAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +57,53 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
 
         btnSubmit.setOnClickListener(clk->{
-            for(int i=0; i<arrListRandomQuestions.size();i++){
+           if(resultOfGameCalculate()>0){//calculate results and return numOfUnansweredPlayer
+               Toast.makeText(this, numOfUnansweredPlayer+" question(s) no answer.You need finished all questions!  ", Toast.LENGTH_LONG).show();
+           }else {
 
+               //show the result on a dialog
+               View dialogResultView = getLayoutInflater().inflate(R.layout.trivia_dialog_result, null);
+               TextView textIncorrect = dialogResultView.findViewById(R.id.textIncorrect);
+               TextView textUnanswerede = dialogResultView.findViewById(R.id.textUnanswerede);
+               textIncorrect.setText("Number of Incorrect: " + numOfIncorrectPlayer);
+               textUnanswerede.setText("Number of Unanswered: " + numOfUnansweredPlayer);
 
-            }
+               AlertDialog.Builder builder = new AlertDialog.Builder(this);
+               builder.setTitle("Good job! Your score:  " + Double.toString(scoreOfPlayer) + "(*%)")
+                       .setMessage("Number of Correct: " + numOfCorrectPlayer)
+                       .setView(dialogResultView) //add texts showing the contact information
+                       .setPositiveButton("Return ", (click, b) -> {
+
+                       })
+                       .setNegativeButton("Exit", (click, b) -> {
+
+                       })
+                       .setNeutralButton("Save result", (click, b) -> {
+                       })
+                       .create().show();
+           }
         });
 
+    }
+    public int resultOfGameCalculate(){//calculate results and return numOfUnansweredPlayer
+        numOfCorrectPlayer = 0;
+        numOfIncorrectPlayer = 0;
+        numOfUnansweredPlayer = 0;
+        for(int i=0;i<arrListRandomQuestions.size();i++){
+
+            if(arrListRandomQuestions.get(i).getStrCorrectAnswer().equals(arrListRandomQuestions.get(i).getStrAnswerOfPlayer())){
+                numOfCorrectPlayer++;
+            }
+            else if (arrListRandomQuestions.get(i).getStrStateOfQuestion().equals("Unanswered")){
+                numOfUnansweredPlayer++;
+            }
+            else {
+                numOfIncorrectPlayer++;
+            }
+            //numOfUnansweredPlayer--;
+        }
+        scoreOfPlayer = numOfCorrectPlayer/((numOfCorrectPlayer+numOfUnansweredPlayer+numOfIncorrectPlayer)*1.0)*100;
+        return numOfUnansweredPlayer;
     }
 
     private class JsonQuery extends AsyncTask<String, Integer, String> {
@@ -170,7 +216,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                 TextView nameQuestion = newView.findViewById(R.id.textNameOfQuestion);
 
                 nameQuestion.setText(position+1+". "+thisRow.getStrQuestion());
-                RadioGroup radioGroupBoolean = newView.findViewById(R.id.radioGroupBoolean);
+
 
                 RadioButton rbtnTrue = newView.findViewById(R.id.rbtnTrue);
                 rbtnTrue.setText(thisRow.getRamdomAnswers().get(0));
@@ -178,18 +224,23 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                 rbtnfalse.setText(thisRow.getRamdomAnswers().get(1));
 
                 TextView textStateOfQuestion = newView.findViewById(R.id.textStateOfQuestion);
+                RadioGroup radioGroupBoolean = newView.findViewById(R.id.radioGroupBoolean);
 
                 radioGroupBoolean.setOnCheckedChangeListener((rgb,i)->{
                     RadioButton isSelected = findViewById(radioGroupBoolean.getCheckedRadioButtonId());
+                    //setStrAnswerOfPlayer
+                    thisRow.setStrAnswerOfPlayer(isSelected.getText().toString());
 
                     if(thisRow.getStrCorrectAnswer().equals(isSelected.getText().toString()))
                     {
                         //Unanswered/True/False
                         textStateOfQuestion.setText("True");
+                        thisRow.setStrStateOfQuestion("True");//setStrStateOfQuestion
 
                     }
                     else {
                         textStateOfQuestion.setText("False");
+                        thisRow.setStrStateOfQuestion("False");//setStrStateOfQuestion
                     }
                     // myAdapter.notifyDataSetChanged();
                 });
@@ -220,16 +271,22 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
  //                  RadioButton isSelected = findViewById(radioGroupMulti.getCheckedRadioButtonId());
                     RadioButton isSelected = newView.findViewById(CheckedId);
+                    //setStrAnswerOfPlayer
+                    thisRow.setStrAnswerOfPlayer(isSelected.getText().toString());
 
                     if(thisRow.getStrCorrectAnswer().equals(isSelected.getText().toString()))
                     {
                         //Unanswered/True/False
                         textStateOfQuestion.setText("True");
+                        thisRow.setStrStateOfQuestion("True");//setStrStateOfQuestion
 
                     }
                     else {
                         textStateOfQuestion.setText("False");
+                        thisRow.setStrStateOfQuestion("False");//setStrStateOfQuestion
                     }
+                    Log.e("stateOfQuestionInList",arrListRandomQuestions.get(position).getStrAnswerOfPlayer().toString());
+                    Log.e("stateOfQuestionInList",arrListRandomQuestions.get(position).getStrStateOfQuestion().toString());
                     Log.e("player answer",isSelected.getText().toString());
                     Log.e("correct answer",thisRow.getStrCorrectAnswer());
                     Log.i("checkedId",Integer.toString(CheckedId));

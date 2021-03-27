@@ -32,14 +32,14 @@ import java.util.List;
 //https://opentdb.com/api.php?amount=10&difficulty=medium&type=boolean
 public class TriviaActivity extends AppCompatActivity {
 
-    private String strPlayerName;
+//    private String strPlayerName;
     private int intAmountOfQuestion;
     private String strTypeOfQuestion;
     private String strDifficultyOfQuestion;
 
-    public String getStrPlayerName() {
-        return strPlayerName;
-    }
+//    public String getStrPlayerName() {
+//        return strPlayerName;
+//    }
 
     public int getIntAmountOfQuestion() {
         return intAmountOfQuestion;
@@ -61,7 +61,7 @@ public class TriviaActivity extends AppCompatActivity {
         //Number of questions
         EditText textEditNumberQuestion = findViewById(R.id.textEditAmountOfQuestion);
         //Number of questions
-        EditText textEditNameOfPlayer = findViewById(R.id.textEditPlayerName);
+//        EditText textEditNameOfPlayer = findViewById(R.id.textEditPlayerName);
 
 
         //Game Type(True or false/Multiple choice/Both)
@@ -89,7 +89,7 @@ public class TriviaActivity extends AppCompatActivity {
                 strTypeOfQuestion ="multiple";
             }
             else{
-                strTypeOfQuestion = String.valueOf(rb1.getText());
+                strTypeOfQuestion = "String.valueOf(rb1.getText())";
 
             }
         });
@@ -102,15 +102,15 @@ public class TriviaActivity extends AppCompatActivity {
 
         btnPlayNow.setOnClickListener(play->{
           intAmountOfQuestion =  Integer.parseInt(String.valueOf(textEditNumberQuestion.getText()));
-          strPlayerName = String.valueOf(textEditNameOfPlayer.getText());
+//          strPlayerName = String.valueOf(textEditNameOfPlayer.getText());
 
           //pass info to next activity
           Bundle bundle = new Bundle();
-          bundle.putString("strPlayerName",strPlayerName);
+//          bundle.putString("strPlayerName",strPlayerName);
             bundle.putInt("intAmountOfQuestion",intAmountOfQuestion);
             bundle.putString("strTypeOfQuestion",strTypeOfQuestion);
             bundle.putString("strDifficultyOfQuestion",strDifficultyOfQuestion);
-            bundle.putString("strPlayerName",strPlayerName);
+//            bundle.putString("strPlayerName",strPlayerName);
             Intent goToLoadQuestions = new Intent();
             goToLoadQuestions.putExtras(bundle);
             goToLoadQuestions.setClass(TriviaActivity.this,TriviaLoadQuestions.class);

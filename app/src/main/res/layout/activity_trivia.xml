@@ -18,20 +18,20 @@
         android:id="@+id/textEpt"
         android:layout_width="wrap_content"
         android:layout_height="10dp" />
-    <TextView
-        android:id="@+id/textNameOfPlayer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name of Player:"
-        android:textColor="@color/purple_700" />
-    <EditText
-        android:id="@+id/textEditPlayerName"
-        android:hint="Your name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="34dp" />
+<!--    <TextView-->
+<!--        android:id="@+id/textNameOfPlayer"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Name of Player:"-->
+<!--        android:textColor="@color/purple_700" />-->
+<!--    <EditText-->
+<!--        android:id="@+id/textEditPlayerName"-->
+<!--        android:hint="Your name"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text=""-->
+<!--        tools:layout_editor_absoluteX="49dp"-->
+<!--        tools:layout_editor_absoluteY="34dp" />-->
     <TextView
         android:id="@+id/textNumberQuestion"
         android:layout_width="wrap_content"
