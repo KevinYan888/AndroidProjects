@@ -87,7 +87,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
                        })
                        .setNegativeButton("Exit", (click, b) -> {
-
+                           android.os.Process.killProcess(android.os.Process.myPid());
                        })
                        .setNeutralButton("Save result", (click, b) -> {
                            namePlayer = editTextPlayerName.getText().toString();

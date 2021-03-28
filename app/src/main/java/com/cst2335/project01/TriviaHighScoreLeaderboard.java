@@ -1,5 +1,6 @@
 package com.cst2335.project01;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -38,7 +39,10 @@ public class TriviaHighScoreLeaderboard extends AppCompatActivity {
 
 
         //Get the fields from the screen:
-        TextView textHighScoreLeaderBoard = findViewById(R.id.textHighScoreLeaderBoard);
+        TextView textRankNumber = findViewById(R.id.rankNumber);
+        TextView textScore = findViewById(R.id.score);
+        TextView textName = findViewById(R.id.name);
+        TextView textID = findViewById(R.id.id);
         Button btnContinuePlay = (Button)findViewById(R.id.btnContinuePlay);
         Button btnExit = (Button)findViewById(R.id.btnExit);
         ListView theList = (ListView)findViewById(R.id.listHighScore);
@@ -50,20 +54,6 @@ public class TriviaHighScoreLeaderboard extends AppCompatActivity {
         //create an adapter object and send it to the listVIew
         theList.setAdapter(myAdapter = new MyOwnAdapter());
 
-
-        //This listens for items being clicked in the list view
-        theList.setOnItemClickListener(( parent,  view,  position,  id) -> {
-          //  showContact( position );
-
-        });
-
-
-        //Listen for an insert button click event:
-
-            //get the email and name that were typed
-//            String name = "hongwen";
-//            double score = 98.99;
-//            String difficulty = "Easy";
 
             Intent intent = getIntent();
             //get info from loadQuestions page: namePlayer,strDifficultyOfQuestion,scoreOfPlayer
@@ -89,15 +79,56 @@ public class TriviaHighScoreLeaderboard extends AppCompatActivity {
                     newId);
 
             //add the new contact to the list:
-            listHighScore.add(newRecord);
+         //   listHighScore.add(newRecord);
             //update the listView:
             myAdapter.notifyDataSetChanged();
         loadDataFromDatabase();
+
+
+        //This listens for items being clicked in the list view
+        theList.setOnItemClickListener(( parent,  view,  position,  id) -> {
+            //got the selected object(a high score item)
+            TriviaHighScoreRecord selectedScoreItem = listHighScore.get(position);
+
+            //show a result item on a dialog
+            View dialogResultView = getLayoutInflater().inflate(R.layout.trivia_high_score_one_item, null);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Your score:  " + Double.toString(selectedScoreItem.getScore()) + "(*%)")
+                    .setMessage("Do you want delete this record? ")
+                    .setView(dialogResultView) //add texts showing the contact information
+                    .setPositiveButton("Cancel ", (click, b) -> {
+
+                    })
+                    .setNegativeButton("Exit", (click, b) -> {
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                    })
+                    .setNeutralButton("Delete", (click, b) -> {
+                    deleteOneHighScoreItem(selectedScoreItem); //remove the content from database
+                    listHighScore.remove(position); //remove the content from content list
+                    myAdapter.notifyDataSetChanged(); //there is one less item so update the list
+                    })
+                    .create().show();
+            return;
+        });
+        //btnExit
+        btnExit.setOnClickListener(k->{
+//            android.os.Process.killProcess(android.os.Process.myPid());
+
+//            Intent intentMain=new Intent(Intent.ACTION_MAIN);
+//            intentMain.addCategory(Intent.CATEGORY_HOME);
+//            intentMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            Activity.startActivity(intentMain);
+            System.exit(0);
+
+        });
     }
 
 
 
+private void deleteOneHighScoreItem(TriviaHighScoreRecord oneRecord){
 
+    db.delete(TriviaMyOpener.TABLE_NAME, TriviaMyOpener.COL_ID + "= ?", new String[] {Long.toString(oneRecord.getId())});
+}
 
 
     private void loadDataFromDatabase()
@@ -106,7 +137,7 @@ public class TriviaHighScoreLeaderboard extends AppCompatActivity {
         // We want to get all of the columns. Look at MyOpener.java for the definitions:
         String [] columns = {TriviaMyOpener.COL_ID, TriviaMyOpener.COL_NAME, TriviaMyOpener.COL_SCORE,TriviaMyOpener.COL_DIFFICULTY};
         //query all the results from the database:
-        Cursor results = db.query(false, TriviaMyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+        Cursor results = db.query(false, TriviaMyOpener.TABLE_NAME, columns, null, null, null, null,TriviaMyOpener.COL_SCORE+" DESC", "10");
 
        // printCursor(results,db.getVersion());
         //Now the results object has rows of results that match the query.
@@ -204,14 +235,15 @@ public class TriviaHighScoreLeaderboard extends AppCompatActivity {
             TextView rowName = (TextView)newView.findViewById(R.id.name);
             TextView rowScore = (TextView)newView.findViewById(R.id.score);
             TextView rowDifficulty = (TextView)newView.findViewById(R.id.difficulty);
+            TextView rankNumber = (TextView)newView.findViewById(R.id.rankNumber);
 
 
             //update the text fields:
-            rowId.setText("id: " + Long.toString(thisRow.getId()));
-            rowName.setText("Player name: "+thisRow.getName());
-            rowScore.setText("Score: "+Double.toString(thisRow.getScore()));
-            rowDifficulty.setText("Difficulty: "+thisRow.getDifficulty());
-
+            rowId.setText(Long.toString(thisRow.getId()));
+            rowName.setText(thisRow.getName());
+            rowScore.setText(String.format("%.1f", thisRow.getScore()));
+            rowDifficulty.setText(thisRow.getDifficulty());
+            rankNumber.setText(Integer.toString(position+1));
 
             //return the row:
             return newView;

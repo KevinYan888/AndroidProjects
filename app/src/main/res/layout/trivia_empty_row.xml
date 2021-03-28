@@ -5,32 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-         />
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_below="@+id/id"/>
+        android:id="@+id/rankNumber"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:text="" />
 
     <TextView
         android:id="@+id/score"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_below="@+id/name" />
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:layout_toEndOf="@+id/rankNumber"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:layout_toEndOf="@+id/score"
+        android:text="" />
 
     <TextView
         android:id="@+id/difficulty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/score"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:layout_toEndOf="@id/name"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:layout_toEndOf="@+id/difficulty"
         android:text="" />
 
 </RelativeLayout>
