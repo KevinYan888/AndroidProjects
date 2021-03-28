@@ -15,7 +15,7 @@
         tools:context=".listvity">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageViewSong"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:src="@tools:sample/avatars" />
@@ -27,7 +27,7 @@
             tools:context=".listing">
 
             <EditText
-                android:id="@+id/editTextPersonName"
+                android:id="@+id/editTextSearch"
                 android:layout_width="365dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -35,10 +35,10 @@
                 android:text="Name" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/song_searchButton"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                tools:src="@tools:sample/avatars" />
+                android:src="@drawable/songsearch" />
 
         </LinearLayout>
 
