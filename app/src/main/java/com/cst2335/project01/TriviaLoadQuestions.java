@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -34,7 +35,11 @@ public class TriviaLoadQuestions extends AppCompatActivity {
     int numOfCorrectPlayer;
     int numOfIncorrectPlayer;
     int numOfUnansweredPlayer;
-    double scoreOfPlayer;
+
+    public double scoreOfPlayer;
+    public String namePlayer;
+    public String strDifficultyOfQuestion;
+
     private MyListAdapter myAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
         JsonQuery jq = new JsonQuery();
         jq.execute("https://opentdb.com/api.php?amount=" + bundle.getInt("intAmountOfQuestion") +
                 "&difficulty=" + bundle.getString("strDifficultyOfQuestion") + "&type=" + bundle.getString("strTypeOfQuestion"));  //Type 1
+        strDifficultyOfQuestion = bundle.getString("strDifficultyOfQuestion");
         ListView myList = (ListView) findViewById(R.id.listView);
         myList.setAdapter(myAdapter = new MyListAdapter()); //populates the list
 
@@ -57,20 +63,25 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
 
         btnSubmit.setOnClickListener(clk->{
+
+
            if(resultOfGameCalculate()>0){//calculate results and return numOfUnansweredPlayer
                Toast.makeText(this, numOfUnansweredPlayer+" question(s) no answer.You need finished all questions!  ", Toast.LENGTH_LONG).show();
            }else {
 
                //show the result on a dialog
                View dialogResultView = getLayoutInflater().inflate(R.layout.trivia_dialog_result, null);
+
+               TextView textCorrect = dialogResultView.findViewById(R.id.textCorrect);
                TextView textIncorrect = dialogResultView.findViewById(R.id.textIncorrect);
-               TextView textUnanswerede = dialogResultView.findViewById(R.id.textUnanswerede);
-               textIncorrect.setText("Number of Incorrect: " + numOfIncorrectPlayer);
-               textUnanswerede.setText("Number of Unanswered: " + numOfUnansweredPlayer);
+               textCorrect.setText("Correct : " + numOfCorrectPlayer);
+               textIncorrect.setText("Incorrect: " + numOfIncorrectPlayer);
+               EditText editTextPlayerName = dialogResultView.findViewById(R.id.textEditPlayerName);
+
 
                AlertDialog.Builder builder = new AlertDialog.Builder(this);
                builder.setTitle("Good job! Your score:  " + Double.toString(scoreOfPlayer) + "(*%)")
-                       .setMessage("Number of Correct: " + numOfCorrectPlayer)
+                       .setMessage("Enter your name and save result: ")
                        .setView(dialogResultView) //add texts showing the contact information
                        .setPositiveButton("Return ", (click, b) -> {
 
@@ -79,6 +90,20 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
                        })
                        .setNeutralButton("Save result", (click, b) -> {
+                           namePlayer = editTextPlayerName.getText().toString();
+                           strDifficultyOfQuestion = bundle.getString("strDifficultyOfQuestion");
+
+                           //pass info to next activity
+                           Bundle bundleToLeaderBoard = new Bundle();
+
+                           bundleToLeaderBoard.putString("namePlayer",namePlayer);
+                           bundleToLeaderBoard.putString("strDifficultyOfQuestion",strDifficultyOfQuestion);
+                           bundleToLeaderBoard.putDouble("scoreOfPlayer",scoreOfPlayer);
+
+                           Intent goToHighScoreLeaderBoard = new Intent();
+                           goToHighScoreLeaderBoard.putExtras(bundleToLeaderBoard);
+                           goToHighScoreLeaderBoard.setClass(TriviaLoadQuestions.this,TriviaHighScoreLeaderboard.class);
+                           startActivity(goToHighScoreLeaderBoard);
                        })
                        .create().show();
            }
