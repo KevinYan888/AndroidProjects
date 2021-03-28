@@ -14,25 +14,42 @@
 <!--        tools:ignore="MissingClass">-->
         <ListView
             android:id="@+id/theListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/btnSubmit" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnSubmit"
+            />
 
 <!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
-
     <Button
         android:id="@+id/btnSubmit"
-        android:text="Submit"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="Play Now" />
 
     <Button
-        android:id="@+id/btnCancel"
-        android:text="Cancel"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        android:id="@+id/btnCancel"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Go Back" />
+<!--    <Button-->
+<!--        android:id="@+id/btnSubmit"-->
+<!--        android:text="Submit"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/theListView"/>-->
+<!--        -->
+
+<!--    <Button-->
+<!--        android:id="@+id/btnCancel"-->
+<!--        android:text="Cancel"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignTop="@+id/btnSubmit"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentRight="true"/>-->
 
 </RelativeLayout>

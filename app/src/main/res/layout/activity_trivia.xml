@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,61 +10,65 @@
 
     <TextView
         android:id="@+id/textGameSetting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="197dp"
+        android:layout_height="50dp"
         android:text="Game setting:"
+        android:textSize="30dp"
+        android:textColorHighlight="#ff5e9cff"
         android:textColor="@color/purple_700" />
     <TextView
+        android:layout_below="@+id/textGameSetting"
         android:id="@+id/textEpt"
         android:layout_width="wrap_content"
         android:layout_height="10dp" />
-<!--    <TextView-->
-<!--        android:id="@+id/textNameOfPlayer"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Name of Player:"-->
-<!--        android:textColor="@color/purple_700" />-->
-<!--    <EditText-->
-<!--        android:id="@+id/textEditPlayerName"-->
-<!--        android:hint="Your name"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text=""-->
-<!--        tools:layout_editor_absoluteX="49dp"-->
-<!--        tools:layout_editor_absoluteY="34dp" />-->
+
     <TextView
+        android:layout_below="@+id/textEpt"
         android:id="@+id/textNumberQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How many questions?"
+        android:text="* How many questions?"
+        android:textSize="20dp"
         android:textColor="@color/purple_700" />
-    <EditText
-        android:id="@+id/textEditAmountOfQuestion"
-        android:hint="Enter number: eg.10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="34dp" />
     <TextView
+        android:layout_below="@id/textNumberQuestion"
         android:id="@+id/textEpt2"
         android:layout_width="wrap_content"
         android:layout_height="10dp" />
 
+    <EditText
+        android:layout_below="@+id/textEpt2"
+        android:id="@+id/textEditAmountOfQuestion"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_border"
+        android:hint="1-1000"
+        android:text=""
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <TextView
+        android:layout_below="@+id/textEditAmountOfQuestion"
+        android:id="@+id/textEpt3"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+
     <RadioGroup
+        android:layout_below="@+id/textEpt3"
         android:id="@+id/radioGroupType"
-        android:layout_width="282dp"
-        android:layout_height="205dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
         tools:layout_editor_absoluteX="133dp"
         tools:layout_editor_absoluteY="164dp">
 
         <TextView
             android:id="@+id/textTypeOfQuestion"
-            android:textColor="@color/purple_700"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Type of question?" />
+            android:text="* Type of question?"
+            android:textSize="20dp"
+            android:textColor="@color/purple_700" />
 
         <RadioButton
             android:id="@+id/rbtnTypeTrue"
@@ -92,9 +96,10 @@
     </RadioGroup>
 
     <RadioGroup
+        android:layout_below="@+id/radioGroupType"
         android:id="@+id/radioGroupDifficulty"
-        android:layout_width="282dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
         android:text="Difficulty Level"
         tools:layout_editor_absoluteX="133dp"
         tools:layout_editor_absoluteY="164dp">
@@ -103,7 +108,8 @@
             android:id="@+id/textDifficulty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="difficulty level?"
+            android:text="* Difficulty level?"
+            android:textSize="20dp"
             android:textColor="@color/purple_700" />
 
         <RadioButton
@@ -132,15 +138,19 @@
     </RadioGroup>
 
     <Button
+        android:layout_below="@+id/radioGroupDifficulty"
         android:id="@+id/btnPlayNow"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Play Now" />
 
     <Button
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/btnPlayNow"
         android:id="@+id/btnGoBack"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Go Back" />
 
-</LinearLayout>
+
+</RelativeLayout>

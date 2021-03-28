@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -31,10 +32,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class TriviaLoadQuestions extends AppCompatActivity {
+    //arrListRandomQuestions
     ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
-    int numOfCorrectPlayer;
-    int numOfIncorrectPlayer;
-    int numOfUnansweredPlayer;
+
+    private int numOfCorrectPlayer;
+    private int numOfIncorrectPlayer;
+    private int numOfUnansweredPlayer;
 
     public double scoreOfPlayer;
     public String namePlayer;
@@ -58,13 +61,11 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
         Button btnSubmit = findViewById(R.id.btnSubmit);
         Button btnCancel = findViewById(R.id.btnCancel);
-
-
+        TextView titleQuestion = findViewById(R.id.titleQuestion);
+//        titleQuestion.setText("Enjoy your game");
 
 
         btnSubmit.setOnClickListener(clk->{
-
-
            if(resultOfGameCalculate()>0){//calculate results and return numOfUnansweredPlayer
                Toast.makeText(this, numOfUnansweredPlayer+
                        " question(s) no answer.You need finished all questions!  ", Toast.LENGTH_LONG).show();
@@ -78,7 +79,6 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                textCorrect.setText("Correct : " + numOfCorrectPlayer);
                textIncorrect.setText("Incorrect: " + numOfIncorrectPlayer);
                EditText editTextPlayerName = dialogResultView.findViewById(R.id.textEditPlayerName);
-
 
                AlertDialog.Builder builder = new AlertDialog.Builder(this);
                builder.setTitle("Good job! Your score:  " + Double.toString(scoreOfPlayer) + "(*%)")

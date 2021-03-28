@@ -91,6 +91,7 @@ public class TriviaActivity extends AppCompatActivity {
 
             if(isInteger(numQuestions) &&
                     (Integer.parseInt(numQuestions) > 0) &&
+                    (Integer.parseInt(numQuestions) < 1000) &&
                     !((strTypeOfQuestion == null) || "".equals(strTypeOfQuestion)) &&
                     !((strDifficultyOfQuestion == null) || "".equals(strDifficultyOfQuestion)))
             {//All information has been filled in and is correct

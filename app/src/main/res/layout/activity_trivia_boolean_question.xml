@@ -34,8 +34,8 @@
 <!--        android:layout_below="@+id/textWrong"/>-->
     <RadioGroup
         android:id="@+id/radioGroupBoolean"
-        android:layout_width="282dp"
-        android:layout_height="205dp"
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/textStateOfQuestion"
 
         tools:layout_editor_absoluteX="133dp"
@@ -43,14 +43,14 @@
 
         <TextView
             android:id="@+id/textNameOfQuestion"
-            android:textColor="@color/purple_700"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:text=""
+            android:textColor="@color/purple_700" />
 
         <RadioButton
             android:id="@+id/rbtnTrue"
-            android:layout_width="255dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text=""
             tools:layout_editor_absoluteX="60dp"
@@ -58,7 +58,7 @@
 
         <RadioButton
             android:id="@+id/rbtnfalse"
-            android:layout_width="255dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text=""
             tools:layout_editor_absoluteX="60dp"

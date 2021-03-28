@@ -16,8 +16,8 @@
 
     <RadioGroup
         android:id="@+id/radioGroupMulti"
-        android:layout_width="282dp"
-        android:layout_height="205dp"
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textStateOfQuestion"
 
         tools:layout_editor_absoluteX="133dp"
@@ -25,14 +25,14 @@
 
         <TextView
             android:id="@+id/textNameOfQuestion"
-            android:textColor="@color/purple_700"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:text=""
+            android:textColor="@color/purple_700" />
 
         <RadioButton
             android:id="@+id/rbtnMult1"
-            android:layout_width="255dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text=""
             tools:layout_editor_absoluteX="60dp"
@@ -40,7 +40,7 @@
 
         <RadioButton
             android:id="@+id/rbtnMult2"
-            android:layout_width="255dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text=""
             tools:layout_editor_absoluteX="60dp"
@@ -48,7 +48,7 @@
 
         <RadioButton
             android:id="@+id/rbtnMult3"
-            android:layout_width="255dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text=""
             tools:layout_editor_absoluteX="60dp"
@@ -56,7 +56,7 @@
 
         <RadioButton
             android:id="@+id/rbtnMult4"
-            android:layout_width="255dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text=""
             tools:layout_editor_absoluteX="60dp"
