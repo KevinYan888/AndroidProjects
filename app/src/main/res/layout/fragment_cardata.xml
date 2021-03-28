@@ -22,7 +22,12 @@
             android:layout_height="wrap_content"
             android:text="Model_Name" />
 
-
+        <TextView
+            android:id="@+id/makeName"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make_Name" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

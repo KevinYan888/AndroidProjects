@@ -24,6 +24,8 @@ public class CardataFragment extends Fragment {
 
     private Bundle dataFromActivity;
     private long id;
+    private String  modelNmae;
+    private String  make;
     private AppCompatActivity parentActivity;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -78,13 +80,18 @@ public class CardataFragment extends Fragment {
 //        return inflater.inflate(R.layout.fragment_details, container, false);
         dataFromActivity = getArguments();
         id = dataFromActivity.getLong(SearchActivity.MODEL_ID );
+        make = dataFromActivity.getString(SearchActivity.Make_NAME );
+        modelNmae = dataFromActivity.getString(SearchActivity.MODEL_NAME );
         View extraStuff = inflater.inflate(R.layout.fragment_cardata, container, false);
 //        getLayoutInflater().inflate(R.layout.activity_empty, container, false);
         //get the TextViews
         TextView rowName = extraStuff.findViewById(R.id.modelName);
         rowName.setText(dataFromActivity.getString(SearchActivity.MODEL_NAME));
+        TextView rowMake = extraStuff.findViewById(R.id.makeName);
+        rowMake.setText(dataFromActivity.getString(SearchActivity.Make_NAME));
         TextView rowId = extraStuff.findViewById(R.id.modelID);
         rowId.setText("ID="+id);
+
 
 //        Button saving = extraStuff.findViewById(R.id.saving);
 //        saving.setOnClickListener( sb->{
