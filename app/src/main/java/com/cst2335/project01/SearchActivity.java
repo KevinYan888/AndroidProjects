@@ -53,14 +53,36 @@ public class SearchActivity extends AppCompatActivity {
     TextView modelName;
     ProgressBar progressBar;
     MyListAdapter myAdapter;
-
+    public static final String Make_NAME = "Make_Name";
     public static final String MODEL_NAME = "Model_Name";
-
     public static final String MODEL_ID = "Model_ID";
 
     public  JSONObject object;
     public 	ListView lv;
-    public ArrayList<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+    public ArrayList<CarListItem> list = new ArrayList<>();
+
+    class  CarListItem {
+        protected String make, name;
+        protected Long id;
+        public CarListItem(String n, String m, Long i)
+        {
+            name =n;
+            make = m;
+            id = i;
+        }
+        public String getMake() {
+            return  make;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+    }
 
 
 
@@ -101,7 +123,7 @@ public class SearchActivity extends AppCompatActivity {
             Bundle dataToPass = new Bundle();
             dataToPass.putString(MODEL_NAME, String.valueOf(list.getItemIdAtPosition(pos)));
 
-            dataToPass.putLong(MODEL_ID, list.getItemIdAtPosition(pos));
+            dataToPass.putLong(String.valueOf(MODEL_ID), list.getItemIdAtPosition(pos));
 
             if(isTablet)
             {
@@ -221,17 +243,17 @@ public class SearchActivity extends AppCompatActivity {
                         object = resultJsonArray.getJSONObject(i);
                         try {
                             //获取到json数据中的results数组里的内容Model_ID
-                            String id = object.getString("Model_ID");
-
+                            Long id = object.getLong("Model_ID");
+                            String make = object.getString("Make_Name");
                             //获取到json数据中的results数组里的内容Model_Name
-                            String name=object.getString("Model_Name");
-                            //存入map
-                            map.put("Model_ID", id);
-                            Log.e("MainActivity", String.valueOf(id) ) ;
-                            map.put("Model_Name", name);
-                            Log.e("MainActivity", String.valueOf(name) ) ;
+                            String name = object.getString("Model_Name");
+//                            //存入map
+//                            map.put("Model_ID", id);
+//                            Log.e("MainActivity", String.valueOf(id) ) ;
+//                            map.put("Model_Name", name);
+//                            Log.e("MainActivity", String.valueOf(name) ) ;
                             //add to ArrayList集合
-                            list.add(map);
+                            list.add(new CarListItem(make,name,id));
 //                            list.addAll((Collection<? extends Map<String, Object>>) map);
 
                         } catch (JSONException e) {
@@ -298,9 +320,9 @@ public class SearchActivity extends AppCompatActivity {
 
             //finding what in the screen and set message into the new row
             TextView modelID = newRow.findViewById(R.id.modelID);
-            modelID.setText( list.get(position).get("Model_ID").toString());
+            modelID.setText( "ID: " + modelID);
             TextView modelName = (TextView)newRow.findViewById(R.id.modelName);
-            modelName.setText(list.get(position).get("Model_Name").toString());
+            modelName.setText("Model_Name: "+modelName);
             Log.i("MainActivity", "88888888888888888888888" ) ;
 
             return newRow;
