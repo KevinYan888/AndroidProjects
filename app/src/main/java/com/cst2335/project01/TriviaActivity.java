@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,30 +29,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-//https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple
-//https://opentdb.com/api.php?amount=10&difficulty=medium&type=boolean
 public class TriviaActivity extends AppCompatActivity {
 
-//    private String strPlayerName;
     private int intAmountOfQuestion;
     private String strTypeOfQuestion;
     private String strDifficultyOfQuestion;
-
-//    public String getStrPlayerName() {
-//        return strPlayerName;
-//    }
-
-    public int getIntAmountOfQuestion() {
-        return intAmountOfQuestion;
-    }
-
-    public String getStrTypeOfQuestion() {
-        return strTypeOfQuestion;
-    }
-
-    public String getStrDifficultyOfQuestion() {
-        return strDifficultyOfQuestion;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +42,6 @@ public class TriviaActivity extends AppCompatActivity {
 
         //Number of questions
         EditText textEditNumberQuestion = findViewById(R.id.textEditAmountOfQuestion);
-        //Number of questions
-//        EditText textEditNameOfPlayer = findViewById(R.id.textEditPlayerName);
-
 
         //Game Type(True or false/Multiple choice/Both)
         RadioGroup radioGroupType = findViewById(R.id.radioGroupType);
@@ -99,25 +78,48 @@ public class TriviaActivity extends AppCompatActivity {
             strDifficultyOfQuestion= String.valueOf(rb2.getText());
 
         });
+        //btnGoBack: goToMainActivity
+        btnGoBack.setOnClickListener(back->{
+            Intent goToMainActivity = new Intent(TriviaActivity.this, MainActivity.class);
+            startActivity(goToMainActivity);
+        });
 
+        //btnPlayNow: goToLoadQuestions
         btnPlayNow.setOnClickListener(play->{
-          intAmountOfQuestion =  Integer.parseInt(String.valueOf(textEditNumberQuestion.getText()));
-//          strPlayerName = String.valueOf(textEditNameOfPlayer.getText());
 
-          //pass info to next activity
-          Bundle bundle = new Bundle();
-//          bundle.putString("strPlayerName",strPlayerName);
-            bundle.putInt("intAmountOfQuestion",intAmountOfQuestion);
-            bundle.putString("strTypeOfQuestion",strTypeOfQuestion);
-            bundle.putString("strDifficultyOfQuestion",strDifficultyOfQuestion);
-//            bundle.putString("strPlayerName",strPlayerName);
-            Intent goToLoadQuestions = new Intent();
-            goToLoadQuestions.putExtras(bundle);
-            goToLoadQuestions.setClass(TriviaActivity.this,TriviaLoadQuestions.class);
-            startActivity(goToLoadQuestions);
+          String numQuestions = String.valueOf(textEditNumberQuestion.getText());
 
+            if(isInteger(numQuestions) &&
+                    (Integer.parseInt(numQuestions) > 0) &&
+                    !((strTypeOfQuestion == null) || "".equals(strTypeOfQuestion)) &&
+                    !((strDifficultyOfQuestion == null) || "".equals(strDifficultyOfQuestion)))
+            {//All information has been filled in and is correct
+
+                intAmountOfQuestion = Integer.parseInt(numQuestions);
+                //pass info to next activity
+                Bundle bundle = new Bundle();
+                bundle.putInt("intAmountOfQuestion",intAmountOfQuestion);
+                bundle.putString("strTypeOfQuestion",strTypeOfQuestion);
+                bundle.putString("strDifficultyOfQuestion",strDifficultyOfQuestion);
+                Intent goToLoadQuestions = new Intent();
+                goToLoadQuestions.putExtras(bundle);
+                goToLoadQuestions.setClass(TriviaActivity.this,TriviaLoadQuestions.class);
+                startActivity(goToLoadQuestions);
+            }
+            else{
+                Toast.makeText(this,
+                        " Something is incomplete or incorrect. Please try again!  ", Toast.LENGTH_LONG).show();
+            }
         });
     }
-
+    //isInteger？
+    public static boolean isInteger(String value){
+        try {
+            Integer.parseInt(value);
+            return true;
+        }catch(NumberFormatException e){
+            return false;
+        }
+    }
 }
 

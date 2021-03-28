@@ -66,7 +66,8 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
 
            if(resultOfGameCalculate()>0){//calculate results and return numOfUnansweredPlayer
-               Toast.makeText(this, numOfUnansweredPlayer+" question(s) no answer.You need finished all questions!  ", Toast.LENGTH_LONG).show();
+               Toast.makeText(this, numOfUnansweredPlayer+
+                       " question(s) no answer.You need finished all questions!  ", Toast.LENGTH_LONG).show();
            }else {
 
                //show the result on a dialog

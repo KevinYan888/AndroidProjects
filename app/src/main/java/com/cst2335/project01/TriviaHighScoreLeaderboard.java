@@ -44,7 +44,7 @@ public class TriviaHighScoreLeaderboard extends AppCompatActivity {
         TextView textName = findViewById(R.id.name);
         TextView textID = findViewById(R.id.id);
         Button btnContinuePlay = (Button)findViewById(R.id.btnContinuePlay);
-        Button btnExit = (Button)findViewById(R.id.btnExit);
+        Button btnBackHome = (Button)findViewById(R.id.btnBackHome);
         ListView theList = (ListView)findViewById(R.id.listHighScore);
 
       //  loadDataFromDatabase(); //get any previously saved Contact objects
@@ -110,15 +110,15 @@ public class TriviaHighScoreLeaderboard extends AppCompatActivity {
                     .create().show();
             return;
         });
-        //btnExit
-        btnExit.setOnClickListener(k->{
+      btnContinuePlay.setOnClickListener(c->{
+          Intent goToActivity = new Intent(TriviaHighScoreLeaderboard.this, TriviaActivity.class);
+          startActivity(goToActivity);
+      });
+        btnBackHome.setOnClickListener(k->{
+            Intent goToMainActivity = new Intent(TriviaHighScoreLeaderboard.this, MainActivity.class);
+            startActivity(goToMainActivity);
 //            android.os.Process.killProcess(android.os.Process.myPid());
-
-//            Intent intentMain=new Intent(Intent.ACTION_MAIN);
-//            intentMain.addCategory(Intent.CATEGORY_HOME);
-//            intentMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            Activity.startActivity(intentMain);
-            System.exit(0);
+//            System.exit(0);
 
         });
     }
