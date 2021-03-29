@@ -62,8 +62,8 @@ public class SearchActivity extends AppCompatActivity {
     public ArrayList<CarListItem> list = new ArrayList<>();
 
     class  CarListItem {
-        protected String make, name;
-        protected Long id;
+        private String make, name;
+        private Long id;
         public CarListItem(String n, String m, Long i)
         {
             name =n;
@@ -129,40 +129,19 @@ public class SearchActivity extends AppCompatActivity {
             {
                 CardataFragment carFragment = new CardataFragment(); //add a DetailFragment
                 carFragment.setArguments( dataToPass ); //pass it a bundle for information
-                Log.e("1111111111","33333333333333");
                 getSupportFragmentManager()
                         .beginTransaction()
-
                         .replace(R.id.fLayout, carFragment) //Add the fragment in FrameLayout
                         .commit(); //actually load the fragment. Calls onCreate() in DetailsFragment
-                Log.e("1111111111","444444444444444444");
             }
             else //isPhone
             {
                 Intent nextActivity = new Intent(SearchActivity.this, EmptyActivity.class);
                 nextActivity.putExtras(dataToPass); //send data to next activity
 //look at the startActivity() call from step 7 and change the Intent object so that it will transition to EmptyActivity.class.
-                Log.e("1111111111","555555555555555555555");
                 startActivity(nextActivity); //make the transition
-                Log.e("1111111111","66666666666666666666");
             }
         });
-
-        Button saving = findViewById(R.id.saving);
-//        saving.setOnClickListener( sb->{
-//                Intent goToSave = new Intent(SearchActivity.this, SavingActivity.class);
-//        startActivity(goToSave);
-//        });
-//        Button viewing = findViewById(R.id.viewing);
-//        viewing.setOnClickListener(vb-> {
-//                Intent goToView = new Intent(SearchActivity.this, ViewingActivity.class);
-//                startActivity(goToView);
-//        });
-//        Button shopping = findViewById(R.id.shopping);
-//        shopping.setOnClickListener( shb->{
-//                Intent goToShop = new Intent(SearchActivity.this, ShoppingActivity.class);
-//        startActivity(goToShop);
-//        });
     }
 
 
@@ -172,11 +151,12 @@ public class SearchActivity extends AppCompatActivity {
         View extraStuff = getLayoutInflater().inflate(R.layout.search_list, null);
         //get the TextViews
         TextView modelName = extraStuff.findViewById(R.id.modelName);
-
+        TextView makeName = extraStuff.findViewById(R.id.makeName);
         TextView modelId = extraStuff.findViewById(R.id.modelID);
 
         modelName.setText(selectedContact.toString());
         modelId.setText(selectedContact.toString());
+        makeName.setText(selectedContact.toString());
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("You clicked on item #" + position)
@@ -209,8 +189,8 @@ public class SearchActivity extends AppCompatActivity {
 
     private class SearchCar extends AsyncTask< String, Integer, String>
     {
-        String id, name;
-//        int id, name;
+        String make, name;
+        long id;
         //Type3                Type1
         protected String doInBackground(String ... args)
         {
@@ -224,53 +204,75 @@ public class SearchActivity extends AppCompatActivity {
 
                 //wait for data:
                 InputStream response = urlConnection.getInputStream();
-
+                publishProgress(0);
                 //JSON reading:   Look at slide 26
                 //Build the entire string response:
                 BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
                 StringBuilder sb = new StringBuilder();
-
+                publishProgress(25);
                 String line = null;
-                if((line = reader.readLine()) != null){
-
-                    //将字符串转换成jsonObject对象
-                    JSONObject jsonObject = new JSONObject(String.valueOf(sb.append(line )));
-//获取到json数据中里的Results数组内容
-                    JSONArray resultJsonArray = jsonObject.getJSONArray("Results");
-                    Log.e("MainActivity", String.valueOf(resultJsonArray) ) ;
-//                    bianli
-                    Map<String, Object> map=new HashMap<String, Object>();
-                    for(int i=0;i<resultJsonArray.length();i++){
-                        object = resultJsonArray.getJSONObject(i);
-                        try {
-                            //获取到json数据中的results数组里的内容Model_ID
-                            Long id = object.getLong("Model_ID");
-                            String make = object.getString("Make_Name");
-                            //获取到json数据中的results数组里的内容Model_Name
-                            String name = object.getString("Model_Name");
-//                            //存入map
-//                            map.put("Model_ID", id);
-//                            Log.e("MainActivity", String.valueOf(id) ) ;
-//                            map.put("Model_Name", name);
-//                            Log.e("MainActivity", String.valueOf(name) ) ;
-                            //add to ArrayList集合
-
-                            list.add(new CarListItem(make,name,id));
-//                            list.addAll((Collection<? extends Map<String, Object>>) map);
-                            Log.e("MainActivity", list.get(1).getMake()) ;
-                            Log.e("MainActivity", list.get(1).getName()) ;
-                            Log.e("123123132323232333","gsdafuigfifgsuidf") ;
-                            Log.e("MainActivity", String.valueOf(list.get(1).getId()));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    Log.e("MainActivity", String.valueOf(list) ) ;
+                while ((line = reader.readLine()) != null)
+                {
+                    sb.append(line + "\n");
                 }
+                String result = sb.toString(); //result is the whole string
+                publishProgress(50);
+                // convert string to JSON: Look at slide 27:
+                JSONObject results = new JSONObject(result);
+                JSONArray object = results.getJSONArray("Results");
+                publishProgress(75);
+                for(int i=0;i<object.length();i++) {
+                    id = object.getJSONObject(i).getLong("Model_ID");
+                    make = object.getJSONObject(i).getString("Make_Name");
+
+                    name = object.getJSONObject(i).getString("Model_Name");
+                    Log.e("MainActivity", "11111111111111: " + name) ;
+                    list.add(new CarListItem(name, make, id));
+                }
+                publishProgress(100);
+                Log.e("MainActivity", "list contain: "+object.length()+" object") ;
+//                if((line = reader.readLine()) != null){
+//
+//                    //将字符串转换成jsonObject对象
+//                    JSONObject jsonObject = new JSONObject(String.valueOf(sb.append(line )));
+////获取到json数据中里的Results数组内容
+//                    JSONArray resultJsonArray = jsonObject.getJSONArray("Results");
+//                    Log.e("MainActivity", String.valueOf(resultJsonArray) ) ;
+////                    bianli
+//                    Map<String, Object> map=new HashMap<String, Object>();
+//                    for(int i=0;i<resultJsonArray.length();i++){
+//                        object = resultJsonArray.getJSONObject(i);
+//                        try {
+//                            //获取到json数据中的results数组里的内容Model_ID
+//                            Long id = object.getLong("Model_ID");
+//                            String make = object.getString("Make_Name");
+//                            //获取到json数据中的results数组里的内容Model_Name
+//                            String name = object.getString("Model_Name");
+//                            Log.e("123123132323232333",name) ;
+////                            //存入map
+////                            map.put("Model_ID", id);
+////                            Log.e("MainActivity", String.valueOf(id) ) ;
+////                            map.put("Model_Name", name);
+////                            Log.e("MainActivity", String.valueOf(name) ) ;
+//                            //add to ArrayList集合
+//
+//                            list.add(new CarListItem(name,make,id));
+////                            list.addAll((Collection<? extends Map<String, Object>>) map);
+//                            Log.e("MainActivity", list.get(1).getMake()) ;
+//                            Log.e("MainActivity", list.get(1).getName()) ;
+//                            Log.e("123123132323232333","gsdafuigfifgsuidf") ;
+//                            Log.e("MainActivity", String.valueOf(list.get(1).getId()));
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//
+//                    Log.e("MainActivity", String.valueOf(list) ) ;
+//                }
             }
             catch (Exception e)
             {
+                e.printStackTrace();
             }
             return "Done";
         }
@@ -318,7 +320,7 @@ public class SearchActivity extends AppCompatActivity {
 
             LayoutInflater inflater = getLayoutInflater();
             Object msg = getItem(position);
-            Log.i("MainActivity", "999999999999999999" ) ;
+
 //        make a new row in choose gender or send receive button
             View newRow = convertView;//msg.getGender()==0)
 
@@ -329,7 +331,7 @@ public class SearchActivity extends AppCompatActivity {
             modelID.setText( "ID: " + modelID);
             TextView modelName = (TextView)newRow.findViewById(R.id.modelName);
             modelName.setText("Model_Name: "+modelName);
-            Log.i("MainActivity", "88888888888888888888888" ) ;
+
 
             return newRow;
         }
