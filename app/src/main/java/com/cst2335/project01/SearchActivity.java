@@ -53,7 +53,7 @@ public class SearchActivity extends AppCompatActivity {
 //    TextView modelName;
     ProgressBar progressBar;
     MyListAdapter myAdapter;
-    public static final String Make_NAME = "Make_Name";
+    public static final String MAKE_NAME = "Make_Name";
     public static final String MODEL_NAME = "Model_Name";
     public static final String MODEL_ID = "Model_ID";
 
@@ -122,9 +122,9 @@ public class SearchActivity extends AppCompatActivity {
             Log.e("1111111111","2222222222222222");
 //            Message newMsg = new Message(searchEdit.getText().toString(),false,id);
             Bundle dataToPass = new Bundle();
-            dataToPass.putString(MODEL_NAME, String.valueOf(list.getItemIdAtPosition(pos)));
-
-            dataToPass.putLong(String.valueOf(MODEL_ID), list.getItemIdAtPosition(pos));
+            dataToPass.putString(MODEL_NAME, String.valueOf(list.getItemAtPosition(pos)));
+            dataToPass.putString(MAKE_NAME, String.valueOf(list.getItemIdAtPosition(pos)));
+            dataToPass.putLong(MODEL_ID, list.getItemIdAtPosition(pos));
 
             if(isTablet)
             {
