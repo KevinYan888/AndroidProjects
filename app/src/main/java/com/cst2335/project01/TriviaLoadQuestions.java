@@ -81,7 +81,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                EditText editTextPlayerName = dialogResultView.findViewById(R.id.textEditPlayerName);
 
                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-               builder.setTitle("Good job! Your score:  " + Double.toString(scoreOfPlayer) + "(*%)")
+               builder.setTitle("Good job! Your score:  " + String.format("%.1f", scoreOfPlayer) + "(*%)")
                        .setMessage("Enter your name and save result: ")
                        .setView(dialogResultView) //add texts showing the contact information
                        .setPositiveButton("Return ", (click, b) -> {
