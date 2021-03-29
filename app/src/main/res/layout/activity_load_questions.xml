@@ -18,6 +18,13 @@
         android:textColorHighlight="#ff5e9cff"
         android:textColor="@color/purple_700" />
 
+    <ProgressBar
+        android:id="@+id/proBar"
+        android:layout_below="@+id/titleQuestion"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 <!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
 <!--        android:id="@+id/refresher"-->
 <!--        android:layout_width="match_parent"-->
@@ -28,7 +35,7 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="583dp"
-        android:layout_below="@+id/titleQuestion"
+        android:layout_below="@+id/proBar"
 android:layout_above="@+id/btnSubmit"
         tools:layout_editor_absoluteX="136dp"
         tools:layout_editor_absoluteY="284dp" />
@@ -45,10 +52,10 @@ android:layout_above="@+id/btnSubmit"
         android:text="Submit" />
 
     <Button
-        android:id="@+id/btnCancel"
+        android:id="@+id/btnGoBack"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:text="Cancel" />
+        android:text="Go Back" />
     </RelativeLayout>

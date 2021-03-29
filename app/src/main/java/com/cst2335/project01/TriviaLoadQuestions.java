@@ -14,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ import java.util.Collections;
 public class TriviaLoadQuestions extends AppCompatActivity {
     //arrListRandomQuestions
     ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
+    ProgressBar proBar;
 
     private int numOfCorrectPlayer;
     private int numOfIncorrectPlayer;
@@ -56,12 +58,14 @@ public class TriviaLoadQuestions extends AppCompatActivity {
         jq.execute("https://opentdb.com/api.php?amount=" + bundle.getInt("intAmountOfQuestion") +
                 "&difficulty=" + bundle.getString("strDifficultyOfQuestion") + "&type=" + bundle.getString("strTypeOfQuestion"));  //Type 1
         strDifficultyOfQuestion = bundle.getString("strDifficultyOfQuestion");
+
         ListView myList = (ListView) findViewById(R.id.listView);
         myList.setAdapter(myAdapter = new MyListAdapter()); //populates the list
 
         Button btnSubmit = findViewById(R.id.btnSubmit);
-        Button btnCancel = findViewById(R.id.btnCancel);
+        Button btnGoBack = findViewById(R.id.btnGoBack);
         TextView titleQuestion = findViewById(R.id.titleQuestion);
+        proBar = findViewById(R.id.proBar);
 //        titleQuestion.setText("Enjoy your game");
 
 
@@ -88,7 +92,8 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
                        })
                        .setNegativeButton("Exit", (click, b) -> {
-                           android.os.Process.killProcess(android.os.Process.myPid());
+                           Intent goToMainActivity = new Intent(TriviaLoadQuestions.this, MainActivity.class);
+                           startActivity(goToMainActivity);
                        })
                        .setNeutralButton("Save result", (click, b) -> {
                            namePlayer = editTextPlayerName.getText().toString();
@@ -108,6 +113,11 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                        })
                        .create().show();
            }
+        });
+        btnGoBack.setOnClickListener(cancel->{
+            Intent goToTriviaActivity = new Intent();
+            goToTriviaActivity.setClass(TriviaLoadQuestions.this,TriviaActivity.class);
+            startActivity(goToTriviaActivity);
         });
 
     }
@@ -156,7 +166,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                 //Build the entire string response:
                 BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
                 StringBuilder sb = new StringBuilder();
-
+                publishProgress(25);
                 String line = null;
                 while ((line = reader.readLine()) != null) {
                     sb.append(line + "\n");
@@ -183,6 +193,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                             tempArrListRandomQues.add(jsArrIncorrectAnswers.getString(j));
                         }
                     }
+                    publishProgress(50);
                     tempArrListRandomQues.add(jsObjOneQuestion.getString("correct_answer"));
                     Collections.shuffle(tempArrListRandomQues);//Random answers
 
@@ -193,13 +204,9 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                             jsObjOneQuestion.getString("correct_answer"),
                             tempArrListRandomQues
                             ));
-                    Log.i("diffi", arrListRandomQuestions.get(i).getStrCorrectAnswer());
-                    Log.i("diffi", arrListRandomQuestions.get(i).getStrDifficultyOfQuestion());
-                    Log.i("diffi", arrListRandomQuestions.get(i).getStrQuestion());
-                    Log.i("diffi", arrListRandomQuestions.get(i).getStrTypeOfQuestion());
-                    Log.i("diffi", arrListRandomQuestions.get(i).getRamdomAnswers().toString());
-
+                    publishProgress(75);
                 }
+                publishProgress(100);
 
             } catch (Exception e) {
 
@@ -210,12 +217,13 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
         //Type 2
         public void onProgressUpdate(Integer... args) {
-
+            proBar.setVisibility(View.VISIBLE);
+            proBar.setProgress(args[0]);
         }
 
         //Type3
         public void onPostExecute(String fromDoInBackground) {
-
+            proBar.setVisibility(View.INVISIBLE);
         myAdapter.notifyDataSetChanged();
 
         }
@@ -324,9 +332,6 @@ public class TriviaLoadQuestions extends AppCompatActivity {
             }
             myAdapter.notifyDataSetChanged();
 
-//            //finding what's in layout file
-//            TextView thisRowMessage = (TextView)newView.findViewById(R.id.textGoesHere);
-//            thisRowMessage.setText(thisRow.getOneOfChatText());
 
             return newView;
         }
