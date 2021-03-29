@@ -49,8 +49,8 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class SearchActivity extends AppCompatActivity {
 //    ListView modelID;
-    TextView modelID;
-    TextView modelName;
+//    TextView modelID;
+//    TextView modelName;
     ProgressBar progressBar;
     MyListAdapter myAdapter;
     public static final String Make_NAME = "Make_Name";
@@ -70,6 +70,7 @@ public class SearchActivity extends AppCompatActivity {
             make = m;
             id = i;
         }
+
         public String getMake() {
             return  make;
         }
@@ -224,12 +225,12 @@ public class SearchActivity extends AppCompatActivity {
                 for(int i=0;i<object.length();i++) {
                     id = object.getJSONObject(i).getLong("Model_ID");
                     make = object.getJSONObject(i).getString("Make_Name");
-
                     name = object.getJSONObject(i).getString("Model_Name");
-                    Log.e("MainActivity", "11111111111111: " + name) ;
+
                     list.add(new CarListItem(name, make, id));
                 }
                 publishProgress(100);
+                Log.e("MainActivity", list.get(object.length()-2).getName()) ;
                 Log.e("MainActivity", "list contain: "+object.length()+" object") ;
 //                if((line = reader.readLine()) != null){
 //
@@ -326,12 +327,19 @@ public class SearchActivity extends AppCompatActivity {
 
             newRow = inflater.inflate(R.layout.search_list, parent, false);
 
-            //finding what in the screen and set message into the new row
-            TextView modelID = newRow.findViewById(R.id.modelID);
-            modelID.setText( "ID: " + modelID);
-            TextView modelName = (TextView)newRow.findViewById(R.id.modelName);
-            modelName.setText("Model_Name: "+modelName);
+            CarListItem listCar = (CarListItem) getItem(position);
 
+            long modelID = listCar.getId();
+            String make = listCar.getMake();
+            String name = listCar.getName();
+
+            //finding what in the screen and set message into the new row
+            TextView modelIDV = newRow.findViewById(R.id.modelID);
+            modelIDV.setText( "ID: " + modelID);
+            TextView modelName = (TextView)newRow.findViewById(R.id.modelName);
+            modelName.setText("Model_Name: "+name);
+            TextView makeName = (TextView)newRow.findViewById(R.id.makeName);
+            makeName.setText("Make_Name: "+ make);
 
             return newRow;
         }
