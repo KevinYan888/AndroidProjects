@@ -2,6 +2,7 @@ package com.cst2335.project01;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -66,8 +67,6 @@ public class CardataFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
@@ -82,6 +81,7 @@ public class CardataFragment extends Fragment {
         id = dataFromActivity.getLong(SearchActivity.MODEL_ID );
         make = dataFromActivity.getString(SearchActivity.Make_NAME );
         modelNmae = dataFromActivity.getString(SearchActivity.MODEL_NAME );
+
         View extraStuff = inflater.inflate(R.layout.fragment_cardata, container, false);
 //        getLayoutInflater().inflate(R.layout.activity_empty, container, false);
         //get the TextViews
@@ -98,16 +98,16 @@ public class CardataFragment extends Fragment {
 //            Intent goToSave = new Intent(CardataFragment.this, SavingActivity.class);
 //            startActivity(goToSave);
 //        });
-//        Button viewing = extraStuff.findViewById(R.id.viewing);
-//        viewing.setOnClickListener(vb-> {
-//            Intent goToView = new Intent(CardataFragment.this, ViewingActivity.class);
-//            startActivity(goToView);
-//        });
-//        Button shopping = extraStuff.findViewById(R.id.shopping);
-//        shopping.setOnClickListener( shb->{
-//            Intent goToShop = new Intent(CardataFragment.this, ShoppingActivity.class);
-//            startActivity(goToShop);
-//        });
+        Button viewing = extraStuff.findViewById(R.id.viewing);
+        viewing.setOnClickListener(vb-> {
+            Intent goToView = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/search?q="+make+"+"+modelNmae));
+            startActivity(goToView);
+        });
+        Button shopping = extraStuff.findViewById(R.id.shopping);
+        shopping.setOnClickListener( shb->{
+            Intent goToShop = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.autotrader.ca/cars/?mdl="+modelNmae+"&make="+make+"&loc=K2G1V8"));
+            startActivity(goToShop);
+        });
 
 
         // get the delete button, and add a click listener:

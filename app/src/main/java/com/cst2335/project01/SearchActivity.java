@@ -132,6 +132,7 @@ public class SearchActivity extends AppCompatActivity {
                 Log.e("1111111111","33333333333333");
                 getSupportFragmentManager()
                         .beginTransaction()
+
                         .replace(R.id.fLayout, carFragment) //Add the fragment in FrameLayout
                         .commit(); //actually load the fragment. Calls onCreate() in DetailsFragment
                 Log.e("1111111111","444444444444444444");
@@ -253,13 +254,18 @@ public class SearchActivity extends AppCompatActivity {
 //                            map.put("Model_Name", name);
 //                            Log.e("MainActivity", String.valueOf(name) ) ;
                             //add to ArrayList集合
+
                             list.add(new CarListItem(make,name,id));
 //                            list.addAll((Collection<? extends Map<String, Object>>) map);
-
+                            Log.e("MainActivity", list.get(1).getMake()) ;
+                            Log.e("MainActivity", list.get(1).getName()) ;
+                            Log.e("123123132323232333","gsdafuigfifgsuidf") ;
+                            Log.e("MainActivity", String.valueOf(list.get(1).getId()));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
+
                     Log.e("MainActivity", String.valueOf(list) ) ;
                 }
             }
