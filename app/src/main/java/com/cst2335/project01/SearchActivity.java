@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -43,6 +45,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -51,6 +54,7 @@ public class SearchActivity extends AppCompatActivity {
 //    ListView modelID;
 //    TextView modelID;
 //    TextView modelName;
+    SQLiteDatabase db;
     ProgressBar progressBar;
     MyListAdapter myAdapter;
     public static final String MAKE_NAME = "Make_Name";
@@ -117,14 +121,15 @@ public class SearchActivity extends AppCompatActivity {
         FrameLayout fLayout = findViewById(R.id.fLayout);
         boolean isTablet = fLayout != null; //check if the FrameLayout is loaded
 
-        myList.setOnItemClickListener((list, view, pos, id) -> {
+        myList.setOnItemClickListener((adapter, view, pos, id) -> {
             //Create a bundle to pass data to the new fragment
             Log.e("1111111111","2222222222222222");
 //            Message newMsg = new Message(searchEdit.getText().toString(),false,id);
             Bundle dataToPass = new Bundle();
-            dataToPass.putString(MODEL_NAME, String.valueOf(list.getItemAtPosition(pos)));
-            dataToPass.putString(MAKE_NAME, String.valueOf(list.getItemIdAtPosition(pos)));
-            dataToPass.putLong(MODEL_ID, list.getItemIdAtPosition(pos));
+            dataToPass.putString("make", list.get(pos).getMake());
+            dataToPass.putString("name",list.get(pos).getName());
+            dataToPass.putInt("position",pos);
+            dataToPass.putLong("id", list.get(pos).getId());
 
             if(isTablet)
             {
@@ -143,8 +148,40 @@ public class SearchActivity extends AppCompatActivity {
                 startActivity(nextActivity); //make the transition
             }
         });
-    }
 
+        loadDataFromDatabase();
+    }
+    private void loadDataFromDatabase()
+    {
+        //get a database connection:
+        MyOpener dbOpener = new MyOpener(this);
+        db = dbOpener.getWritableDatabase(); //This calls onCreate() if you've never built the table before, or onUpgrade if the version here is newer
+
+
+        // We want to get all of the columns. Look at MyOpener.java for the definitions:
+        String [] columns = {MyOpener.COL_ID, MyOpener.COL_MAKE, MyOpener.COL_NAME};
+        //query all the results from the database:
+        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+
+        //Now the results object has rows of results that match the query.
+        //find the column indices:
+        int nameColIndex = results.getColumnIndex(MyOpener.COL_NAME);
+        int makeColumnIndex = results.getColumnIndex(MyOpener.COL_MAKE);
+        int idColIndex = results.getColumnIndex(MyOpener.COL_ID);
+
+        //iterate over the results, return true if there is a next item:
+        while(results.moveToNext())
+        {
+            String name = results.getString(nameColIndex);
+            String make = results.getString(makeColumnIndex);
+            long id = results.getLong(idColIndex);
+
+            //add the new Contact to the array list:
+            list.add(new CarListItem(name, make, id));
+        }
+
+        //At this point, the contactsList array has loaded every row from the cursor.
+    }
 
     protected void showContact(int position)
     {

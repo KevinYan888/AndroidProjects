@@ -42,11 +42,9 @@ public class CardataFragment extends Fragment {
 //        return inflater.inflate(R.layout.fragment_cardata, container, false);
 
         dataFromActivity = getArguments();
-        id = dataFromActivity.getLong(SearchActivity.MODEL_ID);
-        make = dataFromActivity.getString(SearchActivity.MAKE_NAME);
-        Log.i("111111111", make);
-        modelName = dataFromActivity.getString(SearchActivity.MODEL_NAME);
-
+        id = dataFromActivity.getLong("id");
+        make = dataFromActivity.getString("make");
+        modelName = dataFromActivity.getString("name");
         View extraStuff = inflater.inflate(R.layout.fragment_cardata, container, false);
 //        getLayoutInflater().inflate(R.layout.activity_empty, container, false);
         //get the TextViews

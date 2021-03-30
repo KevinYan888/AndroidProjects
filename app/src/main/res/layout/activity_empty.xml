@@ -1,44 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SearchActivity">
+    tools:context=".SearchActivity"
+    android:id="@+id/fLayout">
 
-    <ListView
-        android:id="@+id/sListView"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:divider="@android:color/background_light"/>
-
-    <FrameLayout
-        android:id="@+id/fLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="7dp"
-        android:layout_toRightOf="@+id/sListView" />
-
-
-    <EditText
-        android:id="@+id/eText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/sListView"
-       android:layout_toLeftOf="@+id/searchBtn"
-        android:hint="company name"
-        android:autofillHints=""
-        />
-
-    <Button
-        android:id="@+id/searchBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/sListView"
-        android:layout_alignRight="@+id/sListView"
-        android:text="search" />
-
-
-
-</RelativeLayout>
+</FrameLayout>
