@@ -7,29 +7,31 @@
         android:layout_height="match_parent"
         tools:context=".TriviaActivity">
 
+
+    <TextView
+        android:id="@+id/titleQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:text="Let's go!"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
     <TextView
         android:id="@+id/totalQuestion"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:gravity="center"
         android:text=""
+        android:layout_below="@+id/titleQuestion"
         android:textSize="15dp"
-        android:textColorHighlight="#ff5e9cff"
-        android:textColor="@color/purple_700" />
-    <TextView
-        android:id="@+id/titleQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_toRightOf="@+id/totalQuestion"
-        android:text="Let's go!"
-        android:gravity="center"
-        android:textSize="30dp"
         android:textColorHighlight="#ff5e9cff"
         android:textColor="@color/purple_700" />
 
     <ProgressBar
         android:id="@+id/proBar"
-        android:layout_below="@+id/titleQuestion"
+        android:layout_below="@+id/totalQuestion"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

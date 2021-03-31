@@ -18,6 +18,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 
 public class TriviaHighScoreLeaderboard extends AppCompatActivity {
@@ -82,6 +84,7 @@ public class TriviaHighScoreLeaderboard extends AppCompatActivity {
          //   listHighScore.add(newRecord);
             //update the listView:
             myAdapter.notifyDataSetChanged();
+
         loadDataFromDatabase();
 
 
@@ -103,6 +106,7 @@ public class TriviaHighScoreLeaderboard extends AppCompatActivity {
                         android.os.Process.killProcess(android.os.Process.myPid());
                     })
                     .setNeutralButton("Delete", (click, b) -> {
+
                     deleteOneHighScoreItem(selectedScoreItem); //remove the content from database
                     listHighScore.remove(position); //remove the content from content list
                     myAdapter.notifyDataSetChanged(); //there is one less item so update the list

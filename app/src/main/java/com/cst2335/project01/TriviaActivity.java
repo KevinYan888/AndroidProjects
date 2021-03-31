@@ -18,6 +18,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -74,8 +76,31 @@ public class TriviaActivity extends AppCompatActivity {
         });
 
         radioGroupDifficulty.setOnCheckedChangeListener((rg2,i)->{
+            String oldDifficulty = strDifficultyOfQuestion;
             RadioButton rb2 = findViewById(radioGroupDifficulty.getCheckedRadioButtonId());
+
             strDifficultyOfQuestion= String.valueOf(rb2.getText());
+            //Add a Snack bar
+            if(strDifficultyOfQuestion.equals("hard")){
+
+                        Snackbar snackbar = Snackbar
+                                .make(rg2, "You select hard level !", Snackbar.LENGTH_LONG)
+                                .setAction("UNDO", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Snackbar snackbar1 = Snackbar.make(rg2, "You cancel hard level !", Snackbar.LENGTH_SHORT);
+                                        snackbar1.show();
+                                        //redo
+                                        strDifficultyOfQuestion = oldDifficulty;
+                                        rb2.setChecked(false);
+                                    }
+
+                                });
+
+                        snackbar.show();
+
+           }
+
 
         });
         //btnGoBack: goToMainActivity

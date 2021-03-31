@@ -21,6 +21,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -158,7 +160,9 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                        .create().show();
            }
         });
+
         btnGoBack.setOnClickListener(cancel->{
+
             Intent goToTriviaActivity = new Intent();
             goToTriviaActivity.setClass(TriviaLoadQuestions.this,TriviaActivity.class);
             startActivity(goToTriviaActivity);
