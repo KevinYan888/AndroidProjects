@@ -7,9 +7,18 @@
     tools:context=".TriviaHighScoreLeaderboard">
 
     <TextView
+        android:id="@+id/titleRankList"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="35dp"
+        android:text="Rink List" />
+    <TextView
         android:id="@+id/rankNumber"
         android:layout_width="35dp"
         android:layout_height="35dp"
+        android:layout_below="@+id/titleRankList"
         android:gravity="center"
         android:text="Rank" />
 
@@ -18,7 +27,8 @@
         android:layout_width="60dp"
         android:layout_height="35dp"
         android:gravity="center"
-        android:layout_toEndOf="@+id/rankNumber"
+  android:layout_toRightOf="@+id/rankNumber"
+        android:layout_below="@+id/titleRankList"
         android:text="Score" />
 
     <TextView
@@ -27,6 +37,7 @@
         android:layout_height="35dp"
         android:gravity="center"
         android:layout_toEndOf="@+id/score"
+        android:layout_below="@+id/titleRankList"
         android:text="Name" />
 
     <TextView
@@ -35,6 +46,7 @@
         android:layout_height="35dp"
         android:gravity="center"
         android:layout_toEndOf="@id/name"
+        android:layout_below="@+id/titleRankList"
         android:text="Level" />
 
     <TextView
@@ -43,6 +55,7 @@
         android:layout_height="35dp"
         android:gravity="center"
         android:layout_toEndOf="@+id/difficulty"
+        android:layout_below="@+id/titleRankList"
         android:text="ID" />
 
 <!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
