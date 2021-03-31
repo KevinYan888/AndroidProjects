@@ -22,11 +22,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -164,9 +161,9 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
         btnGoBack.setOnClickListener(cancel->{
 
-            Intent goToTriviaActivity = new Intent();
-            goToTriviaActivity.setClass(TriviaLoadQuestions.this,TriviaActivity.class);
-            startActivity(goToTriviaActivity);
+            Intent goToTriviaSettingActivity = new Intent();
+            goToTriviaSettingActivity.setClass(TriviaLoadQuestions.this, TriviaSettingActivity.class);
+            startActivity(goToTriviaSettingActivity);
         });
         //Whenever you swipe down on the list, do something:
         SwipeRefreshLayout refresher = findViewById(R.id.refresher);

@@ -12,13 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project01">
-        <activity android:name=".TriviaToolbar"></activity>
+        <activity android:name=".TriviaActivity"></activity>
         <activity android:name=".TriviaEmptyActivity" />
         <activity android:name=".TriviaDetailFragment"
             tools:ignore="Instantiatable" />
         <activity android:name=".TriviaHighScoreLeaderboard" />
         <activity android:name=".TriviaLoadQuestions" />
-        <activity android:name=".TriviaActivity" />
+        <activity android:name=".TriviaSettingActivity" />
         <activity android:name=".CarActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -1,6 +1,5 @@
 package com.cst2335.project01;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,15 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -115,7 +110,7 @@ public class TriviaHighScoreLeaderboard extends AppCompatActivity {
             return;
         });
       btnContinuePlay.setOnClickListener(c->{
-          Intent goToActivity = new Intent(TriviaHighScoreLeaderboard.this, TriviaActivity.class);
+          Intent goToActivity = new Intent(TriviaHighScoreLeaderboard.this, TriviaSettingActivity.class);
           startActivity(goToActivity);
       });
         btnBackHome.setOnClickListener(k->{

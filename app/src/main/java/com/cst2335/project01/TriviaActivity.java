@@ -1,156 +1,141 @@
 package com.cst2335.project01;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.view.Menu;
+        import android.view.MenuInflater;
+        import android.view.MenuItem;
+        import android.widget.Button;
+        import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
+        import androidx.appcompat.app.ActionBarDrawerToggle;
+        import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.widget.Toolbar;
+        import androidx.drawerlayout.widget.DrawerLayout;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+        import com.google.android.material.bottomnavigation.BottomNavigationView;
+        import com.google.android.material.navigation.NavigationView;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-public class TriviaActivity extends AppCompatActivity {
-
-    private int intAmountOfQuestion;
-    private String strTypeOfQuestion;
-    private String strDifficultyOfQuestion;
-
+public class TriviaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener  {
+    Intent intentGoToLogin = new Intent();
+    public static final int RESULT_BACK = 500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trivia);
+        setContentView(R.layout.activity_trivia_toolbar);
 
-        //Number of questions
-        EditText textEditNumberQuestion = findViewById(R.id.textEditAmountOfQuestion);
+        //This gets the toolbar from the layout:
+        Toolbar myToolBar = (Toolbar)findViewById(R.id.toolbar);
 
-        //Game Type(True or false/Multiple choice/Both)
-        RadioGroup radioGroupType = findViewById(R.id.radioGroupType);
-//        RadioButton rbtnTypeTrue = findViewById(R.id.rbtnTypeTrue);
-//        RadioButton rbtnTypeMultiple = findViewById(R.id.rbtnTypeMultiple);
-//        RadioButton rbtnTypeBoth = findViewById(R.id.rbtnTypeBoth);
+        //This loads the toolbar, which calls onCreateOptionsMenu below:
+        setSupportActionBar(myToolBar);
 
-        //Game level(Easy/Medium/Hard)
-        RadioGroup radioGroupDifficulty = findViewById(R.id.radioGroupDifficulty);
-//        RadioButton rbtnDifficultyEasy = findViewById(R.id.rbtnDifficultyEasy);
-//        RadioButton rbtnDifficultyMedium = findViewById(R.id.rbtnDifficultyMedium);
-//        RadioButton rbtnDifficultyHard = findViewById(R.id.rbtnDifficultyHard);
+        //For NavigationDrawer:
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+                drawer, myToolBar, R.string.open,R.string.close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
-        //Buttons
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+        //For bottomNavigationBar
+        BottomNavigationView bnv = findViewById(R.id.bnv);
+        bnv.setOnNavigationItemSelectedListener(this);
+
         Button btnPlayNow = findViewById(R.id.btnPlayNow);
-        Button btnGoBack = findViewById(R.id.btnGoBack);
-
-        radioGroupType.setOnCheckedChangeListener((rg1,i)->{
-            RadioButton rb1 = findViewById(radioGroupType.getCheckedRadioButtonId());
-            if(String.valueOf(rb1.getText()).contains("true")){
-                strTypeOfQuestion = "boolean";
-            }
-            else if(String.valueOf(rb1.getText()).contains("multiple")){
-                strTypeOfQuestion ="multiple";
-            }
-            else{
-                strTypeOfQuestion = "String.valueOf(rb1.getText())";
-
-            }
+        btnPlayNow.setOnClickListener(b->{
+            Intent goToActivity = new Intent(TriviaActivity.this, TriviaSettingActivity.class);
+            startActivity(goToActivity);
         });
-
-        radioGroupDifficulty.setOnCheckedChangeListener((rg2,i)->{
-            String oldDifficulty = strDifficultyOfQuestion;
-            RadioButton rb2 = findViewById(radioGroupDifficulty.getCheckedRadioButtonId());
-
-            strDifficultyOfQuestion= String.valueOf(rb2.getText());
-            //Add a Snack bar
-            if(strDifficultyOfQuestion.equals("hard")){
-
-                        Snackbar snackbar = Snackbar
-                                .make(rg2, "You select hard level !", Snackbar.LENGTH_LONG)
-                                .setAction("UNDO", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Snackbar snackbar1 = Snackbar.make(rg2, "You cancel hard level !", Snackbar.LENGTH_SHORT);
-                                        snackbar1.show();
-                                        //redo
-                                        strDifficultyOfQuestion = oldDifficulty;
-                                        rb2.setChecked(false);
-                                    }
-
-                                });
-
-                        snackbar.show();
-
-           }
-
-
-        });
-        //btnGoBack: goToMainActivity
-        btnGoBack.setOnClickListener(back->{
-//            Intent goToMainActivity = new Intent(TriviaActivity.this, MainActivity.class);
-//            startActivity(goToMainActivity);
-
-            Intent goToToolbar = new Intent(TriviaActivity.this,TriviaToolbar.class);
-            startActivity(goToToolbar);
-        });
-
-        //btnPlayNow: goToLoadQuestions
-        btnPlayNow.setOnClickListener(play->{
-
-          String numQuestions = String.valueOf(textEditNumberQuestion.getText());
-
-            if(isInteger(numQuestions) &&
-                    (Integer.parseInt(numQuestions) > 0) &&
-                    (Integer.parseInt(numQuestions) < 1000) &&
-                    !((strTypeOfQuestion == null) || "".equals(strTypeOfQuestion)) &&
-                    !((strDifficultyOfQuestion == null) || "".equals(strDifficultyOfQuestion)))
-            {//All information has been filled in and is correct
-
-                intAmountOfQuestion = Integer.parseInt(numQuestions);
-                //pass info to next activity
-                Bundle bundle = new Bundle();
-                bundle.putInt("intAmountOfQuestion",intAmountOfQuestion);
-                bundle.putString("strTypeOfQuestion",strTypeOfQuestion);
-                bundle.putString("strDifficultyOfQuestion",strDifficultyOfQuestion);
-                Intent goToLoadQuestions = new Intent();
-                goToLoadQuestions.putExtras(bundle);
-                goToLoadQuestions.setClass(TriviaActivity.this,TriviaLoadQuestions.class);
-                startActivity(goToLoadQuestions);
-            }
-            else{
-                Toast.makeText(this,
-                        " Something is incomplete or incorrect. Please try again!  ", Toast.LENGTH_LONG).show();
-            }
-        });
-
     }
-    //isInteger？
-    public static boolean isInteger(String value){
-        try {
-            Integer.parseInt(value);
-            return true;
-        }catch(NumberFormatException e){
-            return false;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.trivia_toolbar, menu);
+
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        String message = null;
+        //Look at your menu XML file. Put a case for every id in that file:
+        switch(item.getItemId())
+        {
+            //what to do when the menu item is selected:
+            case R.id.item1:
+                message = "View Rank";
+//                Intent goToChat = new Intent(TestToolbar.this,ChatRoomActivity.class);
+//                startActivity(goToChat);
+
+                break;
+            case R.id.item2:
+                message = "Go to play";
+                Intent goToActivity = new Intent(TriviaActivity.this, TriviaSettingActivity.class);
+                startActivity(goToActivity);
+                break;
+            case R.id.item3:
+                message = "Help";
+
+                break;
         }
-    }
-}
+        Toast.makeText(this, "Toolbar: " + message, Toast.LENGTH_LONG).show();
 
+
+        return true;
+    }
+
+    // Needed for the OnNavigationItemSelected interface:
+    @Override
+    public boolean onNavigationItemSelected( MenuItem item) {
+
+        String message = null;
+
+        switch(item.getItemId())
+        {
+            case R.id.item1:
+                message = "View Rank";
+//                Intent goToChat = new Intent(TestToolbar.this,ChatRoomActivity.class);
+//                startActivity(goToChat);
+
+                break;
+            case R.id.item2:
+                message = "Go to play";
+                Intent goToActivity = new Intent(TriviaActivity.this, TriviaSettingActivity.class);
+                startActivity(goToActivity);
+                break;
+            case R.id.item3:
+                message = "Help";
+//show the result on a dialog
+//                View dialogResultView = getLayoutInflater().inflate(R.layout.trivia_help_dialog, null);
+//
+//                TextView textHelp1 = dialogResultView.findViewById(R.id.textHelp1);
+//                TextView textHelp2 = dialogResultView.findViewById(R.id.textHelp2);
+//                textHelp1.setText("textHelp1 : ");
+//                textHelp2.setText("textHelp1: " );
+//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setTitle("Good job! Your score:  " + String.format("%.1f", textHelp1) + "(*%)")
+//                        .setMessage("Enter your name and save result: ")
+//                        .setView(dialogResultView) //add texts showing the contact information
+//                        .setPositiveButton("Return ", (click, b) -> {
+//
+//                        })
+//                        .setNegativeButton("Exit", (click, b) -> {
+//
+//                        })
+//                        .setNeutralButton("Save result", (click, b) -> {
+//
+//                        })
+//                        .create().show();
+                break;
+        }
+        return false;
+        }
+
+
+
+}
