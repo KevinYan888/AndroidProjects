@@ -2,6 +2,7 @@ package com.cst2335.project01;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -167,7 +168,9 @@ public class TriviaLoadQuestions extends AppCompatActivity {
             goToTriviaActivity.setClass(TriviaLoadQuestions.this,TriviaActivity.class);
             startActivity(goToTriviaActivity);
         });
-
+        //Whenever you swipe down on the list, do something:
+        SwipeRefreshLayout refresher = findViewById(R.id.refresher);
+        refresher.setOnRefreshListener( () -> refresher.setRefreshing(false)  );
     }
     public int resultOfGameCalculate(){//calculate results and return numOfUnansweredPlayer
         numOfCorrectPlayer = 0;

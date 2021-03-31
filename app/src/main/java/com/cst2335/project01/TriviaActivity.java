@@ -1,6 +1,7 @@
 package com.cst2335.project01;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -137,6 +138,7 @@ public class TriviaActivity extends AppCompatActivity {
                         " Something is incomplete or incorrect. Please try again!  ", Toast.LENGTH_LONG).show();
             }
         });
+
     }
     //isInteger？
     public static boolean isInteger(String value){

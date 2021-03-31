@@ -36,22 +36,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-<!--        android:id="@+id/refresher"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        tools:ignore="MissingClass">-->
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/proBar"
+        android:layout_above="@+id/btnGoBack"
+        android:id="@+id/refresher">
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="583dp"
         android:layout_below="@+id/proBar"
-android:layout_above="@+id/btnSubmit"
+        android:layout_above="@+id/btnGoBack"
+
         tools:layout_editor_absoluteX="136dp"
         tools:layout_editor_absoluteY="284dp" />
 
-<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
     <Button
