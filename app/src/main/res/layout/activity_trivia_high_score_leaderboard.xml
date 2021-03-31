@@ -13,7 +13,7 @@
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="35dp"
-        android:text="Rink List" />
+        android:text="Rank List" />
     <TextView
         android:id="@+id/rankNumber"
         android:layout_width="35dp"
