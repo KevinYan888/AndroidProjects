@@ -7,12 +7,21 @@
         android:layout_height="match_parent"
         tools:context=".TriviaActivity">
 
-
+    <TextView
+        android:id="@+id/totalQuestion"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text=""
+        android:textSize="15dp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
     <TextView
         android:id="@+id/titleQuestion"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Enjoy your game"
+        android:layout_toRightOf="@+id/totalQuestion"
+        android:text="Let's go!"
         android:gravity="center"
         android:textSize="30dp"
         android:textColorHighlight="#ff5e9cff"

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants" >
+<!-- The ListView Listener doesn't work if no above attribution -->
 
     <TextView
         android:id="@+id/textStateOfQuestion"

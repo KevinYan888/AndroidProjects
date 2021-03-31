@@ -61,6 +61,11 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+        JsonQuery jq = new JsonQuery();
+        jq.execute("https://opentdb.com/api.php?amount=" + bundle.getInt("intAmountOfQuestion") +
+                "&difficulty=" + bundle.getString("strDifficultyOfQuestion") + "&type=" + bundle.getString("strTypeOfQuestion"));  //Type 1
+        strDifficultyOfQuestion = bundle.getString("strDifficultyOfQuestion");
+
         Button btnSubmit = findViewById(R.id.btnSubmit);
         Button btnGoBack = findViewById(R.id.btnGoBack);
         TextView titleQuestion = findViewById(R.id.titleQuestion);
@@ -70,11 +75,6 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
         TextView txtNameOfquestion = findViewById(R.id.textNameOfQuestion);
 
-        JsonQuery jq = new JsonQuery();
-        jq.execute("https://opentdb.com/api.php?amount=" + bundle.getInt("intAmountOfQuestion") +
-                "&difficulty=" + bundle.getString("strDifficultyOfQuestion") + "&type=" + bundle.getString("strTypeOfQuestion"));  //Type 1
-        strDifficultyOfQuestion = bundle.getString("strDifficultyOfQuestion");
-
         ListView myList = (ListView) findViewById(R.id.listView);
 
         //frameLayout
@@ -82,6 +82,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
         boolean isTablet = frameLayout != null; //check if the FrameLayout is loaded
 
         myList.setAdapter(myAdapter = new MyListAdapter()); //populates the list
+        //Next step: class MyListAdapter extends BaseAdapter
 
         //show the fragment
         myList.setOnItemClickListener((list,item,position,id)->{
@@ -286,6 +287,10 @@ public class TriviaLoadQuestions extends AppCompatActivity {
         public View getView(int position, View view, ViewGroup viewGroup) {
             LayoutInflater inflater = getLayoutInflater();
             View newView;
+            //Show the total of Questions
+            TextView totalQuestion = findViewById(R.id.totalQuestion);
+            totalQuestion.setText("Total of questions: "+arrListRandomQuestions.size());
+
             TriviaRandomQuestions thisRow = getItem(position);
             if(thisRow.getStrTypeOfQuestion().equals("boolean") ){
                 newView = inflater.inflate(R.layout.activity_trivia_boolean_question, viewGroup, false);
@@ -319,7 +324,6 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                         textStateOfQuestion.setText("False");
                         thisRow.setStrStateOfQuestion("False");//setStrStateOfQuestion
                     }
-                    // myAdapter.notifyDataSetChanged();
                 });
 
             }
@@ -327,9 +331,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                 newView = inflater.inflate(R.layout.activity_trivia_multiple_question, viewGroup, false);
 
                 TextView nameQuestion = newView.findViewById(R.id.textNameOfQuestion);
-
                 nameQuestion.setText(position+1+". "+thisRow.getStrQuestion());
-//                RadioGroup radioGroupMulti = newView.findViewById(R.id.radioGroupMulti);
 
                 RadioButton rbtnMult1 = newView.findViewById(R.id.rbtnMult1);
                 rbtnMult1.setText(thisRow.getRamdomAnswers().get(0));
@@ -362,14 +364,6 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                         textStateOfQuestion.setText("False");
                         thisRow.setStrStateOfQuestion("False");//setStrStateOfQuestion
                     }
-                    Log.e("stateOfQuestionInList",arrListRandomQuestions.get(position).getStrAnswerOfPlayer().toString());
-                    Log.e("stateOfQuestionInList",arrListRandomQuestions.get(position).getStrStateOfQuestion().toString());
-                    Log.e("player answer",isSelected.getText().toString());
-                    Log.e("correct answer",thisRow.getStrCorrectAnswer());
-                    Log.i("checkedId",Integer.toString(CheckedId));
-                    Log.i("position",Integer.toString(position));
-                    Log.i("RadioGroup Id",Integer.toString(rgb.getId()));
-
                 });
 
             }
