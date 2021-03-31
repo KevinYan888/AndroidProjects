@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -45,6 +46,13 @@ public class TriviaLoadQuestions extends AppCompatActivity {
     public String namePlayer;
     public String strDifficultyOfQuestion;
 
+    //For detailfragment
+    public static final String ITEM_STR_QUESTION = "STR_QUESTION";
+    public static final String ITEM_DIFFICULTY = "DIFFICULTY";
+    public static final String ITEM_CORRECT = "CORRECT";
+    public static final String ITEM_NUMBER = "NUMBER";
+
+
     private MyListAdapter myAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,14 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+        Button btnSubmit = findViewById(R.id.btnSubmit);
+        Button btnGoBack = findViewById(R.id.btnGoBack);
+        TextView titleQuestion = findViewById(R.id.titleQuestion);
+        proBar = findViewById(R.id.proBar);
+
+
+
+        TextView txtNameOfquestion = findViewById(R.id.textNameOfQuestion);
 
         JsonQuery jq = new JsonQuery();
         jq.execute("https://opentdb.com/api.php?amount=" + bundle.getInt("intAmountOfQuestion") +
@@ -60,13 +76,40 @@ public class TriviaLoadQuestions extends AppCompatActivity {
         strDifficultyOfQuestion = bundle.getString("strDifficultyOfQuestion");
 
         ListView myList = (ListView) findViewById(R.id.listView);
+
+        //frameLayout
+        FrameLayout frameLayout = findViewById(R.id.fragmentLocation);
+        boolean isTablet = frameLayout != null; //check if the FrameLayout is loaded
+
         myList.setAdapter(myAdapter = new MyListAdapter()); //populates the list
 
-        Button btnSubmit = findViewById(R.id.btnSubmit);
-        Button btnGoBack = findViewById(R.id.btnGoBack);
-        TextView titleQuestion = findViewById(R.id.titleQuestion);
-        proBar = findViewById(R.id.proBar);
-//        titleQuestion.setText("Enjoy your game");
+        //show the fragment
+        myList.setOnItemClickListener((list,item,position,id)->{
+           //txtNameOfquestion.setOnClickListener()-> {
+            //Create a bundle to pass data to the new fragment
+            //ITEM_STR_QUESTION,ITEM_DIFFICULTY,ITEM_CORRECT,ITEM_NUMBER
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(ITEM_STR_QUESTION, arrListRandomQuestions.get(position).getStrQuestion());
+            dataToPass.putInt(ITEM_NUMBER, position);
+            dataToPass.putString(ITEM_DIFFICULTY, arrListRandomQuestions.get(position).getStrDifficultyOfQuestion());
+            dataToPass.putString(ITEM_CORRECT, arrListRandomQuestions.get(position).getStrCorrectAnswer());
+
+            if(isTablet)
+            {
+                TriviaDetailFragment dFragment = new TriviaDetailFragment(); //add a DetailFragment
+                dFragment.setArguments( dataToPass ); //pass it a bundle for information
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                        .commit(); //actually load the fragment. Calls onCreate() in DetailFragment
+            }
+            else //isPhone
+            {
+                Intent nextActivity = new Intent(TriviaLoadQuestions.this, TriviaEmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivity(nextActivity); //make the transition
+            }
+        });
 
 
         btnSubmit.setOnClickListener(clk->{

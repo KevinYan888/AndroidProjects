@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project01">
-        <activity android:name=".TriviaHighScoreLeaderboard"></activity>
+        <activity android:name=".TriviaEmptyActivity"></activity>
+        <activity android:name=".TriviaDetailFragment" />
+        <activity android:name=".TriviaHighScoreLeaderboard" />
         <activity android:name=".TriviaLoadQuestions" />
         <activity android:name=".TriviaActivity" />
         <activity android:name=".CarActivity" />
