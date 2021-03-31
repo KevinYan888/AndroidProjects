@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cst2335.project01">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,8 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project01">
-        <activity android:name=".TriviaEmptyActivity"></activity>
-        <activity android:name=".TriviaDetailFragment" />
+        <activity android:name=".TriviaToolbar"></activity>
+        <activity android:name=".TriviaEmptyActivity" />
+        <activity android:name=".TriviaDetailFragment"
+            tools:ignore="Instantiatable" />
         <activity android:name=".TriviaHighScoreLeaderboard" />
         <activity android:name=".TriviaLoadQuestions" />
         <activity android:name=".TriviaActivity" />

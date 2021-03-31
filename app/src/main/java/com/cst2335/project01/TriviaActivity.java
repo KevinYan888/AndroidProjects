@@ -106,8 +106,11 @@ public class TriviaActivity extends AppCompatActivity {
         });
         //btnGoBack: goToMainActivity
         btnGoBack.setOnClickListener(back->{
-            Intent goToMainActivity = new Intent(TriviaActivity.this, MainActivity.class);
-            startActivity(goToMainActivity);
+//            Intent goToMainActivity = new Intent(TriviaActivity.this, MainActivity.class);
+//            startActivity(goToMainActivity);
+
+            Intent goToToolbar = new Intent(TriviaActivity.this,TriviaToolbar.class);
+            startActivity(goToToolbar);
         });
 
         //btnPlayNow: goToLoadQuestions

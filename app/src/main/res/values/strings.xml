@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Project01</string>
     <string name="unanswered">Unanswered</string>
+    <string name="open" />
+    <string name="close" />
+    <string name="navigationdrawer">NavigationDrawer</string>
+    <string name="v1_0_1">V1.0.1</string>
+    <string name="click_items_go_to_the_other_activities">Click items go to the other Activities</string>
+    <string name="easy">easy</string>
 </resources>
