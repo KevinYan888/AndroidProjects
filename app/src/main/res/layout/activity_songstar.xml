@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             tools:src="@tools:sample/avatars" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -31,16 +31,19 @@
                 android:layout_width="365dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="type the song title or artist name "
                 android:inputType="textPersonName"
-                android:text="Name" />
+                android:keyboardNavigationCluster="false"
+                 />
 
             <ImageButton
                 android:id="@+id/song_searchButton"
+                android:layout_alignParentRight="true"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/songsearch" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <ProgressBar
         android:id="@+id/progressBarSong"
@@ -53,7 +56,7 @@
             android:id="@+id/listViewSong"
             android:layout_width="match_parent"
             android:layout_height="648dp"
-            tools:context=".listvity" />
+            />
 
     </LinearLayout>
 
