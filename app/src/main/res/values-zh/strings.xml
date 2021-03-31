@@ -2,6 +2,9 @@
     <string name="app_name">Project01</string>
     <string name="title_activity_search">SearchActivity</string>
 
+
+
+
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
@@ -9,9 +12,7 @@
     <string name="hello_world">Hello Square World!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="input_the_car_manufacturer_you_want">input the car manufacturer you want:</string>
-    <string name="type_manufacturer_name_here">type manufacturer name here</string>
-    <string name="search_your_car">search your car</string>
-
-
+    <string name="input_the_car_manufacturer_you_want">输入你想要汽车厂商的名字:</string>
+    <string name="type_manufacturer_name_here">输入汽车厂商</string>
+    <string name="search_your_car">搜索你要的汽车</string>
 </resources>

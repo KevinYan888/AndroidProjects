@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,6 +60,7 @@ public class SearchActivity extends AppCompatActivity {
     SQLiteDatabase db;
     ProgressBar progressBar;
     MyListAdapter myAdapter;
+    CardataFragment carFragment;
     public static final String MAKE_NAME = "Make_Name";
     public static final String MODEL_NAME = "Model_Name";
     public static final String MODEL_ID = "Model_ID";
@@ -65,29 +69,28 @@ public class SearchActivity extends AppCompatActivity {
     public 	ListView lv;
     public ArrayList<CarListItem> list = new ArrayList<>();
 
-    class  CarListItem {
-        private String make, name;
-        private Long id;
-        public CarListItem(String n, String m, Long i)
-        {
-            name =n;
-            make = m;
-            id = i;
-        }
-
-        public String getMake() {
-            return  make;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public Long getId() {
-            return id;
-        }
-
-    }
+//    class  CarListItem {
+//        private String make, name;
+//        private Long id;
+//        public CarListItem(String n, String m, Long i)
+//        {
+//            name =n;
+//            make = m;
+//            id = i;
+//        }
+//
+//        public String getMake() {
+//            return  make;
+//        }
+//
+//        public String getName() {
+//            return name;
+//        }
+//
+//        public Long getId() {
+//            return id;
+//        }
+//    }
 
 
 
@@ -101,6 +104,8 @@ public class SearchActivity extends AppCompatActivity {
         EditText searchEdit = findViewById(R.id.searchEdit);
         searchEdit.setText(fromCarData.getStringExtra("manufacturerName"));
 
+        Button searchBtn = findViewById(R.id.searchBtn1);
+
         progressBar = findViewById(R.id.progressBar);
 //        progressBar.setVisibility(View.VISIBLE );
 
@@ -112,10 +117,7 @@ public class SearchActivity extends AppCompatActivity {
 
         myList.setAdapter(myAdapter = new MyListAdapter());
 
-        myList.setOnItemLongClickListener((parent, view, pos, id) -> {
-            showContact( pos );
-            return true;
-        });
+
 
         //If it returns null then you are on a phone, otherwise it’s on a tablet. Store this in result in a Boolean variable.
         FrameLayout fLayout = findViewById(R.id.fLayout);
@@ -123,7 +125,7 @@ public class SearchActivity extends AppCompatActivity {
 
         myList.setOnItemClickListener((adapter, view, pos, id) -> {
             //Create a bundle to pass data to the new fragment
-            Log.e("1111111111","2222222222222222");
+
 //            Message newMsg = new Message(searchEdit.getText().toString(),false,id);
             Bundle dataToPass = new Bundle();
             dataToPass.putString("make", list.get(pos).getMake());
@@ -133,7 +135,7 @@ public class SearchActivity extends AppCompatActivity {
 
             if(isTablet)
             {
-                CardataFragment carFragment = new CardataFragment(); //add a DetailFragment
+                carFragment = new CardataFragment(); //add a DetailFragment
                 carFragment.setArguments( dataToPass ); //pass it a bundle for information
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -148,81 +150,63 @@ public class SearchActivity extends AppCompatActivity {
                 startActivity(nextActivity); //make the transition
             }
         });
+//        loadDataFromDatabase();
 
-        loadDataFromDatabase();
-    }
-    private void loadDataFromDatabase()
-    {
-        //get a database connection:
-        MyOpener dbOpener = new MyOpener(this);
-        db = dbOpener.getWritableDatabase(); //This calls onCreate() if you've never built the table before, or onUpgrade if the version here is newer
+        myList.setOnItemLongClickListener((parent, view, position, id) -> {
+            Object selectedContact = list.get(position);
+            View extraStuff = getLayoutInflater().inflate(R.layout.search_list, null);
+            //get the TextViews
+            TextView modelName = extraStuff.findViewById(R.id.modelName);
+            TextView makeName = extraStuff.findViewById(R.id.makeName);
+            TextView modelId = extraStuff.findViewById(R.id.modelID);
 
+            modelName.setText(selectedContact.toString());
+            modelId.setText(selectedContact.toString());
+            makeName.setText(selectedContact.toString());
 
-        // We want to get all of the columns. Look at MyOpener.java for the definitions:
-        String [] columns = {MyOpener.COL_ID, MyOpener.COL_MAKE, MyOpener.COL_NAME};
-        //query all the results from the database:
-        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("You clicked on item #" + position)
 
-        //Now the results object has rows of results that match the query.
-        //find the column indices:
-        int nameColIndex = results.getColumnIndex(MyOpener.COL_NAME);
-        int makeColumnIndex = results.getColumnIndex(MyOpener.COL_MAKE);
-        int idColIndex = results.getColumnIndex(MyOpener.COL_ID);
-
-        //iterate over the results, return true if there is a next item:
-        while(results.moveToNext())
-        {
-            String name = results.getString(nameColIndex);
-            String make = results.getString(makeColumnIndex);
-            long id = results.getLong(idColIndex);
-
-            //add the new Contact to the array list:
-            list.add(new CarListItem(name, make, id));
-        }
-
-        //At this point, the contactsList array has loaded every row from the cursor.
-    }
-
-    protected void showContact(int position)
-    {
-        Object selectedContact = list.get(position);
-        View extraStuff = getLayoutInflater().inflate(R.layout.search_list, null);
-        //get the TextViews
-        TextView modelName = extraStuff.findViewById(R.id.modelName);
-        TextView makeName = extraStuff.findViewById(R.id.makeName);
-        TextView modelId = extraStuff.findViewById(R.id.modelID);
-
-        modelName.setText(selectedContact.toString());
-        modelId.setText(selectedContact.toString());
-        makeName.setText(selectedContact.toString());
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("You clicked on item #" + position)
-
-                //What is the message:
-                .setMessage("The selected row is: " + (position + 1) +
-                        "\n" +
-                        "You can update the fields and then click update to save in the database")
-                // add extra layout elements:showing the contact information
-                .setView(extraStuff)
-                //what the update button does:
-                .setPositiveButton("Update", (click, arg) -> {
-//                        elements.add("HELLO");
-//                    selectedContact.update(rowMsg.getText().toString());
-//                    updateContact(selectedContact);
-                    myAdapter.notifyDataSetChanged();
-                })
-                //What the delete button does:
-                .setNegativeButton("Delete", (click, arg) -> {
+                    //What is the message:
+                    .setMessage("The selected row is: " + (position + 1) +
+                            "\n" +
+                            "You can update the fields and then click update to save in the database")
+                    // add extra layout elements:showing the contact information
+//                    .setView(extraStuff)
+                    //what the update button does:
+                    .setPositiveButton("Yes", (click, arg) -> {
+                        myAdapter.notifyDataSetChanged();
+                        if(carFragment!=null){
+                            getSupportFragmentManager().beginTransaction().remove(carFragment).commit();
+                            Snackbar skbar= Snackbar.make(view,"Remove"+list.get(position).getName(),Snackbar.LENGTH_LONG);
+                            skbar.show();
+                        }
+                    })
+                    //What the delete button does:
+                    .setNegativeButton("Delete", (click, arg) -> {
 //                    deleteContact(selectedContact); //remove the contact from database
-                    list.remove(position); //remove the contact from contact list
-                    myAdapter.notifyDataSetChanged(); //there is one less item so update the list
-                })
+                        list.remove(position); //remove the contact from contact list
+                        myAdapter.notifyDataSetChanged(); //there is one less item so update the list
+                    })
 //                    An optional third button:
-                .setNeutralButton("Dissmiss", (click, arg) -> {  })
-                //Show the dialog
-                .create().show();
+                    .setNeutralButton("Dissmiss", (click, arg) -> {  })
+                    //Show the dialog
+                    .create().show();
+            return true;
+        });
+
+        searchBtn.setOnClickListener(e->{
+            String  searchE = searchEdit.getText().toString();
+            if(!searchE.isEmpty()){
+                InputMethodManager inputManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                Toast.makeText(this,"search for"+searchEdit.getText().toString()+"...",Toast.LENGTH_LONG);
+                list.clear();
+            }
+        });
+
     }
+
 
 
     private class SearchCar extends AsyncTask< String, Integer, String>
@@ -382,52 +366,36 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
-
-//    protected void showContact(int position)
-//    {
-//        Message selectedContact = elements.get(position);
-//        View extraStuff = getLayoutInflater().inflate(R.layout.empyty, null);
-//        //get the TextViews
-//        EditText rowMsg = extraStuff.findViewById(R.id.eText);
-////        EditText rowSend = extraStuff.findViewById(R.id.sBtn);
-//        TextView rowId = extraStuff.findViewById(R.id.row_id);
-//
-//        //set the fields for the alert dialog
-////eText.setText(selectedContact.getMessage());
-////        rowSend.setText(selectedContact.getIsSend());
-//        rowMsg.setText(selectedContact.getMessage());
-//        rowId.setText("id:" + selectedContact.getId());
-//
-//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-//        alertDialogBuilder.setTitle("You clicked on item #" + position)
-//
-//                //What is the message:
-//                .setMessage("The selected row is: " + (position + 1) +
-//                        "\n" +
-//                        "You can update the fields and then click update to save in the database")
-//                // add extra layout elements:showing the contact information
-//                .setView(extraStuff)
-//                //what the update button does:
-//                .setPositiveButton("Update", (click, arg) -> {
-////                        elements.add("HELLO");
-//                    selectedContact.update(rowMsg.getText().toString());
-//                    updateContact(selectedContact);
-//                    myAdapter.notifyDataSetChanged();
-//                })
-//                //What the delete button does:
-//                .setNegativeButton("Delete", (click, arg) -> {
-//                    deleteContact(selectedContact); //remove the contact from database
-//                    elements.remove(position); //remove the contact from contact list
-//                    myAdapter.notifyDataSetChanged(); //there is one less item so update the list
-//
-//                })
-//
-////                    An optional third button:
-//                .setNeutralButton("Dissmiss", (click, arg) -> {  })
-//
-//                //Show the dialog
-//                .create().show();
-//    }
+    CardataFragment cf = new CardataFragment();
+    private void loadDataFromDatabase()
+    {
+        //get a database connection:
+//        MyOpener dbOpener = new MyOpener(cf.parentActivity);
+        MyOpener dbOpener = new MyOpener(this);
+        Log.e("1111111111","2222222222222222");
+        db = dbOpener.getWritableDatabase(); //This calls onCreate() if you've never built the table before, or onUpgrade if the version here is newer
 
 
+        // We want to get all of the columns. Look at MyOpener.java for the definitions:
+        String [] columns = {MyOpener.COL_ID, MyOpener.COL_MAKE, MyOpener.COL_NAME};
+        //query all the results from the database:
+        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+
+        //Now the results object has rows of results that match the query.
+        //find the column indices:
+        int nameColIndex = results.getColumnIndex(MyOpener.COL_NAME);
+        int makeColumnIndex = results.getColumnIndex(MyOpener.COL_MAKE);
+        int idColIndex = results.getColumnIndex(MyOpener.COL_ID);
+
+        //iterate over the results, return true if there is a next item:
+        while(results.moveToNext())
+        {
+            String name = results.getString(nameColIndex);
+            String make = results.getString(makeColumnIndex);
+            long id = results.getLong(idColIndex);
+
+            //add the new Contact to the array list:
+//            list.add(new CarListItems(name, make, id));
+        }
+    }
 }

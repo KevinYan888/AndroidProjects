@@ -2,20 +2,20 @@ package com.cst2335.project01;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.TextView;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,12 +24,14 @@ import android.widget.TextView;
  */
 public class CardataFragment extends Fragment {
 
+
+    SQLiteDatabase db;
     private Bundle dataFromActivity;
     private long id;
     private String  modelName;
     private String  make;
     private AppCompatActivity parentActivity;
-
+    public ArrayList<CarListItem> list = new ArrayList<>();
 
     public CardataFragment() {
         // Required empty public constructor
@@ -55,12 +57,17 @@ public class CardataFragment extends Fragment {
         TextView rowId = extraStuff.findViewById(R.id.modelID);
         rowId.setText("ID="+id);
 
+         Button saving = extraStuff.findViewById(R.id.saving);
+         saving.setOnClickListener( sb->{
 
-//        Button saving = extraStuff.findViewById(R.id.saving);
-//        saving.setOnClickListener( sb->{
-//            Intent goToSave = new Intent(CardataFragment.this, SavingActivity.class);
-//            startActivity(goToSave);
-//        });
+//             loadDataFromDatabase();
+           Intent goToSave = new Intent(getActivity(), SavingActivity.class);
+           startActivity(goToSave);
+        });
+
+
+
+
         Button viewing = extraStuff.findViewById(R.id.viewing);
         viewing.setOnClickListener(vb-> {
             Intent goToView = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/search?q="+make+"+"+modelName));
@@ -86,5 +93,7 @@ public class CardataFragment extends Fragment {
         super.onAttach(context);
         parentActivity = (AppCompatActivity)context;
     }
+
+
 
 }
