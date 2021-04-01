@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".TriviaSettingActivity">
+
+
+    <TextView
+        android:id="@+id/titleQuestion"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="Let's go!"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
+    <TextView
+        android:id="@+id/totalQuestion"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text=""
+        android:layout_below="@+id/titleQuestion"
+        android:textSize="15dp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
+
+    <ProgressBar
+        android:id="@+id/proBar"
+        android:layout_below="@+id/totalQuestion"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresher"
+        android:layout_width="300dp"
+        android:layout_height="1164dp"
+        android:layout_above="@+id/btnGoBack"
+        android:layout_below="@+id/proBar"
+        android:layout_marginBottom="-50dp">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="300dp"
+            android:layout_height="583dp"
+            android:layout_above="@+id/btnGoBack"
+            android:layout_below="@+id/proBar"
+
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="284dp" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:text="Submit" />
+
+    <Button
+        android:id="@+id/btnGoBack"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@+id/btnSubmit"
+        android:layout_alignParentBottom="true"
+        android:text="Go Back" />
+
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_toRightOf="@+id/refresher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+    </RelativeLayout>
