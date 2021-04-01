@@ -3,7 +3,7 @@ package com.cst2335.project01;
 import java.util.ArrayList;
 
 //each question create an object of TriviaQuestion
-public class TriviaRandomQuestions {
+public class TriviaQuestionItemsClass {
     protected  int id;
     protected String strTypeOfQuestion;
     protected String strDifficultyOfQuestion;
@@ -22,7 +22,7 @@ public class TriviaRandomQuestions {
         this.strNameOfPlayer = strNameOfPlayer;
     }
 
-    public TriviaRandomQuestions(int id, String ty, String di, String sq, String sc, ArrayList<String> ras){
+    public TriviaQuestionItemsClass(int id, String ty, String di, String sq, String sc, ArrayList<String> ras){
         this.id = id;
         this.strTypeOfQuestion = ty;
         this.strDifficultyOfQuestion = di;

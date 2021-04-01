@@ -16,9 +16,9 @@
         <activity android:name=".TriviaEmptyActivity" />
         <activity android:name=".TriviaDetailFragment"
             tools:ignore="Instantiatable" />
-        <activity android:name=".TriviaLoadQuestions" />
+        <activity android:name=".TriviaQuestionItemsActivity" />
         <activity android:name=".TriviaSettingActivity" />
-        <activity android:name=".TriviaRankListActivity" />
+        <activity android:name=".TriviaRankItemsActivity" />
         <activity android:name=".CarActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

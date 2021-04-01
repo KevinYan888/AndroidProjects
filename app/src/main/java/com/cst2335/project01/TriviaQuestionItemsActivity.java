@@ -1,6 +1,5 @@
 package com.cst2335.project01;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -35,9 +34,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class TriviaLoadQuestions extends AppCompatActivity {
+public class TriviaQuestionItemsActivity extends AppCompatActivity {
     //arrListRandomQuestions
-    ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
+    ArrayList<TriviaQuestionItemsClass> arrListRandomQuestions = new ArrayList<>();
     ProgressBar proBar;
     SQLiteDatabase db;
 
@@ -110,7 +109,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
             }
             else //isPhone
             {
-                Intent nextActivity = new Intent(TriviaLoadQuestions.this, TriviaEmptyActivity.class);
+                Intent nextActivity = new Intent(TriviaQuestionItemsActivity.this, TriviaEmptyActivity.class);
                 nextActivity.putExtras(dataToPass); //send data to next activity
                 startActivity(nextActivity); //make the transition
             }
@@ -137,11 +136,11 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                        .setMessage("Enter your name and save result: ")
                        .setView(dialogResultView) //add texts showing the contact information
                        .setPositiveButton("View Rank ", (click, b) -> {
-                           Intent goToRankList = new Intent(TriviaLoadQuestions.this,TriviaRankListActivity.class);
+                           Intent goToRankList = new Intent(TriviaQuestionItemsActivity.this, TriviaRankItemsActivity.class);
                            startActivity(goToRankList);
                        })
                        .setNegativeButton("Exit", (click, b) -> {
-                           Intent goToMainActivity = new Intent(TriviaLoadQuestions.this, MainActivity.class);
+                           Intent goToMainActivity = new Intent(TriviaQuestionItemsActivity.this, MainActivity.class);
                            startActivity(goToMainActivity);
                        })
                        .setNeutralButton("Save result", (click, b) -> {
@@ -156,7 +155,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
         btnGoBack.setOnClickListener(cancel->{
 //
             Intent goToTriviaSettingActivity = new Intent();
-            goToTriviaSettingActivity.setClass(TriviaLoadQuestions.this, TriviaSettingActivity.class);
+            goToTriviaSettingActivity.setClass(TriviaQuestionItemsActivity.this, TriviaSettingActivity.class);
             startActivity(goToTriviaSettingActivity);
 
         });
@@ -194,7 +193,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
         Intent goToRankList = new Intent();
         goToRankList.putExtras(bundleToRankList);
-        goToRankList.setClass(TriviaLoadQuestions.this,TriviaRankListActivity.class);
+        goToRankList.setClass(TriviaQuestionItemsActivity.this, TriviaRankItemsActivity.class);
         startActivity(goToRankList);
     }
 
@@ -253,7 +252,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                     tempArrListRandomQues.add(jsObjOneQuestion.getString("correct_answer"));
                     Collections.shuffle(tempArrListRandomQues);//Random answers
 
-                    arrListRandomQuestions.add(i,new TriviaRandomQuestions(i,
+                    arrListRandomQuestions.add(i,new TriviaQuestionItemsClass(i,
                             jsObjOneQuestion.getString("type"),
                             jsObjOneQuestion.getString("difficulty"),
                             jsObjOneQuestion.getString("question"),
@@ -291,7 +290,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
             return arrListRandomQuestions.size();
         }
 
-        public TriviaRandomQuestions getItem(int position) {
+        public TriviaQuestionItemsClass getItem(int position) {
             return arrListRandomQuestions.get(position);
         }
 
@@ -303,7 +302,7 @@ public class TriviaLoadQuestions extends AppCompatActivity {
             TextView totalQuestion = findViewById(R.id.totalQuestion);
             totalQuestion.setText("Total of questions: "+arrListRandomQuestions.size());
 
-            TriviaRandomQuestions thisRow = getItem(position);
+            TriviaQuestionItemsClass thisRow = getItem(position);
             if(thisRow.getStrTypeOfQuestion().equals("boolean") ){
                 newView = inflater.inflate(R.layout.activity_trivia_boolean_question, viewGroup, false);
 

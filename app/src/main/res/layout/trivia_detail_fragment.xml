@@ -12,31 +12,28 @@
         android:id="@+id/numAndQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:text="@string/textview" />
 
     <TextView
         android:id="@+id/difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/numAndQuestion"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:text="@string/textview" />
 
     <TextView
         android:id="@+id/correct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/difficulty"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:text="@string/textview" />
 
     <Button
         android:id="@+id/btnHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Delete" />
+        android:text="@string/delete" />
 
 
 </RelativeLayout>

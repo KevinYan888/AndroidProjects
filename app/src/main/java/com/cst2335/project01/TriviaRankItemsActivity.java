@@ -17,16 +17,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class TriviaRankListActivity extends AppCompatActivity {
+public class TriviaRankItemsActivity extends AppCompatActivity {
 
-    ArrayList<TriviaRankItems> listHighScore = new ArrayList<>();
+    ArrayList<TriviaRankItemsClass> listHighScore = new ArrayList<>();
 
     MyOwnAdapter myAdapter;
     SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trivia_high_score_leaderboard);
+        setContentView(R.layout.activity_trivia_rank_items);
 
         //Get the fields from the screen:
         TextView textRankNumber = findViewById(R.id.rankNumber);
@@ -56,17 +56,6 @@ public class TriviaRankListActivity extends AppCompatActivity {
             //Now insert in the database:
             long newId = db.insert(TriviaMyOpener.TABLE_NAME, null, newRowValues);
 
-//            now you have the newId, you can create the Contact object
-//            TriviaHighScoreRecord newRecord = new TriviaHighScoreRecord(
-//                    bundleFromAnywhere.getString("namePlayer"),
-//                    bundleFromAnywhere.getDouble("scoreOfPlayer"),
-//                    bundleFromAnywhere.getString("strDifficultyOfQuestion"),
-//                    newId);
-
-//            add the new contact to the list:
-//               listHighScore.add(newRecord);
-//            update the listView:
-           //  myAdapter.notifyDataSetChanged();
         }
 
         //loadRank
@@ -81,11 +70,11 @@ public class TriviaRankListActivity extends AppCompatActivity {
         });
 
       btnContinuePlay.setOnClickListener(c->{
-          Intent goToActivity = new Intent(TriviaRankListActivity.this, TriviaSettingActivity.class);
+          Intent goToActivity = new Intent(TriviaRankItemsActivity.this, TriviaSettingActivity.class);
           startActivity(goToActivity);
       });
         btnBackHome.setOnClickListener(k->{
-            Intent goToMainActivity = new Intent(TriviaRankListActivity.this, MainActivity.class);
+            Intent goToMainActivity = new Intent(TriviaRankItemsActivity.this, MainActivity.class);
             startActivity(goToMainActivity);
 //            android.os.Process.killProcess(android.os.Process.myPid());
 //            System.exit(0);
@@ -95,7 +84,7 @@ public class TriviaRankListActivity extends AppCompatActivity {
 
 
 
-private void deleteOneHighScoreItem(TriviaRankItems oneRecord){
+private void deleteOneHighScoreItem(TriviaRankItemsClass oneRecord){
 
     db.delete(TriviaMyOpener.TABLE_NAME, TriviaMyOpener.COL_ID + "= ?", new String[] {Long.toString(oneRecord.getId())});
 }
@@ -125,7 +114,7 @@ private void deleteOneHighScoreItem(TriviaRankItems oneRecord){
             long id = results.getLong(idColIndex);
 
             //add the new Contact to the array list:
-            listHighScore.add(new TriviaRankItems(name, score, difficulty, id));
+            listHighScore.add(new TriviaRankItemsClass(name, score, difficulty, id));
         }
 
         //At this point, the contactsList array has loaded every row from the cursor.
@@ -133,10 +122,10 @@ private void deleteOneHighScoreItem(TriviaRankItems oneRecord){
 
     protected void showOneItem(int position){
         //got the selected object(a high score item)
-        TriviaRankItems selectedScoreItem = listHighScore.get(position);
+        TriviaRankItemsClass selectedScoreItem = listHighScore.get(position);
 
         //show a result item on a dialog
-        View dialogResultView = getLayoutInflater().inflate(R.layout.trivia_high_score_one_item, null);
+        View dialogResultView = getLayoutInflater().inflate(R.layout.trivia_rank_one_item, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Your score:  " + Double.toString(selectedScoreItem.getScore()) + "(*%)")
                 .setMessage("Do you want delete this record? ")
@@ -165,7 +154,7 @@ private void deleteOneHighScoreItem(TriviaRankItems oneRecord){
             return listHighScore.size();
         }
 
-        public TriviaRankItems getItem(int position){
+        public TriviaRankItemsClass getItem(int position){
             return listHighScore.get(position);
         }
 
@@ -173,7 +162,7 @@ private void deleteOneHighScoreItem(TriviaRankItems oneRecord){
         {
             View newView = getLayoutInflater().inflate(R.layout.trivia_empty_row, parent, false );
 
-            TriviaRankItems thisRow = getItem(position);
+            TriviaRankItemsClass thisRow = getItem(position);
 
             //get the TextViews
             TextView rowId = (TextView)newView.findViewById(R.id.id);

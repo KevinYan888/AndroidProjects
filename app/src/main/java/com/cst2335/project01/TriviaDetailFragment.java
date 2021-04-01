@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,16 +30,16 @@ public class TriviaDetailFragment extends Fragment {
 
         //show the numAndQuestion
         TextView numAndQuestion = (TextView)result.findViewById(R.id.numAndQuestion);
-        numAndQuestion.setText("Question "+(dataFromActivity.getInt(TriviaLoadQuestions.ITEM_NUMBER)+1)+
-                ". "+ dataFromActivity.getString(TriviaLoadQuestions.ITEM_STR_QUESTION));
+        numAndQuestion.setText("Question "+(dataFromActivity.getInt(TriviaQuestionItemsActivity.ITEM_NUMBER)+1)+
+                ". "+ dataFromActivity.getString(TriviaQuestionItemsActivity.ITEM_STR_QUESTION));
 
         //show the difficulty:
         TextView difficulty = (TextView)result.findViewById(R.id.difficulty);
-        difficulty.setText("Difficulty: "+dataFromActivity.getString(TriviaLoadQuestions.ITEM_DIFFICULTY));
+        difficulty.setText("Difficulty: "+dataFromActivity.getString(TriviaQuestionItemsActivity.ITEM_DIFFICULTY));
 
         //show correct answer:
         TextView correct = (TextView)result.findViewById(R.id.correct);
-        correct.setText("Correct answer: "+dataFromActivity.getString(TriviaLoadQuestions.ITEM_CORRECT));
+        correct.setText("Correct answer: "+dataFromActivity.getString(TriviaQuestionItemsActivity.ITEM_CORRECT));
 
         // get the hint button, and add a click listener:
         Button btnHint = (Button)result.findViewById(R.id.btnHint);

@@ -77,7 +77,7 @@ public class TriviaActivity extends AppCompatActivity implements NavigationView.
                 bundleToRankList.putString("NO_INSERT","NO_INSERT");
                 Intent goToRankList = new Intent();
                 goToRankList.putExtras(bundleToRankList);
-                goToRankList.setClass(TriviaActivity.this,TriviaRankListActivity.class);
+                goToRankList.setClass(TriviaActivity.this, TriviaRankItemsActivity.class);
                 startActivity(goToRankList);
 
                 break;
@@ -114,7 +114,7 @@ public class TriviaActivity extends AppCompatActivity implements NavigationView.
                 bundleToRankList.putString("NO_INSERT","NO_INSERT");
                 Intent goToRankList = new Intent();
                 goToRankList.putExtras(bundleToRankList);
-                goToRankList.setClass(TriviaActivity.this,TriviaRankListActivity.class);
+                goToRankList.setClass(TriviaActivity.this, TriviaRankItemsActivity.class);
                 startActivity(goToRankList);
 
                 break;

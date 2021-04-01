@@ -92,7 +92,7 @@ public class TriviaSettingActivity extends AppCompatActivity {
 
 //            Intent goToToolbar = new Intent(TriviaSettingActivity.this, TriviaActivity.class);
 //            startActivity(goToToolbar);
-            Intent goToRankList = new Intent(TriviaSettingActivity.this,TriviaRankListActivity.class);
+            Intent goToRankList = new Intent(TriviaSettingActivity.this, TriviaRankItemsActivity.class);
             startActivity(goToRankList);
 
         });
@@ -117,7 +117,7 @@ public class TriviaSettingActivity extends AppCompatActivity {
                 bundle.putString("strDifficultyOfQuestion",strDifficultyOfQuestion);
                 Intent goToLoadQuestions = new Intent();
                 goToLoadQuestions.putExtras(bundle);
-                goToLoadQuestions.setClass(TriviaSettingActivity.this,TriviaLoadQuestions.class);
+                goToLoadQuestions.setClass(TriviaSettingActivity.this, TriviaQuestionItemsActivity.class);
                 startActivity(goToLoadQuestions);
             }
             else{

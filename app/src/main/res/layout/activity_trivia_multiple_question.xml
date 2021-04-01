@@ -11,7 +11,7 @@
         android:id="@+id/textStateOfQuestion"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="Unanswered"
+        android:text="@string/unanswered"
         tools:layout_editor_absoluteX="9dp"
         tools:layout_editor_absoluteY="86dp"
         android:layout_alignParentTop="true"/>
@@ -20,7 +20,7 @@
         android:id="@+id/radioGroupMulti"
         android:layout_width="331dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/textStateOfQuestion"
+        android:layout_toEndOf="@+id/textStateOfQuestion"
 
         tools:layout_editor_absoluteX="133dp"
         tools:layout_editor_absoluteY="164dp">

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TriviaHighScoreLeaderboard">
+    tools:context=".TriviaRankItemsActivity">
 
     <TextView
         android:id="@+id/titleRankList"
@@ -12,24 +12,24 @@
         android:layout_height="40dp"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="35dp"
-        android:text="Rank List" />
+        android:textSize="35sp"
+        android:text="@string/rank_list" />
     <TextView
         android:id="@+id/rankNumber"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_below="@+id/titleRankList"
         android:gravity="center"
-        android:text="Rank" />
+        android:text="@string/rank" />
 
     <TextView
         android:id="@+id/score"
         android:layout_width="60dp"
         android:layout_height="35dp"
         android:gravity="center"
-  android:layout_toRightOf="@+id/rankNumber"
+  android:layout_toEndOf="@+id/rankNumber"
         android:layout_below="@+id/titleRankList"
-        android:text="Score" />
+        android:text="@string/score" />
 
     <TextView
         android:id="@+id/name"
@@ -38,7 +38,7 @@
         android:gravity="center"
         android:layout_toEndOf="@+id/score"
         android:layout_below="@+id/titleRankList"
-        android:text="Name" />
+        android:text="@string/name" />
 
     <TextView
         android:id="@+id/difficulty"
@@ -47,7 +47,7 @@
         android:gravity="center"
         android:layout_toEndOf="@id/name"
         android:layout_below="@+id/titleRankList"
-        android:text="Level" />
+        android:text="@string/level" />
 
     <TextView
         android:id="@+id/id"
@@ -56,7 +56,7 @@
         android:gravity="center"
         android:layout_toEndOf="@+id/difficulty"
         android:layout_below="@+id/titleRankList"
-        android:text="ID" />
+        android:text="@string/id" />
 
 <!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
 <!--        android:id="@+id/refresher"-->
@@ -73,16 +73,16 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:text="One more game"
+        android:text="@string/one_more_game"
         android:id="@+id/btnContinuePlay"
         android:layout_alignParentBottom="true" />
     <Button
         android:layout_width="100dp"
         android:layout_height="60dp"
-        android:text="Exit"
+        android:text="@string/exit"
         android:id="@+id/btnBackHome"
 
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>
