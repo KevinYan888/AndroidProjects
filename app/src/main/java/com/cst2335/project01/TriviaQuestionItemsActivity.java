@@ -1,6 +1,8 @@
 package com.cst2335.project01;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,6 +41,8 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
     ArrayList<TriviaQuestionItemsClass> arrListRandomQuestions = new ArrayList<>();
     ProgressBar proBar;
     SQLiteDatabase db;
+    SharedPreferences prefs = null;
+    EditText editTextPlayerName;
 
 
     private int numOfCorrectPlayer;
@@ -129,7 +133,12 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
                TextView textIncorrect = dialogResultView.findViewById(R.id.textIncorrect);
                textCorrect.setText("Correct : " + numOfCorrectPlayer);
                textIncorrect.setText("Incorrect: " + numOfIncorrectPlayer);
-               EditText editTextPlayerName = dialogResultView.findViewById(R.id.textEditPlayerName);
+
+               //getSharedPreferences
+               editTextPlayerName = dialogResultView.findViewById(R.id.textEditPlayerName);
+               prefs = getSharedPreferences("saveName", Context.MODE_PRIVATE);
+               String savedString = prefs.getString("editTextPlayerName", "");
+               editTextPlayerName.setText(savedString);
 
                AlertDialog.Builder builder = new AlertDialog.Builder(this);
                builder.setTitle("Good job! Your score:  " + String.format("%.1f", scoreOfPlayer) + "(*%)")
@@ -387,5 +396,22 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
         public long getItemId(int position) {
             return getItem(position).getId();
         }
+    }
+
+    //for getSharedPreferences
+    private void saveSharedPrefs(String stringToSave) {
+
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("editTextPlayerName", stringToSave);
+        editor.commit();
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveSharedPrefs(editTextPlayerName.getText().toString());
+
+
     }
 }
