@@ -19,6 +19,7 @@
         <activity android:name=".TriviaHighScoreLeaderboard" />
         <activity android:name=".TriviaLoadQuestions" />
         <activity android:name=".TriviaSettingActivity" />
+        <activity android:name=".TriviaRankListActivity" />
         <activity android:name=".CarActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

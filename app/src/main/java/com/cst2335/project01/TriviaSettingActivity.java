@@ -90,8 +90,11 @@ public class TriviaSettingActivity extends AppCompatActivity {
 //            Intent goToMainActivity = new Intent(TriviaActivity.this, MainActivity.class);
 //            startActivity(goToMainActivity);
 
-            Intent goToToolbar = new Intent(TriviaSettingActivity.this, TriviaActivity.class);
-            startActivity(goToToolbar);
+//            Intent goToToolbar = new Intent(TriviaSettingActivity.this, TriviaActivity.class);
+//            startActivity(goToToolbar);
+            Intent goToRankList = new Intent(TriviaSettingActivity.this,TriviaRankListActivity.class);
+            startActivity(goToRankList);
+
         });
 
         //btnPlayNow: goToLoadQuestions

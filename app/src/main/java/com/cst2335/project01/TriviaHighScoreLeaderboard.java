@@ -80,7 +80,7 @@ public class TriviaHighScoreLeaderboard extends AppCompatActivity {
             //update the listView:
             myAdapter.notifyDataSetChanged();
 
-        loadDataFromDatabase();
+       // loadDataFromDatabase();
 
 
         //This listens for items being clicked in the list view

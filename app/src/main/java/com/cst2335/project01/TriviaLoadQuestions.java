@@ -160,10 +160,14 @@ public class TriviaLoadQuestions extends AppCompatActivity {
         });
 
         btnGoBack.setOnClickListener(cancel->{
+//
+//            Intent goToTriviaSettingActivity = new Intent();
+//            goToTriviaSettingActivity.setClass(TriviaLoadQuestions.this, TriviaSettingActivity.class);
+//            startActivity(goToTriviaSettingActivity);
 
-            Intent goToTriviaSettingActivity = new Intent();
-            goToTriviaSettingActivity.setClass(TriviaLoadQuestions.this, TriviaSettingActivity.class);
-            startActivity(goToTriviaSettingActivity);
+            Intent goToRankList = new Intent(TriviaLoadQuestions.this,TriviaRankListActivity.class);
+            startActivity(goToRankList);
+
         });
         //Whenever you swipe down on the list, do something:
         SwipeRefreshLayout refresher = findViewById(R.id.refresher);

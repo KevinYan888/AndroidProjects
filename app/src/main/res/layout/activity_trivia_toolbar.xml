@@ -69,6 +69,7 @@
             android:layout_width="150dp"
             android:layout_height="250dp"
             android:layout_gravity="start"
+            android:background="@drawable/navigationview"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/trivia_header"
             app:menu="@menu/trivia_toolbar"

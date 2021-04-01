@@ -69,8 +69,8 @@ public class TriviaActivity extends AppCompatActivity implements NavigationView.
             //what to do when the menu item is selected:
             case R.id.item1:
                 message = "View Rank";
-//                Intent goToChat = new Intent(TestToolbar.this,ChatRoomActivity.class);
-//                startActivity(goToChat);
+                Intent goToRankList = new Intent(TriviaActivity.this,TriviaRankListActivity.class);
+                startActivity(goToRankList);
 
                 break;
             case R.id.item2:
@@ -99,8 +99,8 @@ public class TriviaActivity extends AppCompatActivity implements NavigationView.
         {
             case R.id.item1:
                 message = "View Rank";
-//                Intent goToChat = new Intent(TestToolbar.this,ChatRoomActivity.class);
-//                startActivity(goToChat);
+                Intent goToRankList = new Intent(TriviaActivity.this,TriviaRankListActivity.class);
+                startActivity(goToRankList);
 
                 break;
             case R.id.item2:
