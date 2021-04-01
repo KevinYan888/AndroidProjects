@@ -21,30 +21,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="150dp"
-            android:textSize="30sp"
-            android:text="Song detail: " />
+            android:text="Song detail: "
+            android:textSize="30sp" />
 
 
         <TextView
-            android:layout_below="@+id/row_head"
             android:id="@+id/row_songId_f"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:hint="SongID "
-            android:layout_marginTop="5dp"
+            android:layout_below="@+id/row_head"
             android:layout_marginLeft="20dp"
-             />
+            android:layout_marginTop="5dp"
+            android:hint="SongID "
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/row_songTitle_f"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/row_songId_f"
-            android:textSize="30dp"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
-           />
+            android:layout_marginTop="5dp"
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/row_artistName_f"
@@ -61,32 +59,41 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/row_artistName_f"
             android:layout_marginLeft="20dp"
-            android:textSize="30dp"
-            android:layout_marginTop="5dp" />
-
-
-
-    <Button
-        android:id="@+id/savetofavourite_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="40dp"
-        android:text="save_to_favourite"
-        android:layout_below="@+id/row_artistId_f"
-        android:textSize="15dp" />
+            android:layout_marginTop="5dp"
+            android:textSize="30dp" />
 
         <Button
-            android:id="@+id/goFavourite_btn"
-            android:layout_width="150dp"
-            android:layout_height="80dp"
-            android:layout_alignParentEnd="true"
+            android:id="@+id/button_save"
+            android:layout_width="407dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="80dp"
-            android:text="Favourites" />
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="92dp"
+            android:text="Save to favourate" />
+
+        <Button
+            android:id="@+id/button_dele"
+            android:layout_width="399dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginBottom="135dp"
+            android:text="delete song from db" />
+
+        <Button
+            android:id="@+id/button_goto"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="135dp"
+            android:layout_marginBottom="38dp"
+            android:text="gotofavourate" />
 
 
     </RelativeLayout>
+
+
 </FrameLayout>
