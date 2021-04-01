@@ -1,6 +1,6 @@
 package com.cst2335.project01;
 
-public class TriviaHighScoreRecord {
+public class TriviaRankItems {
 
     //Android Studio hint: to create getter and setter, put mouse on variable and
     // click "alt+insert" in Windows, "control+return" on Macintosh
@@ -9,7 +9,7 @@ public class TriviaHighScoreRecord {
     protected long id;
 
     /**Constructor:*/
-    public TriviaHighScoreRecord(String n, double s,String d, long i)
+    public TriviaRankItems(String n, double s, String d, long i)
     {
         name =n;
         score = s;
@@ -24,7 +24,7 @@ public class TriviaHighScoreRecord {
 //    }
 
     /**Chaining constructor: */
-    public TriviaHighScoreRecord(String n, double s,String d) { this(n, s, d, 0);}
+    public TriviaRankItems(String n, double s, String d) { this(n, s, d, 0);}
 
     public String getName() {
         return name;

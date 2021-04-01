@@ -16,7 +16,6 @@
         <activity android:name=".TriviaEmptyActivity" />
         <activity android:name=".TriviaDetailFragment"
             tools:ignore="Instantiatable" />
-        <activity android:name=".TriviaHighScoreLeaderboard" />
         <activity android:name=".TriviaLoadQuestions" />
         <activity android:name=".TriviaSettingActivity" />
         <activity android:name=".TriviaRankListActivity" />

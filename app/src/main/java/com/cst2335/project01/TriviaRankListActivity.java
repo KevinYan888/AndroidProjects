@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class TriviaRankListActivity extends AppCompatActivity {
 
-    ArrayList<TriviaHighScoreRecord> listHighScore = new ArrayList<>();
+    ArrayList<TriviaRankItems> listHighScore = new ArrayList<>();
 
     MyOwnAdapter myAdapter;
     SQLiteDatabase db;
@@ -95,7 +95,7 @@ public class TriviaRankListActivity extends AppCompatActivity {
 
 
 
-private void deleteOneHighScoreItem(TriviaHighScoreRecord oneRecord){
+private void deleteOneHighScoreItem(TriviaRankItems oneRecord){
 
     db.delete(TriviaMyOpener.TABLE_NAME, TriviaMyOpener.COL_ID + "= ?", new String[] {Long.toString(oneRecord.getId())});
 }
@@ -125,7 +125,7 @@ private void deleteOneHighScoreItem(TriviaHighScoreRecord oneRecord){
             long id = results.getLong(idColIndex);
 
             //add the new Contact to the array list:
-            listHighScore.add(new TriviaHighScoreRecord(name, score, difficulty, id));
+            listHighScore.add(new TriviaRankItems(name, score, difficulty, id));
         }
 
         //At this point, the contactsList array has loaded every row from the cursor.
@@ -133,7 +133,7 @@ private void deleteOneHighScoreItem(TriviaHighScoreRecord oneRecord){
 
     protected void showOneItem(int position){
         //got the selected object(a high score item)
-        TriviaHighScoreRecord selectedScoreItem = listHighScore.get(position);
+        TriviaRankItems selectedScoreItem = listHighScore.get(position);
 
         //show a result item on a dialog
         View dialogResultView = getLayoutInflater().inflate(R.layout.trivia_high_score_one_item, null);
@@ -165,7 +165,7 @@ private void deleteOneHighScoreItem(TriviaHighScoreRecord oneRecord){
             return listHighScore.size();
         }
 
-        public TriviaHighScoreRecord getItem(int position){
+        public TriviaRankItems getItem(int position){
             return listHighScore.get(position);
         }
 
@@ -173,7 +173,7 @@ private void deleteOneHighScoreItem(TriviaHighScoreRecord oneRecord){
         {
             View newView = getLayoutInflater().inflate(R.layout.trivia_empty_row, parent, false );
 
-            TriviaHighScoreRecord thisRow = getItem(position);
+            TriviaRankItems thisRow = getItem(position);
 
             //get the TextViews
             TextView rowId = (TextView)newView.findViewById(R.id.id);
