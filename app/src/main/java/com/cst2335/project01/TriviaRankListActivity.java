@@ -37,6 +37,38 @@ public class TriviaRankListActivity extends AppCompatActivity {
         Button btnBackHome = findViewById(R.id.btnBackHome);
         ListView theList = findViewById(R.id.listHighScore);
 
+        //get a database connection:
+        TriviaMyOpener dbOpener = new TriviaMyOpener(this);
+        db = dbOpener.getWritableDatabase(); //This calls onCreate() if you've never built the table before, or onUpgrade if the version here is newer
+
+
+        Intent intent = getIntent();
+        Bundle bundleFromAnywhere = intent.getExtras();
+        if(!bundleFromAnywhere.containsKey("NO_INSERT")){
+
+            //add to the database and get the new ID
+            ContentValues newRowValues = new ContentValues();
+            //put string name in the NAME column:
+            newRowValues.put(TriviaMyOpener.COL_NAME, bundleFromAnywhere.getString("namePlayer"));
+            newRowValues.put(TriviaMyOpener.COL_SCORE, bundleFromAnywhere.getDouble("scoreOfPlayer"));
+            newRowValues.put(TriviaMyOpener.COL_DIFFICULTY, bundleFromAnywhere.getString("strDifficultyOfQuestion"));
+
+            //Now insert in the database:
+            long newId = db.insert(TriviaMyOpener.TABLE_NAME, null, newRowValues);
+
+//            now you have the newId, you can create the Contact object
+//            TriviaHighScoreRecord newRecord = new TriviaHighScoreRecord(
+//                    bundleFromAnywhere.getString("namePlayer"),
+//                    bundleFromAnywhere.getDouble("scoreOfPlayer"),
+//                    bundleFromAnywhere.getString("strDifficultyOfQuestion"),
+//                    newId);
+
+//            add the new contact to the list:
+//               listHighScore.add(newRecord);
+//            update the listView:
+           //  myAdapter.notifyDataSetChanged();
+        }
+
         //loadRank
         loadDataFromDatabase();
 
@@ -71,16 +103,10 @@ private void deleteOneHighScoreItem(TriviaHighScoreRecord oneRecord){
 
     private void loadDataFromDatabase()
     {
-        //get a database connection:
-        TriviaMyOpener dbOpener = new TriviaMyOpener(this);
-        db = dbOpener.getWritableDatabase(); //This calls onCreate() if you've never built the table before, or onUpgrade if the version here is newer
-
-
-
         // We want to get all of the columns. Look at MyOpener.java for the definitions:
         String [] columns = {TriviaMyOpener.COL_ID, TriviaMyOpener.COL_NAME, TriviaMyOpener.COL_SCORE,TriviaMyOpener.COL_DIFFICULTY};
         //query all the results from the database:
-        Cursor results = db.query(false, TriviaMyOpener.TABLE_NAME, columns, null, null, null, null,TriviaMyOpener.COL_SCORE+" DESC", "3");
+        Cursor results = db.query(false, TriviaMyOpener.TABLE_NAME, columns, null, null, null, null,TriviaMyOpener.COL_SCORE+" DESC", "10");
 
        // printCursor(results,db.getVersion());
         //Now the results object has rows of results that match the query.

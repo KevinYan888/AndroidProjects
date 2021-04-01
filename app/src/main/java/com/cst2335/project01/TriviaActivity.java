@@ -69,7 +69,15 @@ public class TriviaActivity extends AppCompatActivity implements NavigationView.
             //what to do when the menu item is selected:
             case R.id.item1:
                 message = "View Rank";
-                Intent goToRankList = new Intent(TriviaActivity.this,TriviaRankListActivity.class);
+//                Intent goToRankList = new Intent(TriviaActivity.this,TriviaRankListActivity.class);
+//                startActivity(goToRankList);
+                                           //pass info to next activity
+                Bundle bundleToRankList = new Bundle();
+
+                bundleToRankList.putString("NO_INSERT","NO_INSERT");
+                Intent goToRankList = new Intent();
+                goToRankList.putExtras(bundleToRankList);
+                goToRankList.setClass(TriviaActivity.this,TriviaRankListActivity.class);
                 startActivity(goToRankList);
 
                 break;
@@ -99,7 +107,14 @@ public class TriviaActivity extends AppCompatActivity implements NavigationView.
         {
             case R.id.item1:
                 message = "View Rank";
-                Intent goToRankList = new Intent(TriviaActivity.this,TriviaRankListActivity.class);
+//                Intent goToRankList = new Intent(TriviaActivity.this,TriviaRankListActivity.class);
+//                startActivity(goToRankList);
+                Bundle bundleToRankList = new Bundle();
+
+                bundleToRankList.putString("NO_INSERT","NO_INSERT");
+                Intent goToRankList = new Intent();
+                goToRankList.putExtras(bundleToRankList);
+                goToRankList.setClass(TriviaActivity.this,TriviaRankListActivity.class);
                 startActivity(goToRankList);
 
                 break;

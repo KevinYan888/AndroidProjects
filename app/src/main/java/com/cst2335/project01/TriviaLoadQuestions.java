@@ -1,10 +1,8 @@
 package com.cst2335.project01;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +20,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -37,6 +39,8 @@ public class TriviaLoadQuestions extends AppCompatActivity {
     //arrListRandomQuestions
     ArrayList<TriviaRandomQuestions> arrListRandomQuestions = new ArrayList<>();
     ProgressBar proBar;
+    SQLiteDatabase db;
+
 
     private int numOfCorrectPlayer;
     private int numOfIncorrectPlayer;
@@ -132,8 +136,9 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                builder.setTitle("Good job! Your score:  " + String.format("%.1f", scoreOfPlayer) + "(*%)")
                        .setMessage("Enter your name and save result: ")
                        .setView(dialogResultView) //add texts showing the contact information
-                       .setPositiveButton("Return ", (click, b) -> {
-
+                       .setPositiveButton("View Rank ", (click, b) -> {
+                           Intent goToRankList = new Intent(TriviaLoadQuestions.this,TriviaRankListActivity.class);
+                           startActivity(goToRankList);
                        })
                        .setNegativeButton("Exit", (click, b) -> {
                            Intent goToMainActivity = new Intent(TriviaLoadQuestions.this, MainActivity.class);
@@ -141,19 +146,8 @@ public class TriviaLoadQuestions extends AppCompatActivity {
                        })
                        .setNeutralButton("Save result", (click, b) -> {
                            namePlayer = editTextPlayerName.getText().toString();
-                           strDifficultyOfQuestion = bundle.getString("strDifficultyOfQuestion");
+                           this.insertItemAndShowRankList();
 
-                           //pass info to next activity
-                           Bundle bundleToLeaderBoard = new Bundle();
-
-                           bundleToLeaderBoard.putString("namePlayer",namePlayer);
-                           bundleToLeaderBoard.putString("strDifficultyOfQuestion",strDifficultyOfQuestion);
-                           bundleToLeaderBoard.putDouble("scoreOfPlayer",scoreOfPlayer);
-
-                           Intent goToHighScoreLeaderBoard = new Intent();
-                           goToHighScoreLeaderBoard.putExtras(bundleToLeaderBoard);
-                           goToHighScoreLeaderBoard.setClass(TriviaLoadQuestions.this,TriviaHighScoreLeaderboard.class);
-                           startActivity(goToHighScoreLeaderBoard);
                        })
                        .create().show();
            }
@@ -161,12 +155,9 @@ public class TriviaLoadQuestions extends AppCompatActivity {
 
         btnGoBack.setOnClickListener(cancel->{
 //
-//            Intent goToTriviaSettingActivity = new Intent();
-//            goToTriviaSettingActivity.setClass(TriviaLoadQuestions.this, TriviaSettingActivity.class);
-//            startActivity(goToTriviaSettingActivity);
-
-            Intent goToRankList = new Intent(TriviaLoadQuestions.this,TriviaRankListActivity.class);
-            startActivity(goToRankList);
+            Intent goToTriviaSettingActivity = new Intent();
+            goToTriviaSettingActivity.setClass(TriviaLoadQuestions.this, TriviaSettingActivity.class);
+            startActivity(goToTriviaSettingActivity);
 
         });
         //Whenever you swipe down on the list, do something:
@@ -192,6 +183,19 @@ public class TriviaLoadQuestions extends AppCompatActivity {
         }
         scoreOfPlayer = numOfCorrectPlayer/((numOfCorrectPlayer+numOfUnansweredPlayer+numOfIncorrectPlayer)*1.0)*100;
         return numOfUnansweredPlayer;
+    }
+
+    private void insertItemAndShowRankList(){
+        //pass info to next activity
+        Bundle bundleToRankList = new Bundle();
+        bundleToRankList.putString("namePlayer",namePlayer);
+        bundleToRankList.putString("strDifficultyOfQuestion",strDifficultyOfQuestion);
+        bundleToRankList.putDouble("scoreOfPlayer",scoreOfPlayer);
+
+        Intent goToRankList = new Intent();
+        goToRankList.putExtras(bundleToRankList);
+        goToRankList.setClass(TriviaLoadQuestions.this,TriviaRankListActivity.class);
+        startActivity(goToRankList);
     }
 
     private class JsonQuery extends AsyncTask<String, Integer, String> {
