@@ -72,19 +72,19 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="40dp"
         android:text="save_to_favourite"
         android:layout_below="@+id/row_artistId_f"
         android:textSize="15dp" />
 
         <Button
-            android:id="@+id/seeFavourite_btn"
-            android:layout_width="237dp"
-            android:layout_height="108dp"
+            android:id="@+id/goFavourite_btn"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="17dp"
-            android:layout_marginBottom="33dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="80dp"
             android:text="Favourites" />
 
 
