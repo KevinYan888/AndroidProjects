@@ -34,7 +34,7 @@
             android: android:hint="SongID "
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
-             />
+            />
 
         <TextView
             android:id="@+id/row_songTitle_f"
@@ -44,7 +44,7 @@
             android:textSize="50dp"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
-            android:textSize="50sp" />
+             />
 
         <TextView
             android:id="@+id/row_artistName_f"

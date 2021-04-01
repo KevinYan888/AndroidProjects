@@ -68,9 +68,6 @@
                     />
 
             </LinearLayout>
-
-
-
             <!-- The fragment will be loaded into this frame layout. The id is fragmentLocation -->
             <FrameLayout
             android:id="@+id/fragmentLocation_song"
