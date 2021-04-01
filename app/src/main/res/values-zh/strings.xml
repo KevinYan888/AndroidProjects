@@ -15,4 +15,6 @@
     <string name="input_the_car_manufacturer_you_want">输入你想要汽车厂商的名字:</string>
     <string name="type_manufacturer_name_here">输入汽车厂商</string>
     <string name="search_your_car">搜索你要的汽车</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

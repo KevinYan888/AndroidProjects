@@ -12,6 +12,7 @@
     <string name="input_the_car_manufacturer_you_want">input the car manufacturer you want:</string>
     <string name="type_manufacturer_name_here">type manufacturer name here</string>
     <string name="search_your_car">search your car</string>
-
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 </resources>
