@@ -27,6 +27,6 @@
     <string name="go_back">Go Back</string>
     <string name="textview">TextView</string>
     <string name="delete">Delete</string>
-    <string name="game_setting">Game setting:</string>
+    <string name="game_setting">Game setting</string>
     <string name="how_many_questions">* How many questions?</string>
 </resources>
