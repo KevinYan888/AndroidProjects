@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Project01"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateVisible">
-
+        <activity android:name=".SongThirdActivity"></activity>
 
         <uses-library
             android:name="com.google.android.wearable"
@@ -28,6 +28,7 @@
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,9 +45,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SongSecondActivity"></activity>
-       <!-- <activity android:name=".CarActivity" />-->
-
+        <activity android:name=".SongSecondActivity" />
     </application>
 
 </manifest>

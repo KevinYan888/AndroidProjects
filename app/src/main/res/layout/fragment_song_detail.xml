@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/fragmentLocation"
         android:layout_width="match_parent"
-        android:layout_height="842dp"
+        android:layout_height="match_parent"
         android:background="@color/white">
 
 
@@ -20,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="50dp"
-            android:textSize="50sp"
+            android:layout_marginTop="150dp"
+            android:textSize="30sp"
             android:text="Song detail: " />
 
 
@@ -30,9 +30,9 @@
             android:id="@+id/row_songId_f"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="50sp"
+            android:textSize="30sp"
             android:hint="SongID "
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
              />
 
@@ -41,8 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/row_songId_f"
-            android:textSize="50dp"
-            android:layout_marginTop="15dp"
+            android:textSize="30dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
            />
 
@@ -52,8 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/row_songTitle_f"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:textSize="50sp" />
+            android:layout_marginTop="5dp"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/row_artistId_f"
@@ -61,15 +61,31 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/row_artistName_f"
             android:layout_marginLeft="20dp"
-            android:textSize="50dp"
-            android:layout_marginTop="15dp" />
+            android:textSize="30dp"
+            android:layout_marginTop="5dp" />
+
+
+
+    <Button
+        android:id="@+id/savetofavourite_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="200dp"
+        android:text="save_to_favourite"
+        android:layout_below="@+id/row_artistId_f"
+        android:textSize="15dp" />
 
         <Button
-            android:id="@+id/tofaverateButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/seeFavourite_btn"
+            android:layout_width="237dp"
+            android:layout_height="108dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:text="@string/save_to_favourite" />
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="33dp"
+            android:text="Favourites" />
 
 
     </RelativeLayout>
