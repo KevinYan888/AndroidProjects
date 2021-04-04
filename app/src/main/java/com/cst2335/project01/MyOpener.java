@@ -4,11 +4,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyOpener extends SQLiteOpenHelper{
-    protected final static String DATABASE_NAME = "ContactsDB";
+    protected final static String DATABASE_NAME = "CarDB";
     protected final static int VERSION_NUM = 1;
     public final static String TABLE_NAME = "CONTACTS";
     public final static String COL_MAKE = "MAKE";
     public final static String COL_NAME = "NAME";
+    public final static String COL_MODELID = "modelID";
     public final static String COL_ID = "_id";
 
     public MyOpener(Context ctx)
@@ -23,6 +24,7 @@ public class MyOpener extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COL_MODELID + " INTEGER,"
                 + COL_MAKE + " text,"
                 + COL_NAME  + " text);");  // add or remove columns
     }

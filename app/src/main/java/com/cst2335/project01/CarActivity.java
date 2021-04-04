@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -63,8 +64,14 @@ public class CarActivity extends AppCompatActivity {
                 String savedString = companyName.getText().toString();
                 goToSearch.putExtra("manufacturerName",savedString);
                 startActivity(goToSearch);
+
             }
+
+
         });
+
+
+        Toast.makeText(this, "manufacturerName: " + "input your favorite company", Toast.LENGTH_LONG).show();
 
     }
 
@@ -73,6 +80,9 @@ public class CarActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("ReserveName", stringToSave);
         editor.commit();
+//        Snackbar skbar= Snackbar.make("manufacturerName:"+companyName.setText(saveString),Snackbar.LENGTH_LONG);
+//        skbar.show();
+
     }
 
     public void onPause() {
@@ -103,7 +113,7 @@ public class CarActivity extends AppCompatActivity {
             }  });
 
 	    */
-
+        Toast.makeText(this, "manufacturerName: " + companyName, Toast.LENGTH_LONG).show();
         return true;
     }
 

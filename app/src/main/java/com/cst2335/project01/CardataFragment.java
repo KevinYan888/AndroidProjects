@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,12 +21,13 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link CardataFragment#newInstance} factory method to
+ * Use the {@link CardataFragment} factory method to
  * create an instance of this fragment.
  */
 public class CardataFragment extends Fragment {
 
 
+    private static final String NULL = null;
     SQLiteDatabase db;
     private Bundle dataFromActivity;
     private long id;
@@ -65,11 +67,14 @@ public class CardataFragment extends Fragment {
 
         saving.setOnClickListener( sb->{
             ContentValues newRow = new ContentValues();
-//             newRow.put(myOpener.);
-
-
-            Intent goToSave = new Intent(getActivity(), SavingActivity.class);
+            newRow.put(myOpener.COL_MODELID,id);
+             newRow.put(myOpener.COL_MAKE,make);
+             newRow.put(myOpener.COL_NAME,modelName);
+            db.insert(myOpener.TABLE_NAME,NULL,newRow);
+            Intent goToSave = new Intent(getActivity(),SavingActivity.class);
             startActivity(goToSave);
+//            Toast.makeText("save:","save car type in database",Toast.LENGTH_LONG).show();
+
         });
 
 
@@ -82,11 +87,13 @@ public class CardataFragment extends Fragment {
         viewing.setOnClickListener(vb-> {
             Intent goToView = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/search?q="+make+"+"+modelName));
             startActivity(goToView);
+
         });
         Button shopping = extraStuff.findViewById(R.id.shopping);
         shopping.setOnClickListener( shb->{
             Intent goToShop = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.autotrader.ca/cars/?mdl="+modelName+"&make="+make+"&loc=K2G1V8"));
             startActivity(goToShop);
+
         });
 
 
@@ -102,6 +109,7 @@ public class CardataFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         parentActivity = (AppCompatActivity)context;
+
     }
 
 

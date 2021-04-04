@@ -7,25 +7,16 @@
     android:orientation="vertical"
     tools:context=".SavingActivity">
 
+        <ListView
+            android:id="@+id/sListView"
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"/>
+<Button
+    android:id="@+id/removdataBtn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:text="remove from database"/>
 
-        <TextView
-            android:id="@+id/modelID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Model_ID" />
-
-        <TextView
-            android:layout_marginTop="20dp"
-            android:id="@+id/modelName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Model_Name" />
-        <TextView
-            android:layout_marginTop="20dp"
-            android:id="@+id/makeName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Make_Name" />
 
 
 
