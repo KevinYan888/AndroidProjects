@@ -1,5 +1,6 @@
 package com.cst2335.project01;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -57,13 +58,22 @@ public class CardataFragment extends Fragment {
         TextView rowId = extraStuff.findViewById(R.id.modelID);
         rowId.setText("ID="+id);
 
-         Button saving = extraStuff.findViewById(R.id.saving);
-         saving.setOnClickListener( sb->{
 
-//             loadDataFromDatabase();
-           Intent goToSave = new Intent(getActivity(), SavingActivity.class);
-           startActivity(goToSave);
+        MyOpener myOpener = new MyOpener(container.getContext());
+        db = myOpener.getWritableDatabase();
+        Button saving = extraStuff.findViewById(R.id.saving);
+
+        saving.setOnClickListener( sb->{
+            ContentValues newRow = new ContentValues();
+//             newRow.put(myOpener.);
+
+
+            Intent goToSave = new Intent(getActivity(), SavingActivity.class);
+            startActivity(goToSave);
         });
+
+
+
 
 
 

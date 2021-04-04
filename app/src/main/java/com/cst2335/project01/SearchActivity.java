@@ -44,7 +44,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class SearchActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener{
+public class SearchActivity extends AppCompatActivity {
 //    ListView modelID;
 //    TextView modelID;
 //    TextView modelName;
@@ -207,27 +207,7 @@ public class SearchActivity extends AppCompatActivity implements NavigationView.
             }
         });
 
-        setContentView(R.layout.activity_search);
-        //This gets the toolbar from the layout:
-        Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
 
-        //This loads the toolbar, which calls onCreateOptionsMenu below:
-        setSupportActionBar(tBar);
-
-//For NavigationDrawer:
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
-                drawer, tBar, R.string.open, R.string.close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-
-        //For bottomNavigationBar
-        BottomNavigationView bnv = findViewById(R.id.bnv);
-        bnv.setOnNavigationItemSelectedListener(this);
 
     }
 
@@ -449,68 +429,6 @@ public class SearchActivity extends AppCompatActivity implements NavigationView.
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        String message = null;
-        //Look at your menu XML file. Put a case for every id in that file:
-        switch(item.getItemId())
-        {
-            //what to do when the menu item is selected:
-            case R.id.item1:
-                message = "You clicked item 1";
-                break;
-            case R.id.search_item:
-                message = "You clicked on the search";
-                break;
-            case R.id.help_item:
-                message = "You clicked on help";
-                break;
-            case R.id.mail:
-                message = "You clicked on mail";
-                break;
-        }
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-        return true;
-    }
-
-    // Needed for the OnNavigationItemSelected interface:
-    @Override
-    public boolean onNavigationItemSelected( MenuItem item) {
-
-        String message = null;
-
-        switch(item.getItemId())
-        {
-            case R.id.chat:
-                message = "You clicked on Chat Page";
-
-                SearchActivity.this.setResult(RESULT_CHAT,intent);
-                Intent goToChat = new Intent(SearchActivity.this, CarActivity.class);
-                startActivity(goToChat);
-                break;
-            case R.id.search_item:
-                message = "You clicked on the search";
-
-                break;
-            case R.id.weather:
-                message = "You clicked on Weather Forecast";
-                SearchActivity.this.setResult(RESULT_WEATHER,intent);
-                Intent goToWeather = new Intent(SearchActivity.this,CarListItem.class);
-                startActivity(goToWeather);
-                break;
-            case R.id.login:
-                message = "You clicked on login page";
-                SearchActivity.this.setResult(RESULT_LOGIN,intent);
-                SearchActivity.this.finish();
-                break;
-        }
-
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        drawerLayout.closeDrawer(GravityCompat.START);
-
-        Toast.makeText(this, "NavigationDrawer: " + message, Toast.LENGTH_LONG).show();
-        return false;
-    }
 
 
 }
