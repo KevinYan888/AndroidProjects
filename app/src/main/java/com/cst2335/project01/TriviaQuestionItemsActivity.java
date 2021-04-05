@@ -44,10 +44,9 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
     SharedPreferences prefs = null;
     EditText editTextPlayerName;
 
-
-    private int numOfCorrectPlayer;
-    private int numOfIncorrectPlayer;
-    private int numOfUnansweredPlayer;
+    public int numOfCorrectPlayer = 0;
+    public int numOfIncorrectPlayer = 0;
+    public int numOfUnansweredPlayer = 0;
 
     public double scoreOfPlayer;
     public String namePlayer;
@@ -121,7 +120,8 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
 
 
         btnSubmit.setOnClickListener(clk->{
-           if(resultOfGameCalculate()>0){//calculate results and return numOfUnansweredPlayer
+            resultOfGameCalculate();
+           if(numOfUnansweredPlayer>0){//calculate results and return numOfUnansweredPlayer
                Toast.makeText(this, numOfUnansweredPlayer+
                        " question(s) no answer.You need finished all questions!  ", Toast.LENGTH_LONG).show();
            }else {
@@ -136,7 +136,9 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
 
                //getSharedPreferences
                editTextPlayerName = dialogResultView.findViewById(R.id.textEditPlayerName);
-               prefs = getSharedPreferences("saveName", Context.MODE_PRIVATE);
+               prefs =
+
+                       getSharedPreferences("saveName", Context.MODE_PRIVATE);
                String savedString = prefs.getString("editTextPlayerName", "");
                editTextPlayerName.setText(savedString);
 
@@ -172,25 +174,23 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
         SwipeRefreshLayout refresher = findViewById(R.id.refresher);
         refresher.setOnRefreshListener( () -> refresher.setRefreshing(false)  );
     }
-    public int resultOfGameCalculate(){//calculate results and return numOfUnansweredPlayer
+    public void resultOfGameCalculate(){//calculate results and return numOfUnansweredPlayer
         numOfCorrectPlayer = 0;
         numOfIncorrectPlayer = 0;
-        numOfUnansweredPlayer = 0;
+        numOfUnansweredPlayer = arrListRandomQuestions.size();
         for(int i=0;i<arrListRandomQuestions.size();i++){
 
-            if(arrListRandomQuestions.get(i).getStrCorrectAnswer().equals(arrListRandomQuestions.get(i).getStrAnswerOfPlayer())){
-                numOfCorrectPlayer++;
+            if(arrListRandomQuestions.get(i).getStrAnswerOfPlayer() != null){
+                numOfUnansweredPlayer--;
+                if (arrListRandomQuestions.get(i).getStrCorrectAnswer().equals(arrListRandomQuestions.get(i).getStrAnswerOfPlayer())){
+                    numOfCorrectPlayer++;
+                }
+                else {
+                    numOfIncorrectPlayer++;
+                }
             }
-            else if (arrListRandomQuestions.get(i).getStrStateOfQuestion().equals("Unanswered")){
-                numOfUnansweredPlayer++;
-            }
-            else {
-                numOfIncorrectPlayer++;
-            }
-            //numOfUnansweredPlayer--;
         }
         scoreOfPlayer = numOfCorrectPlayer/((numOfCorrectPlayer+numOfUnansweredPlayer+numOfIncorrectPlayer)*1.0)*100;
-        return numOfUnansweredPlayer;
     }
 
     private void insertItemAndShowRankList(){
@@ -311,6 +311,14 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
             TextView totalQuestion = findViewById(R.id.totalQuestion);
             totalQuestion.setText("Total of questions: "+arrListRandomQuestions.size());
 
+            TextView unanswered = findViewById(R.id.unansweredQuestion);
+            TextView getPoint = findViewById(R.id.getPointQuestion);
+            TextView losePoint = findViewById(R.id.losePointQuestion);
+            resultOfGameCalculate();
+            unanswered.setText("Unanswered: "+numOfUnansweredPlayer);
+            getPoint.setText("Correct: "+numOfCorrectPlayer);
+            losePoint.setText("Incorrect: "+numOfIncorrectPlayer);
+
             TriviaQuestionItemsClass thisRow = getItem(position);
             if(thisRow.getStrTypeOfQuestion().equals("boolean") ){
                 newView = inflater.inflate(R.layout.activity_trivia_boolean_question, viewGroup, false);
@@ -320,6 +328,7 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
                 nameQuestion.setText(position+1+". "+thisRow.getStrQuestion());
 
 
+
                 RadioButton rbtnTrue = newView.findViewById(R.id.rbtnTrue);
                 rbtnTrue.setText(thisRow.getRamdomAnswers().get(0));
                 RadioButton rbtnfalse = newView.findViewById(R.id.rbtnfalse);
@@ -327,14 +336,24 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
 
                 TextView textStateOfQuestion = newView.findViewById(R.id.textStateOfQuestion);
                 RadioGroup radioGroupBoolean = newView.findViewById(R.id.radioGroupBoolean);
+                //Set the selected state of the button to avoid the refresh problem
+                switch (arrListRandomQuestions.get(position).getRandomAnswers().indexOf(arrListRandomQuestions.get(position).getStrAnswerOfPlayer())){
+                    case 0: radioGroupBoolean.check(R.id.rbtnTrue);
+                    break;
+                    case 1: radioGroupBoolean.check(R.id.rbtnfalse);
+                        break;
+                    default: ;
+                }
 
                 radioGroupBoolean.setOnCheckedChangeListener((rgb,i)->{
+
                     RadioButton isSelected = findViewById(radioGroupBoolean.getCheckedRadioButtonId());
                     //setStrAnswerOfPlayer
                     thisRow.setStrAnswerOfPlayer(isSelected.getText().toString());
 
                     if(thisRow.getStrCorrectAnswer().equals(isSelected.getText().toString()))
                     {
+
                         //Unanswered/True/False
                         textStateOfQuestion.setText("True");
                         thisRow.setStrStateOfQuestion("True");//setStrStateOfQuestion
@@ -344,6 +363,12 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
                         textStateOfQuestion.setText("False");
                         thisRow.setStrStateOfQuestion("False");//setStrStateOfQuestion
                     }
+                    //Calculate multiple values
+                    resultOfGameCalculate();
+
+                   myAdapter.notifyDataSetChanged();
+
+
                 });
 
             }
@@ -365,6 +390,18 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
 
                 TextView textStateOfQuestion = newView.findViewById(R.id.textStateOfQuestion);
                 RadioGroup radioGroupMulti = newView.findViewById(R.id.radioGroupMulti);
+                //Set the selected state of the button to avoid the refresh problem
+                switch (arrListRandomQuestions.get(position).getRandomAnswers().indexOf(arrListRandomQuestions.get(position).getStrAnswerOfPlayer())){
+                    case 0: radioGroupMulti.check(R.id.rbtnMult1);
+                        break;
+                    case 1: radioGroupMulti.check(R.id.rbtnMult2);
+                        break;
+                    case 2: radioGroupMulti.check(R.id.rbtnMult3);
+                        break;
+                    case 3: radioGroupMulti.check(R.id.rbtnMult4);
+                        break;
+                    default: ;
+                }
 
                 radioGroupMulti.setOnCheckedChangeListener((RadioGroup rgb,int CheckedId)->{
 
@@ -384,10 +421,14 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
                         textStateOfQuestion.setText("False");
                         thisRow.setStrStateOfQuestion("False");//setStrStateOfQuestion
                     }
+                    //Calculate multiple values
+                    resultOfGameCalculate();
+                    myAdapter.notifyDataSetChanged();
+
                 });
 
             }
-            myAdapter.notifyDataSetChanged();
+          //  myAdapter.notifyDataSetChanged();
 
 
             return newView;

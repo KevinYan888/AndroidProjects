@@ -11,27 +11,56 @@
     <TextView
         android:id="@+id/titleQuestion"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-
-        android:text="Let's go!"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:textColorHighlight="#ff5e9cff"
+        android:layout_height="100dp"
+        android:text="Fished all of questions befor you submit!"
+        android:gravity="left"
+        android:layout_toRightOf="@+id/totalQuestion"
+        android:textSize="28dp"
+      android:textStyle="bold"
         android:textColor="@color/purple_700" />
     <TextView
         android:id="@+id/totalQuestion"
         android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text=""
-        android:layout_below="@+id/titleQuestion"
+        android:layout_height="25dp"
+        android:gravity="left"
+        android:text="Total: "
+        android:textSize="15dp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
+    <TextView
+        android:id="@+id/unansweredQuestion"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:gravity="left"
+        android:text="Unanswerd: "
+        android:layout_below="@+id/totalQuestion"
+        android:textSize="15dp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
+    <TextView
+        android:id="@+id/getPointQuestion"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:gravity="left"
+        android:text="Correct: "
+        android:layout_below="@+id/unansweredQuestion"
+        android:textSize="15dp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
+    <TextView
+        android:id="@+id/losePointQuestion"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:gravity="left"
+        android:text="Incorrect: "
+        android:layout_below="@+id/getPointQuestion"
         android:textSize="15dp"
         android:textColorHighlight="#ff5e9cff"
         android:textColor="@color/purple_700" />
 
     <ProgressBar
         android:id="@+id/proBar"
-        android:layout_below="@+id/totalQuestion"
+        android:layout_below="@+id/losePointQuestion"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
