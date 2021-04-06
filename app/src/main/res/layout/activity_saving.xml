@@ -7,6 +7,22 @@
     android:orientation="vertical"
     tools:context=".SavingActivity">
 
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"/>
+
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:openDrawer="start">
+                <!-- THIS IS WHAT IS VISIBLE ON SCREEN:-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
         <ListView
             android:id="@+id/sListView"
             android:layout_width="wrap_content"
@@ -16,6 +32,25 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
         android:text="remove from database"/>
+                        <com.google.android.material.bottomnavigation.BottomNavigationView
+                            android:id="@+id/bnv"
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:menu="@menu/project_menu"/>
+                </LinearLayout>
+
+                <!-- THIS IS WHAT IS WHAT POPS OUT FROM THE SIDE:-->
+                <com.google.android.material.navigation.NavigationView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:fitsSystemWindows="true"
+
+                    app:menu="@menu/project_nmenu"
+                    android:id="@+id/nav_view"/>
+
+        </androidx.drawerlayout.widget.DrawerLayout>
 
 
 

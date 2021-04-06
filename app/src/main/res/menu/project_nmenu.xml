@@ -4,8 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <item android:id="@+id/chat"
-        android:title="Chat Page"
+
+    <item android:id="@+id/searchCar"
+        android:title="Search Page"
         android:icon="@drawable/chat"
         android:orderInCategory="75"
         app:showAsAction="always"/>  <!-- This uses showAsAction=always, so look at icon= parameter -->
@@ -19,16 +20,12 @@
         android:title="search"/>    <!-- This uses showAsAction=always, so look at icon= parameter -->
 
 
-    <item android:id="@+id/weather"
-        android:icon="@drawable/weather"
-        android:title="Weather Forecast"
-        app:showAsAction="ifRoom"
-        android:orderInCategory="100"/> <!-- This uses showAsAction=never, so look at title= parameter -->
-
-    <item android:id="@+id/login"
+    <!-- This uses showAsAction=never, so look at title= parameter -->
+    <item android:id="@+id/main"
         android:icon="@drawable/login"
         android:orderInCategory="125"
         app:showAsAction="always"
-        android:title="Go back to login"/>
+        android:title="Go back to main page"/>
+
 
 </menu>

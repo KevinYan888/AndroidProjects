@@ -21,31 +21,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/sListView"/>
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/searchText">
+<!--    <LinearLayout-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_below="@id/searchText">-->
 
-        <EditText
-            android:id="@+id/searchEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="company name"
-            android:autofillHints=""
-            android:layout_below="@+id/searchText"
-            />
+<!--        <EditText-->
+<!--            android:id="@+id/searchEdit"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="company name"-->
+<!--            android:autofillHints=""-->
+<!--            android:layout_below="@+id/searchText"-->
+<!--            />-->
 
-        <Button
-            android:id="@+id/searchBtn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="search"
-            android:layout_below="@+id/searchText"
+<!--        <Button-->
+<!--            android:id="@+id/searchBtn1"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="search"-->
+<!--            android:layout_below="@+id/searchText"-->
 
-            android:layout_toRightOf="@+id/searchEdit"/>
+<!--            android:layout_toRightOf="@+id/searchEdit"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 
     <ProgressBar
