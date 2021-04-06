@@ -10,7 +10,7 @@ public class TriviaQuestionItemsClass {
     protected String strQuestion;
     protected String strCorrectAnswer;
     protected ArrayList<String> randomAnswers;
-    protected String strStateOfQuestion = "Unanswered";
+    protected String strStateOfQuestion ="unanswered" ;//unanswered; ture; false
     protected String strAnswerOfPlayer;
     protected String strNameOfPlayer = "Unknown";
 
@@ -58,7 +58,7 @@ public class TriviaQuestionItemsClass {
     public ArrayList<String> getRandomAnswers() {
         return randomAnswers;
     }
-    public String getStrStateOfQuestion() {
+    public String getIntStateOfQuestion() {
         return strStateOfQuestion;
     }
 

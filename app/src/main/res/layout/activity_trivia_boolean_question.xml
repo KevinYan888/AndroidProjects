@@ -50,7 +50,7 @@
             android:textColor="@color/purple_700" />
 
         <RadioButton
-            android:id="@+id/rbtnTrue"
+            android:id="@+id/rbtnTrueOrFalse1"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text=""
@@ -58,7 +58,7 @@
             tools:layout_editor_absoluteY="300dp" />
 
         <RadioButton
-            android:id="@+id/rbtnfalse"
+            android:id="@+id/rbtnTrueOrFalse2"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text=""
