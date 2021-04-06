@@ -12,49 +12,49 @@
         android:id="@+id/titleQuestion"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="Fished all of questions befor you submit!"
-        android:gravity="left"
-        android:layout_toRightOf="@+id/totalQuestion"
-        android:textSize="28dp"
+        android:text="@string/fished_all_of_questions_befor_you_submit"
+        android:gravity="start"
+        android:layout_toEndOf="@+id/totalQuestion"
+        android:textSize="28sp"
       android:textStyle="bold"
         android:textColor="@color/purple_700" />
     <TextView
         android:id="@+id/totalQuestion"
         android:layout_width="150dp"
         android:layout_height="25dp"
-        android:gravity="left"
-        android:text="Total: "
-        android:textSize="15dp"
+        android:gravity="start"
+        android:text="@string/total"
+        android:textSize="15sp"
         android:textColorHighlight="#ff5e9cff"
         android:textColor="@color/purple_700" />
     <TextView
         android:id="@+id/unansweredQuestion"
         android:layout_width="150dp"
         android:layout_height="25dp"
-        android:gravity="left"
-        android:text="Unanswerd: "
+        android:gravity="start"
+        android:text="@string/unanswerd"
         android:layout_below="@+id/totalQuestion"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textColorHighlight="#ff5e9cff"
         android:textColor="@color/purple_700" />
     <TextView
         android:id="@+id/getPointQuestion"
         android:layout_width="150dp"
         android:layout_height="25dp"
-        android:gravity="left"
-        android:text="Correct: "
+        android:gravity="start"
+        android:text="@string/correct"
         android:layout_below="@+id/unansweredQuestion"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textColorHighlight="#ff5e9cff"
         android:textColor="@color/purple_700" />
     <TextView
         android:id="@+id/losePointQuestion"
         android:layout_width="150dp"
         android:layout_height="25dp"
-        android:gravity="left"
-        android:text="Incorrect: "
+        android:gravity="start"
+        android:text="@string/incorrect"
         android:layout_below="@+id/getPointQuestion"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textColorHighlight="#ff5e9cff"
         android:textColor="@color/purple_700" />
 
@@ -90,15 +90,15 @@
         android:id="@+id/btnSubmit"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:text="Submit" />
+        android:text="@string/submit" />
 
     <Button
         android:id="@+id/btnGoBack"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:text="Go Back" />
+        android:text="@string/go_back" />
     </RelativeLayout>

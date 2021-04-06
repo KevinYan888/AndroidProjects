@@ -58,7 +58,7 @@ public class TriviaQuestionItemsClass {
     public ArrayList<String> getRandomAnswers() {
         return randomAnswers;
     }
-    public String getIntStateOfQuestion() {
+    public String getStrStateOfQuestion() {
         return strStateOfQuestion;
     }
 

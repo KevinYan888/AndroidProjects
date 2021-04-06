@@ -7,13 +7,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TriviaActivity" />
+        android:text="@string/triviaactivity" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hongwen Li" />
+        android:text="@string/hongwen_li" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="V1.0.3" />
+        android:text="@string/v1_0_3" />
 </LinearLayout>

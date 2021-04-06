@@ -339,6 +339,7 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
                 rbtnfalse.setText(thisRow.getRamdomAnswers().get(1));
 
                 TextView textStateOfQuestion = newView.findViewById(R.id.textStateOfQuestion);
+                textStateOfQuestion.setText(arrListRandomQuestions.get(position).getStrStateOfQuestion());
                 RadioGroup radioGroupBoolean = newView.findViewById(R.id.radioGroupBoolean);
                 //Set the selected state of the button to avoid the refresh problem
                 switch (arrListRandomQuestions.get(position).getRandomAnswers().indexOf(arrListRandomQuestions.get(position).getStrAnswerOfPlayer())){
@@ -350,8 +351,15 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
                         break;
                     default: ;
                 }
-
-
+//                switch (arrListRandomQuestions.get(position).getStrStateOfQuestion(){
+//                    case 0:
+//                        textStateOfQuestion.set;
+//                        break;
+//                    case 1:
+//                        radioGroupBoolean.check(R.id.rbtnTrueOrFalse2);
+//                        break;
+//                    default: ;
+//                }
                 radioGroupBoolean.setOnCheckedChangeListener((RadioGroup rgb,int CheckedId)->{
 
                     RadioButton isSelected = newView.findViewById(CheckedId);
@@ -360,6 +368,7 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
 
                     //Calculate multiple values and set
                     resultOfGameCalculate();
+
                    myAdapter.notifyDataSetChanged();
                 });
 
@@ -381,6 +390,7 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
 
 
                 TextView textStateOfQuestion = newView.findViewById(R.id.textStateOfQuestion);
+                textStateOfQuestion.setText(arrListRandomQuestions.get(position).getStrStateOfQuestion());
                 RadioGroup radioGroupMulti = newView.findViewById(R.id.radioGroupMulti);
 
                 //Set the selected state of the button to avoid the refresh problem

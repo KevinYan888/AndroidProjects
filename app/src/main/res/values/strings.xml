@@ -29,4 +29,13 @@
     <string name="delete">Delete</string>
     <string name="game_setting">Game setting</string>
     <string name="how_many_questions">* How many questions?</string>
+    <string name="triviaactivity">TriviaActivity</string>
+    <string name="hongwen_li">Hongwen Li</string>
+    <string name="v1_0_3">V1.0.3</string>
+    <string name="incorrect">Incorrect:</string>
+    <string name="submit">Submit</string>
+    <string name="fished_all_of_questions_befor_you_submit">Fished all of questions befor you submit!</string>
+    <string name="total">Total:</string>
+    <string name="unanswerd">Unanswerd:</string>
+    <string name="correct">Correct:</string>
 </resources>
