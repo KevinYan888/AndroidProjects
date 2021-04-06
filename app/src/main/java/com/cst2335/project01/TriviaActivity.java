@@ -1,15 +1,19 @@
 package com.cst2335.project01;
 
 
+        import android.content.Context;
         import android.content.Intent;
         import android.os.Bundle;
         import android.view.Menu;
         import android.view.MenuInflater;
         import android.view.MenuItem;
+        import android.view.View;
         import android.widget.Button;
+        import android.widget.TextView;
         import android.widget.Toast;
 
         import androidx.appcompat.app.ActionBarDrawerToggle;
+        import androidx.appcompat.app.AlertDialog;
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.appcompat.widget.Toolbar;
         import androidx.drawerlayout.widget.DrawerLayout;
@@ -87,7 +91,30 @@ public class TriviaActivity extends AppCompatActivity implements NavigationView.
                 break;
             case R.id.item3:
                 message = "Help";
+                //show the interface instruction on a dialog
+                View dialogHelpView = getLayoutInflater().inflate(R.layout.trivia_help_dialog, null);
 
+                TextView textHelp1 = dialogHelpView.findViewById(R.id.textHelp1);
+
+                textHelp1.setText("The API documentation is located here: https://opentdb.com/api_config.php. The URL pattern is: " +
+                        "https://opentdb.com/api.php?amount=XXX&type=YYY&difficulty=ZZZ, XXX is an integer for " +
+                        "the number of questions. YYY is either “Boolean” or “Multiple”, and ZZZ is either “EASY”, “MEDIUM”, or “HARD”");
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("How to use the interface?")
+                        .setMessage("Easy to use if you follow this instruction")
+                        .setView(dialogHelpView) //add texts showing the contact information
+                        .setPositiveButton("Go to Main Menu ", (click, b) -> {
+                            Intent goToMainActivity = new Intent(TriviaActivity.this, MainActivity.class);
+                            startActivity(goToMainActivity);
+                        })
+                        .setNegativeButton("Go Back", (click, b) -> {
+                        })
+                        .setNeutralButton("Play Now", (click, b) -> {
+                            Intent goToQuestionActivity = new Intent(TriviaActivity.this, TriviaSettingActivity.class);
+                            startActivity(goToQuestionActivity);
+                        })
+                        .create().show();
                 break;
         }
         Toast.makeText(this, "Toolbar: " + message, Toast.LENGTH_LONG).show();
@@ -124,27 +151,30 @@ public class TriviaActivity extends AppCompatActivity implements NavigationView.
                 break;
             case R.id.item3:
                 message = "Help";
-//show the result on a dialog
-//                View dialogResultView = getLayoutInflater().inflate(R.layout.trivia_help_dialog, null);
-//
-//                TextView textHelp1 = dialogResultView.findViewById(R.id.textHelp1);
-//                TextView textHelp2 = dialogResultView.findViewById(R.id.textHelp2);
-//                textHelp1.setText("textHelp1 : ");
-//                textHelp2.setText("textHelp1: " );
-//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                builder.setTitle("Good job! Your score:  " + String.format("%.1f", textHelp1) + "(*%)")
-//                        .setMessage("Enter your name and save result: ")
-//                        .setView(dialogResultView) //add texts showing the contact information
-//                        .setPositiveButton("Return ", (click, b) -> {
-//
-//                        })
-//                        .setNegativeButton("Exit", (click, b) -> {
-//
-//                        })
-//                        .setNeutralButton("Save result", (click, b) -> {
-//
-//                        })
-//                        .create().show();
+                //show the interface instruction on a dialog
+                View dialogHelpView = getLayoutInflater().inflate(R.layout.trivia_help_dialog, null);
+
+                TextView textHelp1 = dialogHelpView.findViewById(R.id.textHelp1);
+
+                textHelp1.setText("The API documentation is located here: https://opentdb.com/api_config.php. The URL pattern is: " +
+                        "https://opentdb.com/api.php?amount=XXX&type=YYY&difficulty=ZZZ, XXX is an integer for " +
+                        "the number of questions. YYY is either “Boolean” or “Multiple”, and ZZZ is either “EASY”, “MEDIUM”, or “HARD”");
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("How to use the interface?")
+                        .setMessage("Easy to use if you follow this instruction")
+                        .setView(dialogHelpView) //add texts showing the contact information
+                        .setPositiveButton("Go to Main Menu ", (click, b) -> {
+                            Intent goToMainActivity = new Intent(TriviaActivity.this, MainActivity.class);
+                            startActivity(goToMainActivity);
+                        })
+                        .setNegativeButton("Go Back", (click, b) -> {
+                        })
+                        .setNeutralButton("Play Now", (click, b) -> {
+                            Intent goToQuestionActivity = new Intent(TriviaActivity.this, TriviaSettingActivity.class);
+                            startActivity(goToQuestionActivity);
+                        })
+                        .create().show();
                 break;
         }
         return false;
