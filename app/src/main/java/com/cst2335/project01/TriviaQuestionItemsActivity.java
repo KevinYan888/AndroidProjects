@@ -171,8 +171,8 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
 
         });
         //Whenever you swipe down on the list, do something:
-        SwipeRefreshLayout refresher = findViewById(R.id.refresher);
-        refresher.setOnRefreshListener( () -> refresher.setRefreshing(false)  );
+//        SwipeRefreshLayout refresher = findViewById(R.id.refresher);
+//        refresher.setOnRefreshListener( () -> refresher.setRefreshing(false)  );
     }
     public void resultOfGameCalculate(){//calculate results and set State Of Question
         numOfCorrectPlayer = 0;
@@ -184,15 +184,15 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
                 numOfUnansweredPlayer--;
                 if (arrListRandomQuestions.get(i).getStrCorrectAnswer().equals(arrListRandomQuestions.get(i).getStrAnswerOfPlayer())){
                     numOfCorrectPlayer++;
-                    arrListRandomQuestions.get(i).setStrStateOfQuestion("True");
+                    arrListRandomQuestions.get(i).setStrStateOfQuestion(getResources().getString(R.string.state_true));
                 }
                 else{
                     numOfIncorrectPlayer++;
-                    arrListRandomQuestions.get(i).setStrStateOfQuestion("False");
+                    arrListRandomQuestions.get(i).setStrStateOfQuestion(getResources().getString(R.string.state_false));
                 }
             }
             else{
-                arrListRandomQuestions.get(i).setStrStateOfQuestion("Unanswered");
+                arrListRandomQuestions.get(i).setStrStateOfQuestion(getResources().getString(R.string.state_unanswered));
             }
         }
         scoreOfPlayer = numOfCorrectPlayer/((numOfCorrectPlayer+numOfUnansweredPlayer+numOfIncorrectPlayer)*1.0)*100;
@@ -314,15 +314,15 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
             View newView;
             //Show the total of Questions
             TextView totalQuestion = findViewById(R.id.totalQuestion);
-            totalQuestion.setText("Total of questions: "+arrListRandomQuestions.size());
+            totalQuestion.setText(getResources().getString(R.string.total)+arrListRandomQuestions.size());
 
             TextView unanswered = findViewById(R.id.unansweredQuestion);
             TextView getPoint = findViewById(R.id.getPointQuestion);
             TextView losePoint = findViewById(R.id.losePointQuestion);
             resultOfGameCalculate();
-            unanswered.setText("Unanswered: "+numOfUnansweredPlayer);
-            getPoint.setText("Correct: "+numOfCorrectPlayer);
-            losePoint.setText("Incorrect: "+numOfIncorrectPlayer);
+            unanswered.setText(getResources().getString(R.string.unanswered)+numOfUnansweredPlayer);
+            getPoint.setText(getResources().getString(R.string.correct)+numOfCorrectPlayer);
+            losePoint.setText(getResources().getString(R.string.incorrect)+numOfIncorrectPlayer);
 
 
             if(thisRow.getStrTypeOfQuestion().equals("boolean") ){
@@ -341,6 +341,7 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
                 TextView textStateOfQuestion = newView.findViewById(R.id.textStateOfQuestion);
                 textStateOfQuestion.setText(arrListRandomQuestions.get(position).getStrStateOfQuestion());
                 RadioGroup radioGroupBoolean = newView.findViewById(R.id.radioGroupBoolean);
+
                 //Set the selected state of the button to avoid the refresh problem
                 switch (arrListRandomQuestions.get(position).getRandomAnswers().indexOf(arrListRandomQuestions.get(position).getStrAnswerOfPlayer())){
                     case 0:
@@ -351,15 +352,7 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
                         break;
                     default: ;
                 }
-//                switch (arrListRandomQuestions.get(position).getStrStateOfQuestion(){
-//                    case 0:
-//                        textStateOfQuestion.set;
-//                        break;
-//                    case 1:
-//                        radioGroupBoolean.check(R.id.rbtnTrueOrFalse2);
-//                        break;
-//                    default: ;
-//                }
+
                 radioGroupBoolean.setOnCheckedChangeListener((RadioGroup rgb,int CheckedId)->{
 
                     RadioButton isSelected = newView.findViewById(CheckedId);

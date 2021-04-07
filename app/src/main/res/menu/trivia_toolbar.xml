@@ -4,7 +4,7 @@
 
 
     <item android:id="@+id/item1"
-        android:title="View Rank"
+        android:title="@string/View_Rank"
         android:icon="@drawable/toolbar1"
         android:orderInCategory="10"
         app:showAsAction="always"/>  <!-- This uses showAsAction=always, so look at icon= parameter -->
@@ -14,12 +14,12 @@
         android:orderInCategory="50"
         android:icon="@drawable/toolbar2"
         app:showAsAction="always"
-        android:title="Go to Play"/>    <!-- This uses showAsAction=always, so look at icon= parameter -->
+        android:title="@string/Go_to_Play"/>    <!-- This uses showAsAction=always, so look at icon= parameter -->
 
 
     <item android:id="@+id/item3"
         android:icon="@drawable/toolbar3"
-        android:title="Help"
+        android:title="@string/Help"
         app:showAsAction="never"
         android:orderInCategory="400"/> <!-- This uses showAsAction=never, so look at title= parameter -->
 

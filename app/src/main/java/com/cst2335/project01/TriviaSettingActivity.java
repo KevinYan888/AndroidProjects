@@ -43,46 +43,51 @@ public class TriviaSettingActivity extends AppCompatActivity {
         Button btnPlayNow = findViewById(R.id.btnPlayNow);
         Button btnGoBack = findViewById(R.id.btnGoBack);
 
-        radioGroupType.setOnCheckedChangeListener((rg1,i)->{
-            RadioButton rb1 = findViewById(radioGroupType.getCheckedRadioButtonId());
-            if(String.valueOf(rb1.getText()).contains("true")){
-                strTypeOfQuestion = "boolean";
+        radioGroupType.setOnCheckedChangeListener((RadioGroup group1,int checkedId)->{
+            switch (checkedId){
+                case R.id.rbtnTypeTrue:
+                    strTypeOfQuestion = "boolean";
+                    break;
+                case R.id.rbtnTypeMultiple:
+                    strTypeOfQuestion = "multiple";
+                    break;
+                case R.id.rbtnTypeBoth:
+                    strTypeOfQuestion = "both";
+                    break;
             }
-            else if(String.valueOf(rb1.getText()).contains("multiple")){
-                strTypeOfQuestion ="multiple";
-            }
-            else{
-                strTypeOfQuestion = "String.valueOf(rb1.getText())";
 
-            }
+
         });
 
-        radioGroupDifficulty.setOnCheckedChangeListener((rg2,i)->{
+        radioGroupDifficulty.setOnCheckedChangeListener((RadioGroup group2,int checkedId)->{
             String oldDifficulty = strDifficultyOfQuestion;
             RadioButton rb2 = findViewById(radioGroupDifficulty.getCheckedRadioButtonId());
+                        switch (checkedId){
+                            case R.id.rbtnDifficultyEasy:
+                                strDifficultyOfQuestion = "Easy";
+                                break;
+                            case R.id.rbtnDifficultyMedium:
+                                strDifficultyOfQuestion = "Medium";
+                                break;
+                            case R.id.rbtnDifficultyHard:
+                                strDifficultyOfQuestion = "Hard";
+                                Snackbar snackbar = Snackbar
+                                        .make(rb2, "You select hard level !", Snackbar.LENGTH_LONG)
+                                        .setAction("UNDO", new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                Snackbar snackbar1 = Snackbar.make(rb2, "You cancel hard level !", Snackbar.LENGTH_SHORT);
+                                                snackbar1.show();
+                                                //redo
+                                                strDifficultyOfQuestion = oldDifficulty;
+                                                rb2.setChecked(false);
+                                            }
 
-            strDifficultyOfQuestion= String.valueOf(rb2.getText());
-            //Add a Snack bar
-            if(strDifficultyOfQuestion.equals("hard")){
+                                        });
 
-                        Snackbar snackbar = Snackbar
-                                .make(rg2, "You select hard level !", Snackbar.LENGTH_LONG)
-                                .setAction("UNDO", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Snackbar snackbar1 = Snackbar.make(rg2, "You cancel hard level !", Snackbar.LENGTH_SHORT);
-                                        snackbar1.show();
-                                        //redo
-                                        strDifficultyOfQuestion = oldDifficulty;
-                                        rb2.setChecked(false);
-                                    }
-
-                                });
-
-                        snackbar.show();
-
-           }
-
+                                snackbar.show();
+                                break;
+                        }
 
         });
         //btnGoBack: goToMainActivity
@@ -113,8 +118,8 @@ public class TriviaSettingActivity extends AppCompatActivity {
                 //pass info to next activity
                 Bundle bundle = new Bundle();
                 bundle.putInt("intAmountOfQuestion",intAmountOfQuestion);
-                bundle.putString("strTypeOfQuestion",strTypeOfQuestion);
-                bundle.putString("strDifficultyOfQuestion",strDifficultyOfQuestion);
+                bundle.putString("strTypeOfQuestion",strTypeOfQuestion.toLowerCase());
+                bundle.putString("strDifficultyOfQuestion",strDifficultyOfQuestion.toLowerCase());
                 Intent goToLoadQuestions = new Intent();
                 goToLoadQuestions.putExtras(bundle);
                 goToLoadQuestions.setClass(TriviaSettingActivity.this, TriviaQuestionItemsActivity.class);

@@ -17,7 +17,7 @@
         android:id="@+id/btnCardata"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="car database"/>
+        android:text="@string/car_database"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

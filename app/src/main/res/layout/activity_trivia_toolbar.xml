@@ -44,7 +44,7 @@
                         android:layout_gravity="center_horizontal"
                         android:id="@+id/btnPlayNow"
                         style="@style/Widget.AppCompat.Button.Colored"
-                        android:text="Play now" />
+                        android:text="@string/Play_Now" />
 
                 </LinearLayout>
             </LinearLayout>

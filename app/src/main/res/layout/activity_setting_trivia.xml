@@ -111,7 +111,7 @@
             android:id="@+id/textDifficulty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="* Difficulty level?"
+            android:text="@string/difficulty_level"
             android:textSize="20sp"
             android:textColor="@color/purple_700" />
 

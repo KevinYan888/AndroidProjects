@@ -11,7 +11,7 @@
         android:id="@+id/textStateOfQuestion"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="@string/unanswered"
+        android:text="unanswered"
         tools:layout_editor_absoluteX="9dp"
         tools:layout_editor_absoluteY="86dp"
         android:layout_alignParentTop="true"/>
