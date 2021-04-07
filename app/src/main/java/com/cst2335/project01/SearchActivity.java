@@ -66,7 +66,7 @@ public class SearchActivity extends AppCompatActivity {
     public 	ListView lv;
     public ArrayList<CarListItem> list = new ArrayList<>();
 
-
+    Button searchBtn1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +77,7 @@ public class SearchActivity extends AppCompatActivity {
         EditText searchEdit = findViewById(R.id.searchEdit);
         searchEdit.setText(fromCarData.getStringExtra("manufacturerName"));
 
-        Button searchBtn = findViewById(R.id.searchBtn1);
+        searchBtn1 = findViewById(R.id.searchBtn1);
 
         progressBar = findViewById(R.id.progressBar);
 //        progressBar.setVisibility(View.VISIBLE );
@@ -107,6 +107,8 @@ public class SearchActivity extends AppCompatActivity {
             dataToPass.putString("name",list.get(pos).getName());
             dataToPass.putInt("position",pos);
             dataToPass.putInt("modelId", list.get(pos).getModelId());
+            Snackbar skbar= Snackbar.make(myList,"car details",Snackbar.LENGTH_LONG);
+            skbar.show();
 
             if(isTablet)
             {
@@ -172,15 +174,16 @@ public class SearchActivity extends AppCompatActivity {
 
 
 
-        searchBtn.setOnClickListener(e->{
+        searchBtn1.setOnClickListener(e->{
             String  searchE = searchEdit.getText().toString();
-            if(!searchE.isEmpty()){
+
                 InputMethodManager inputManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 //                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                Snackbar skbar= Snackbar.make(searchBtn1,"It is your car detail's list",Snackbar.LENGTH_LONG);
+                skbar.show();
                 Toast.makeText(this,"search for"+searchEdit.getText().toString()+"...",Toast.LENGTH_LONG);
                 list.clear();
-            }
-        });
+                   });
 
 //        //This gets the toolbar from the layout:
 //        Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);

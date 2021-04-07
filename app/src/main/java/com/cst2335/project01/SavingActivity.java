@@ -77,7 +77,8 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
             dataToPass.putString("name",list.get(pos).getName());
             dataToPass.putInt("position",pos);
             dataToPass.putInt("modelId", list.get(pos).getModelId());
-
+            Snackbar snackbar = Snackbar.make(myList,"Save to database",Snackbar.LENGTH_LONG);
+            snackbar.show();
             if(isTablet)
             {
                 carFragment = new CardataFragment(); //add a DetailFragment

@@ -39,6 +39,8 @@ public class CarActivity extends AppCompatActivity {
     public static final int RESULT_CHAT =100;
     public static final int RESULT_WEATHER =200;
     public static final int RESULT_LOGIN =500;
+    Button searchBtn;
+    String saveString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +51,18 @@ public class CarActivity extends AppCompatActivity {
         companyName = findViewById(R.id.companyName);
 
         SharedPreferences prefs = getSharedPreferences("manufacturerName", Context.MODE_PRIVATE);
-        String saveString = prefs.getString("ReserveName","");
+        saveString = prefs.getString("ReserveName","");
         companyName.setText(saveString);
 
         Intent goToSearch = new Intent(CarActivity.this, SearchActivity.class);
 
-        Button searchBtn = findViewById(R.id.searchBtn);
+        searchBtn = findViewById(R.id.searchBtn);
         searchBtn.setOnClickListener(new View.OnClickListener(){
-
-
 
             @Override
             public void onClick(View v) {
+                Snackbar skbar= Snackbar.make(searchBtn,"It is manufacturerName",Snackbar.LENGTH_LONG);
+                skbar.show();
                 String savedString = companyName.getText().toString();
                 goToSearch.putExtra("manufacturerName",savedString);
                 startActivity(goToSearch);
@@ -70,7 +72,6 @@ public class CarActivity extends AppCompatActivity {
 
         });
 
-
         Toast.makeText(this, "manufacturerName: " + "input your favorite company", Toast.LENGTH_LONG).show();
 
         //This gets the toolbar from the layout:
@@ -79,6 +80,8 @@ public class CarActivity extends AppCompatActivity {
         //This loads the toolbar, which calls onCreateOptionsMenu below:
         setSupportActionBar(tBar);
 
+
+
     }
 
     private void saveSharedPrefs(String stringToSave) {
@@ -86,8 +89,7 @@ public class CarActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("ReserveName", stringToSave);
         editor.commit();
-//        Snackbar skbar= Snackbar.make("manufacturerName:"+companyName.setText(saveString),Snackbar.LENGTH_LONG);
-//        skbar.show();
+
 
     }
 

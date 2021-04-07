@@ -72,6 +72,8 @@ public class CardataFragment extends Fragment {
         if(source.equals("search")) {
             saving.setText("saving to database");
             saving.setOnClickListener(sb -> {
+                Snackbar snackbar = Snackbar.make(saving,"Save to database",Snackbar.LENGTH_LONG);
+                snackbar.show();
                 ContentValues newRow = new ContentValues();
                 newRow.put(myOpener.COL_MODELID, modelId);
                 newRow.put(myOpener.COL_MAKE, make);
@@ -79,13 +81,15 @@ public class CardataFragment extends Fragment {
                 db.insert(myOpener.TABLE_NAME, NULL, newRow);
                 Intent goToSave = new Intent(getActivity(),SavingActivity.class);
                 startActivity(goToSave);
-//            Toast.makeText("save:","save car type in database",Toast.LENGTH_LONG).show();
-//                Snackbar snackbar = Snackbar.make("Save to database",Snackbar.LENGTH_LONG).show();
+//            Toast.makeText(saving,"save car type in database",Toast.LENGTH_LONG).show();
+
             });
 //        Button moving =extraStuff.findViewById((R.id.moving);
         }else if (source.equals("move")){
             saving.setText("remove from  database");
             saving.setOnClickListener(sb -> {
+                Snackbar snackbar = Snackbar.make(saving,"Save to database",Snackbar.LENGTH_LONG);
+                snackbar.show();
                         ContentValues newRow = new ContentValues();
                         newRow.put(myOpener.COL_MODELID, modelId);
                         newRow.put(myOpener.COL_MAKE, make);
@@ -96,7 +100,6 @@ public class CardataFragment extends Fragment {
                         Intent goToMove = new Intent(getActivity(), SavingActivity.class);
                         startActivity(goToMove);
 
-//                Snackbar snackbar = Snackbar.make("move from database",Snackbar.LENGTH_LONG).show();
             });
         }
 
@@ -105,12 +108,16 @@ public class CardataFragment extends Fragment {
 
         Button viewing = extraStuff.findViewById(R.id.viewing);
         viewing.setOnClickListener(vb-> {
+            Snackbar snackbar = Snackbar.make(viewing,"Save to database",Snackbar.LENGTH_LONG);
+            snackbar.show();
             Intent goToView = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/search?q="+make+"+"+modelName));
             startActivity(goToView);
 
         });
         Button shopping = extraStuff.findViewById(R.id.shopping);
         shopping.setOnClickListener( shb->{
+            Snackbar snackbar = Snackbar.make(shopping,"Save to database",Snackbar.LENGTH_LONG);
+            snackbar.show();
             Intent goToShop = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.autotrader.ca/cars/?mdl="+modelName+"&make="+make+"&loc=K2G1V8"));
             startActivity(goToShop);
 
@@ -121,6 +128,8 @@ public class CardataFragment extends Fragment {
         Button hide = (Button)extraStuff.findViewById(R.id.hide);
         hide.setOnClickListener( clk -> {
             //Tell the parent activity to remove
+            Snackbar snackbar = Snackbar.make(hide,"Save to database",Snackbar.LENGTH_LONG);
+            snackbar.show();
             parentActivity.getSupportFragmentManager().beginTransaction().remove(this).commit();
         });
         return extraStuff;
