@@ -35,8 +35,15 @@
                 android:id="@+id/saving"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:text="save to database"/>
+
+<!--            <Button-->
+<!--                android:id="@+id/moving"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/saving"-->
+<!--                android:text="remove from database"/>-->
+
             <Button
                 android:id="@+id/viewing"
                 android:layout_width="match_parent"

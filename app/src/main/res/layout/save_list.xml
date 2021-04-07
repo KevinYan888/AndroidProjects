@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:descendantFocusability="blocksDescendants"
-  >
+    >
+
     <TextView
         android:id="@+id/dataId"
         android:layout_width="wrap_content"
@@ -14,32 +16,20 @@
         android:id="@+id/modelID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-      android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+
         android:text="Model_ID" />
 
     <TextView
-        android:layout_marginTop="20dp"
+
         android:id="@+id/modelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/modelID"
         android:text="Model_Name" />
     <TextView
-        android:layout_marginTop="20dp"
         android:id="@+id/makeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/modelName"
         android:text="Make_Name" />
 
-<ImageButton
-    android:id="@+id/starIcon"
-    android:layout_width="25dip"
-    android:layout_height="25dip"
-    android:layout_marginRight="20dp"
-    android:foregroundGravity="center"
-    android:layout_below="@id/modelName"
-    android:layout_alignParentRight="true"
-    android:background="@drawable/star"/>
-</RelativeLayout>
+
+</LinearLayout>

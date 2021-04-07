@@ -27,12 +27,16 @@
             android:id="@+id/sListView"
             android:layout_width="wrap_content"
             android:layout_height="500dp"/>
-<Button
-    android:id="@+id/removdataBtn"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-        android:text="remove from database"/>
-                        <com.google.android.material.bottomnavigation.BottomNavigationView
+
+
+<!--<Button-->
+<!--    android:id="@+id/removdataBtn"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--        android:text="remove from database"/>-->
+
+
+      <com.google.android.material.bottomnavigation.BottomNavigationView
                             android:id="@+id/bnv"
                             android:background="@color/white"
                             android:layout_width="match_parent"

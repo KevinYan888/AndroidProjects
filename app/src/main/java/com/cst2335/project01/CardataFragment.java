@@ -30,7 +30,7 @@ public class CardataFragment extends Fragment {
     private static final String NULL = null;
     SQLiteDatabase db;
     private Bundle dataFromActivity;
-    private long id;
+    private int modelId;
     private String  modelName;
     private String  make;
     private AppCompatActivity parentActivity;
@@ -47,7 +47,9 @@ public class CardataFragment extends Fragment {
 //        return inflater.inflate(R.layout.fragment_cardata, container, false);
 
         dataFromActivity = getArguments();
-        id = dataFromActivity.getLong("id");
+        String source = dataFromActivity.getString("sourcePage");
+
+        modelId = dataFromActivity.getInt("modelId");
         make = dataFromActivity.getString("make");
         modelName = dataFromActivity.getString("name");
         View extraStuff = inflater.inflate(R.layout.fragment_cardata, container, false);
@@ -58,24 +60,49 @@ public class CardataFragment extends Fragment {
         TextView rowMake = extraStuff.findViewById(R.id.makeName);
         rowMake.setText(make);
         TextView rowId = extraStuff.findViewById(R.id.modelID);
-        rowId.setText("ID="+id);
-
+        rowId.setText("modelID= "+modelId);
 
         MyOpener myOpener = new MyOpener(container.getContext());
         db = myOpener.getWritableDatabase();
-        Button saving = extraStuff.findViewById(R.id.saving);
 
-        saving.setOnClickListener( sb->{
-            ContentValues newRow = new ContentValues();
-            newRow.put(myOpener.COL_MODELID,id);
-             newRow.put(myOpener.COL_MAKE,make);
-             newRow.put(myOpener.COL_NAME,modelName);
-            db.insert(myOpener.TABLE_NAME,NULL,newRow);
-            Intent goToSave = new Intent(getActivity(),SavingActivity.class);
-            startActivity(goToSave);
+
+        Button saving =extraStuff.findViewById(R.id.saving);
+        if(source.equals("search")) {
+            saving.setText("saving to database");
+            saving.setOnClickListener(sb -> {
+                ContentValues newRow = new ContentValues();
+                newRow.put(myOpener.COL_MODELID, modelId);
+                newRow.put(myOpener.COL_MAKE, make);
+                newRow.put(myOpener.COL_NAME, modelName);
+                db.insert(myOpener.TABLE_NAME, NULL, newRow);
+                Intent goToSave = new Intent(getActivity(),SavingActivity.class);
+                startActivity(goToSave);
 //            Toast.makeText("save:","save car type in database",Toast.LENGTH_LONG).show();
+            });
+//        Button moving =extraStuff.findViewById((R.id.moving);
+        }else if (source.equals("move")){
+            saving.setText("remove from  database");
+            saving.setOnClickListener(sb -> {
+                        ContentValues newRow = new ContentValues();
+                        newRow.put(myOpener.COL_MODELID, modelId);
+                        newRow.put(myOpener.COL_MAKE, make);
+                        newRow.put(myOpener.COL_NAME, modelName);
+                        db.delete(myOpener.TABLE_NAME, NULL, new String[]{String.valueOf(modelId)});
+//                        list.remove(id);
 
-        });
+//                        Intent goToMove = new Intent(getActivity(), SavingActivity.class);
+//                        startActivity(goToMove);
+            });
+        }
+
+
+//        Button saving = extraStuff.findViewById(R.id.saving);
+
+
+
+
+
+
 
 
 

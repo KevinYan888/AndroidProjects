@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
     private String  modelName;
     private String  make;
     private AppCompatActivity parentActivity;
+    CardataFragment carFragment;
     public ArrayList<CarListItem> list = new ArrayList<>();
 
     MyListAdapter myAdapter;
@@ -63,11 +65,45 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
 
         loadDataFromDatabase();
 
+        //If it returns null then you are on a phone, otherwise it’s on a tablet. Store this in result in a Boolean variable.
+        FrameLayout fLayout = findViewById(R.id.fLayout);
+        boolean isTablet = fLayout != null; //check if the FrameLayout is loaded
+
+        myList.setOnItemClickListener((adapter, view, pos, id) -> {
+            //Create a bundle to pass data to the new fragment
+
+//            Message newMsg = new Message(searchEdit.getText().toString(),false,id);
+            Bundle dataToPass = new Bundle();
+            String source = "move";
+            dataToPass.putString("sourcePage", source);
+            dataToPass.putString("make", list.get(pos).getMake());
+            dataToPass.putString("name",list.get(pos).getName());
+            dataToPass.putInt("position",pos);
+            dataToPass.putInt("modelId", list.get(pos).getModelId());
+
+            if(isTablet)
+            {
+                carFragment = new CardataFragment(); //add a DetailFragment
+                carFragment.setArguments( dataToPass ); //pass it a bundle for information
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fLayout, carFragment) //Add the fragment in FrameLayout
+                        .commit(); //actually load the fragment. Calls onCreate() in DetailsFragment
+            }
+            else //isPhone
+            {
+                Intent nextActivity = new Intent(SavingActivity.this, EmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+//look at the startActivity() call from step 7 and change the Intent object so that it will transition to EmptyActivity.class.
+                startActivity(nextActivity); //make the transition
+            }
+        });
+
 
 
         myList.setOnItemLongClickListener((parent, view, position, id) -> {
             Object selectedContact = list.get(position);
-            View extraStuff = getLayoutInflater().inflate(R.layout.search_list, null);
+            View extraStuff = getLayoutInflater().inflate(R.layout.save_list, null);
             //get the TextViews
             TextView modelName = extraStuff.findViewById(R.id.modelName);
             TextView makeName = extraStuff.findViewById(R.id.makeName);
@@ -136,12 +172,12 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
         //get a database connection:
 //        MyOpener dbOpener = new MyOpener(cf.parentActivity);
         MyOpener dbOpener = new MyOpener(this);
-        Log.e("1111111111","2222222222222222");
+        Log.e("saving","2222222222222222");
         db = dbOpener.getWritableDatabase(); //This calls onCreate() if you've never built the table before, or onUpgrade if the version here is newer
 
 
         // We want to get all of the columns. Look at MyOpener.java for the definitions:
-        String [] columns = {MyOpener.COL_ID, MyOpener.COL_MAKE, MyOpener.COL_NAME};
+        String [] columns = {MyOpener.COL_ID, MyOpener.COL_MODELID, MyOpener.COL_MAKE, MyOpener.COL_NAME};
         //query all the results from the database:
         Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
@@ -149,17 +185,17 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
         //find the column indices:
         int nameColIndex = results.getColumnIndex(MyOpener.COL_NAME);
         int makeColumnIndex = results.getColumnIndex(MyOpener.COL_MAKE);
-        int idColIndex = results.getColumnIndex(MyOpener.COL_ID);
-
+        int idColIndex = results.getColumnIndex(MyOpener.COL_MODELID);
+        int idIndex = results.getColumnIndex(MyOpener.COL_ID);
         //iterate over the results, return true if there is a next item:
         while(results.moveToNext())
         {
             String name = results.getString(nameColIndex);
             String make = results.getString(makeColumnIndex);
-            long id = results.getLong(idColIndex);
-
+            int idmodel = (int) results.getLong(idColIndex);
+            int id = (int) results.getLong(idColIndex+1);
             //add the new Contact to the array list:
-            list.add(new CarListItem(name, make, id));
+            list.add(new CarListItem(name, make, idmodel));
         }
     }
 
@@ -195,17 +231,18 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
 //        make a new row in choose gender or send receive button
             View newRow = convertView;//msg.getGender()==0)
 
-            newRow = inflater.inflate(R.layout.search_list, parent, false);
+            newRow = inflater.inflate(R.layout.save_list, parent, false);
 
             CarListItem listCar = (CarListItem) getItem(position);
 
-            long modelID = listCar.getId();
+            int modelID = listCar.getModelId();
             String make = listCar.getMake();
             String name = listCar.getName();
 
             //finding what in the screen and set message into the new row
             TextView modelIDV = newRow.findViewById(R.id.modelID);
-            modelIDV.setText( "ID: " + modelID);
+            modelIDV.setText( "modelID: " + modelID);
+            Log.i("11111" ,String.valueOf(modelID));
             TextView modelName = (TextView)newRow.findViewById(R.id.modelName);
             modelName.setText("Model_Name: "+name);
             TextView makeName = (TextView)newRow.findViewById(R.id.makeName);

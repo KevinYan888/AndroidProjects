@@ -125,10 +125,12 @@ public class SearchActivity extends AppCompatActivity {
 
 //            Message newMsg = new Message(searchEdit.getText().toString(),false,id);
             Bundle dataToPass = new Bundle();
+            String source = "search";
+            dataToPass.putString("sourcePage", source);
             dataToPass.putString("make", list.get(pos).getMake());
             dataToPass.putString("name",list.get(pos).getName());
             dataToPass.putInt("position",pos);
-            dataToPass.putLong("id", list.get(pos).getId());
+            dataToPass.putInt("modelId", list.get(pos).getModelId());
 
             if(isTablet)
             {
@@ -216,7 +218,7 @@ public class SearchActivity extends AppCompatActivity {
     private class SearchCar extends AsyncTask< String, Integer, String>
     {
         String make, name;
-        long id;
+        int modelId;
         //Type3                Type1
         protected String doInBackground(String ... args)
         {
@@ -248,11 +250,11 @@ public class SearchActivity extends AppCompatActivity {
                 JSONArray object = results.getJSONArray("Results");
                 publishProgress(75);
                 for(int i=0;i<object.length();i++) {
-                    id = object.getJSONObject(i).getLong("Model_ID");
+                    modelId = object.getJSONObject(i).getInt("Model_ID");
                     make = object.getJSONObject(i).getString("Make_Name");
                     name = object.getJSONObject(i).getString("Model_Name");
 
-                    list.add(new CarListItem(name, make, id));
+                    list.add(new CarListItem(name, make, modelId));
                 }
                 publishProgress(100);
                 Log.e("MainActivity", list.get(object.length()-2).getName()) ;
@@ -354,13 +356,13 @@ public class SearchActivity extends AppCompatActivity {
 
             CarListItem listCar = (CarListItem) getItem(position);
 
-            long modelID = listCar.getId();
+            int modelID = listCar.getModelId();
             String make = listCar.getMake();
             String name = listCar.getName();
 
             //finding what in the screen and set message into the new row
             TextView modelIDV = newRow.findViewById(R.id.modelID);
-            modelIDV.setText( "ID: " + modelID);
+            modelIDV.setText( "modelID: " + modelID);
             TextView modelName = (TextView)newRow.findViewById(R.id.modelName);
             modelName.setText("Model_Name: "+name);
             TextView makeName = (TextView)newRow.findViewById(R.id.makeName);
