@@ -73,6 +73,12 @@ public class CarActivity extends AppCompatActivity {
 
         Toast.makeText(this, "manufacturerName: " + "input your favorite company", Toast.LENGTH_LONG).show();
 
+        //This gets the toolbar from the layout:
+        Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
+
+        //This loads the toolbar, which calls onCreateOptionsMenu below:
+        setSupportActionBar(tBar);
+
     }
 
     private void saveSharedPrefs(String stringToSave) {
@@ -114,6 +120,30 @@ public class CarActivity extends AppCompatActivity {
 
 	    */
         Toast.makeText(this, "manufacturerName: " + companyName, Toast.LENGTH_LONG).show();
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        String message = null;
+        //Look at your menu XML file. Put a case for every id in that file:
+        switch(item.getItemId())
+        {
+            //what to do when the menu item is selected:
+            case R.id.item1:
+                message = "You clicked item 1";
+                break;
+            case R.id.search_item:
+                message = "You clicked on the search";
+                break;
+            case R.id.help_item:
+                message = "You clicked on help";
+                break;
+            case R.id.mail:
+                message = "You clicked on mail";
+                break;
+        }
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         return true;
     }
 

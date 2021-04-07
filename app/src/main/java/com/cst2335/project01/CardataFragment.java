@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 
 /**
@@ -78,6 +80,7 @@ public class CardataFragment extends Fragment {
                 Intent goToSave = new Intent(getActivity(),SavingActivity.class);
                 startActivity(goToSave);
 //            Toast.makeText("save:","save car type in database",Toast.LENGTH_LONG).show();
+//                Snackbar snackbar = Snackbar.make("Save to database",Snackbar.LENGTH_LONG).show();
             });
 //        Button moving =extraStuff.findViewById((R.id.moving);
         }else if (source.equals("move")){
@@ -87,25 +90,18 @@ public class CardataFragment extends Fragment {
                         newRow.put(myOpener.COL_MODELID, modelId);
                         newRow.put(myOpener.COL_MAKE, make);
                         newRow.put(myOpener.COL_NAME, modelName);
-                        db.delete(myOpener.TABLE_NAME, NULL, new String[]{String.valueOf(modelId)});
+                        db.delete(myOpener.TABLE_NAME, myOpener.COL_MODELID+ "=?", new String[]{String.valueOf(modelId)});
 //                        list.remove(id);
 
-//                        Intent goToMove = new Intent(getActivity(), SavingActivity.class);
-//                        startActivity(goToMove);
+                        Intent goToMove = new Intent(getActivity(), SavingActivity.class);
+                        startActivity(goToMove);
+
+//                Snackbar snackbar = Snackbar.make("move from database",Snackbar.LENGTH_LONG).show();
             });
         }
 
 
-//        Button saving = extraStuff.findViewById(R.id.saving);
-
-
-
-
-
-
-
-
-
+//
 
         Button viewing = extraStuff.findViewById(R.id.viewing);
         viewing.setOnClickListener(vb-> {

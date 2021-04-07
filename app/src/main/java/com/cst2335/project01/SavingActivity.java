@@ -14,6 +14,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,10 +57,6 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saving);
 
-//        TextView id = findViewById(R.id.modelID);
-//        TextView name = findViewById(R.id.modelName);
-//        TextView make = findViewById(R.id.makeName);
-
         myAdapter = new MyListAdapter();
         ListView myList = (ListView) findViewById(R.id.sListView);
         myList.setAdapter(myAdapter = new MyListAdapter());
@@ -72,7 +70,6 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
         myList.setOnItemClickListener((adapter, view, pos, id) -> {
             //Create a bundle to pass data to the new fragment
 
-//            Message newMsg = new Message(searchEdit.getText().toString(),false,id);
             Bundle dataToPass = new Bundle();
             String source = "move";
             dataToPass.putString("sourcePage", source);
@@ -129,13 +126,13 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
                         myAdapter.notifyDataSetChanged();
 //                        if(carFragment!=null){
 //                            getSupportFragmentManager().beginTransaction().remove(carFragment).commit();
-//                            Snackbar skbar= Snackbar.make(view,"Remove"+list.get(position).getName(),Snackbar.LENGTH_LONG);
-//                            skbar.show();
+                            Snackbar skbar= Snackbar.make(view,"Remove"+list.get(position).getName(),Snackbar.LENGTH_LONG);
+                            skbar.show();
 //                        }
                     })
                     //What the delete button does:
                     .setNegativeButton("Delete", (click, arg) -> {
-//                    deleteContact(selectedContact); //remove the contact from database
+
                         list.remove(position); //remove the contact from contact list
                         myAdapter.notifyDataSetChanged(); //there is one less item so update the list
                     })
@@ -193,7 +190,7 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
             String name = results.getString(nameColIndex);
             String make = results.getString(makeColumnIndex);
             int idmodel = (int) results.getLong(idColIndex);
-            int id = (int) results.getLong(idColIndex+1);
+            int id = (int) results.getLong(idIndex+1);
             //add the new Contact to the array list:
             list.add(new CarListItem(name, make, idmodel));
         }
@@ -250,6 +247,32 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
 
             return newRow;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.project_menu, menu);
+
+//        MenuInflater inflater0 = getMenuInflater();
+//        inflater0.inflate(R.menu.lab08_nmenu, menu);
+
+	    /* slide 15 material:
+	    MenuItem searchItem = menu.findItem(R.id.search_item);
+        SearchView sView = (SearchView)searchItem.getActionView();
+        sView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }  });
+
+	    */
+
+        return true;
     }
 
 

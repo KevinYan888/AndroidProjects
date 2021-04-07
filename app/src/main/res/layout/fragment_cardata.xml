@@ -35,8 +35,8 @@
                 android:id="@+id/saving"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="save to database"/>
-
+                />
+<!--            android:text="@string/save_to_database"-->
 <!--            <Button-->
 <!--                android:id="@+id/moving"-->
 <!--                android:layout_width="match_parent"-->
@@ -49,19 +49,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
              android:layout_below="@+id/saving"
-                android:text="viewing"/>
+                android:text="@string/viewing"/>
             <Button
                 android:id="@+id/shopping"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/viewing"
-                android:text="shopping"/>
+                android:text="@string/shopping"/>
             <Button
                 android:id="@+id/hide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/shopping"
-                android:text="HIDE"/>
+                android:text="@string/HIDE"/>
         </RelativeLayout>
     </LinearLayout>
 

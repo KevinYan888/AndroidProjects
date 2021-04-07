@@ -15,6 +15,24 @@
     <string name="input_the_car_manufacturer_you_want">输入你想要汽车厂商的名字:</string>
     <string name="type_manufacturer_name_here">输入汽车厂商</string>
     <string name="search_your_car">搜索你要的汽车</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
+    <string name="open">打开</string>
+    <string name="close">关闭</string>
+    <string name="model_id">Model_ID</string>
+    <string name="model_name">型号</string>
+    <string name="make_name">制造商</string>
+
+    <string name="Trivia_API">小游戏 API</string>
+    <string name="Songster_search_page">歌曲港湾</string>
+    <string name="car_database">靓车集</string>
+    <string name="Soccer_games_API">足球之夜 API</string>
+
+    <string name="saving_to_database">存入数据库</string>
+
+    <string name="remove_from_database">从数据库删除</string>
+    <string name="viewing">查看</string>
+    <string name="shopping">购买</string>
+    <string name="HIDE">隐藏</string>
+
+
+
 </resources>

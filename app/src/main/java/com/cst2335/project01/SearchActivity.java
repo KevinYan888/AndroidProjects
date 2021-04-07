@@ -66,30 +66,6 @@ public class SearchActivity extends AppCompatActivity {
     public 	ListView lv;
     public ArrayList<CarListItem> list = new ArrayList<>();
 
-//    class  CarListItem {
-//        private String make, name;
-//        private Long id;
-//        public CarListItem(String n, String m, Long i)
-//        {
-//            name =n;
-//            make = m;
-//            id = i;
-//        }
-//
-//        public String getMake() {
-//            return  make;
-//        }
-//
-//        public String getName() {
-//            return name;
-//        }
-//
-//        public Long getId() {
-//            return id;
-//        }
-//    }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,7 +125,7 @@ public class SearchActivity extends AppCompatActivity {
                 startActivity(nextActivity); //make the transition
             }
         });
-//        loadDataFromDatabase();
+
 
         myList.setOnItemLongClickListener((parent, view, position, id) -> {
             Object selectedContact = list.get(position);
@@ -194,10 +170,7 @@ public class SearchActivity extends AppCompatActivity {
             return true;
         });
 
-//      ImageButton starIcon = findViewById(R.id.starIcon);
-//        starIcon.setOnClickListener(e->{
-//            loadDataFromDatabase();
-//        });
+
 
         searchBtn.setOnClickListener(e->{
             String  searchE = searchEdit.getText().toString();
@@ -209,6 +182,11 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+//        //This gets the toolbar from the layout:
+//        Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
+//
+//        //This loads the toolbar, which calls onCreateOptionsMenu below:
+//        setSupportActionBar(tBar);
 
 
     }
@@ -259,44 +237,7 @@ public class SearchActivity extends AppCompatActivity {
                 publishProgress(100);
                 Log.e("MainActivity", list.get(object.length()-2).getName()) ;
                 Log.e("MainActivity", "list contain: "+object.length()+" object") ;
-//                if((line = reader.readLine()) != null){
-//
-//                    //将字符串转换成jsonObject对象
-//                    JSONObject jsonObject = new JSONObject(String.valueOf(sb.append(line )));
-////获取到json数据中里的Results数组内容
-//                    JSONArray resultJsonArray = jsonObject.getJSONArray("Results");
-//                    Log.e("MainActivity", String.valueOf(resultJsonArray) ) ;
-////                    bianli
-//                    Map<String, Object> map=new HashMap<String, Object>();
-//                    for(int i=0;i<resultJsonArray.length();i++){
-//                        object = resultJsonArray.getJSONObject(i);
-//                        try {
-//                            //获取到json数据中的results数组里的内容Model_ID
-//                            Long id = object.getLong("Model_ID");
-//                            String make = object.getString("Make_Name");
-//                            //获取到json数据中的results数组里的内容Model_Name
-//                            String name = object.getString("Model_Name");
-//                            Log.e("123123132323232333",name) ;
-////                            //存入map
-////                            map.put("Model_ID", id);
-////                            Log.e("MainActivity", String.valueOf(id) ) ;
-////                            map.put("Model_Name", name);
-////                            Log.e("MainActivity", String.valueOf(name) ) ;
-//                            //add to ArrayList集合
-//
-//                            list.add(new CarListItem(name,make,id));
-////                            list.addAll((Collection<? extends Map<String, Object>>) map);
-//                            Log.e("MainActivity", list.get(1).getMake()) ;
-//                            Log.e("MainActivity", list.get(1).getName()) ;
-//                            Log.e("123123132323232333","gsdafuigfifgsuidf") ;
-//                            Log.e("MainActivity", String.valueOf(list.get(1).getId()));
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//
-//                    Log.e("MainActivity", String.valueOf(list) ) ;
-//                }
+
             }
             catch (Exception e)
             {
@@ -372,62 +313,36 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
-//    CardataFragment cf = new CardataFragment();
-    private void loadDataFromDatabase()
-    {
-        //get a database connection:
-//        MyOpener dbOpener = new MyOpener(cf.parentActivity);
-        MyOpener dbOpener = new MyOpener(this);
-        Log.e("1111111111","2222222222222222");
-        db = dbOpener.getWritableDatabase(); //This calls onCreate() if you've never built the table before, or onUpgrade if the version here is newer
-
-
-        // We want to get all of the columns. Look at MyOpener.java for the definitions:
-        String [] columns = {MyOpener.COL_ID, MyOpener.COL_MAKE, MyOpener.COL_NAME};
-        //query all the results from the database:
-        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
-
-        //Now the results object has rows of results that match the query.
-        //find the column indices:
-        int nameColIndex = results.getColumnIndex(MyOpener.COL_NAME);
-        int makeColumnIndex = results.getColumnIndex(MyOpener.COL_MAKE);
-        int idColIndex = results.getColumnIndex(MyOpener.COL_ID);
-
-        //iterate over the results, return true if there is a next item:
-        while(results.moveToNext())
-        {
-            String name = results.getString(nameColIndex);
-            String make = results.getString(makeColumnIndex);
-            long id = results.getLong(idColIndex);
-
-            //add the new Contact to the array list:
-//            list.add(new CarListItems(name, make, id));
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.project_menu, menu);
+        return true;
+    }
 
-//        MenuInflater inflater0 = getMenuInflater();
-//        inflater0.inflate(R.menu.lab08_nmenu, menu);
-
-	    /* slide 15 material:
-	    MenuItem searchItem = menu.findItem(R.id.search_item);
-        SearchView sView = (SearchView)searchItem.getActionView();
-        sView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-            }
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }  });
-
-	    */
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        String message = null;
+        //Look at your menu XML file. Put a case for every id in that file:
+        switch(item.getItemId())
+        {
+            //what to do when the menu item is selected:
+            case R.id.item1:
+                message = "You clicked item 1";
+                break;
+            case R.id.search_item:
+                message = "You clicked on the search";
+                break;
+            case R.id.help_item:
+                message = "You clicked on help";
+                break;
+            case R.id.mail:
+                message = "You clicked on mail";
+                break;
+        }
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         return true;
     }
 

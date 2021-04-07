@@ -7,29 +7,25 @@
     android:descendantFocusability="blocksDescendants"
     >
 
-    <TextView
-        android:id="@+id/dataId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="data_ID" />
+
     <TextView
         android:id="@+id/modelID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="Model_ID" />
+        android:text="@string/model_id" />
 
     <TextView
 
         android:id="@+id/modelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Model_Name" />
+        android:text="@string/model_name" />
     <TextView
         android:id="@+id/makeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Make_Name" />
+        android:text="@string/make_name" />
 
 
 </LinearLayout>
