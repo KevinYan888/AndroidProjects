@@ -14,12 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project01">
-        <activity android:name=".ShoppingActivity" />
-        <activity android:name=".ViewingActivity" />
-        <activity android:name=".SavingActivity" />
-        <activity android:name=".EmptyActivity" />
+        <activity android:name=".CarShoppingActivity" />
+        <activity android:name=".CarViewingActivity" />
+        <activity android:name=".CarSavingActivity" />
+        <activity android:name=".CarEmptyActivity" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".CarSearchActivity"
             android:label="@string/title_activity_search">
 
             <!-- <intent-filter> -->
