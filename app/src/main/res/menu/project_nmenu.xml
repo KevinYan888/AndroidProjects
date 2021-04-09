@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <item android:id="@+id/searchCar"
+        android:title="Search Page"
+        android:icon="@drawable/chat"
+        android:orderInCategory="75"
+        app:showAsAction="always"/>  <!-- This uses showAsAction=always, so look at icon= parameter -->
+
+
+    <item android:id="@+id/search_item"
+        android:orderInCategory="50"
+        app:actionViewClass="android.widget.SearchView"
+        android:icon="@android:drawable/ic_search_category_default"
+        app:showAsAction="always|collapseActionView"
+        android:title="search"/>    <!-- This uses showAsAction=always, so look at icon= parameter -->
+
+
+    <!-- This uses showAsAction=never, so look at title= parameter -->
+    <item android:id="@+id/main"
+        android:icon="@drawable/login"
+        android:orderInCategory="125"
+        app:showAsAction="always"
+        android:title="Go back to main page"/>
+
+
+</menu>
