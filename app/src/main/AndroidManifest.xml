@@ -33,7 +33,6 @@
         <activity android:name=".TriviaSettingActivity" />
         <activity android:name=".TriviaRankItemsActivity" />
 
-        <activity android:name=".SongActivity"></activity>
         <activity android:name=".SongThirdActivity"></activity>
 
 
@@ -50,6 +49,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SongActivity" />
         <activity android:name=".SongSecondActivity" />
     </application>
 
