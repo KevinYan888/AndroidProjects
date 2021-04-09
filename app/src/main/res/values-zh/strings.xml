@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Project01</string>
-    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_search">搜索</string>
 
 
 
@@ -9,15 +9,15 @@
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
-    <string name="hello_world">Hello Square World!</string>
+    <string name="hello_world">你好</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">空白</string>
     <string name="input_the_car_manufacturer_you_want">输入你想要汽车厂商的名字:</string>
     <string name="type_manufacturer_name_here">输入汽车厂商</string>
     <string name="search_your_car">搜索你要的汽车</string>
     <string name="open">打开</string>
     <string name="close">关闭</string>
-    <string name="model_id">Model_ID</string>
+    <string name="model_id">型号</string>
     <string name="model_name">型号</string>
     <string name="make_name">制造商</string>
 
@@ -58,7 +58,7 @@
     <string name="hard">困难</string>
     <string name="play_now">马上玩</string>
     <string name="go_back">返回</string>
-    <string name="textview">TextView</string>
+    <string name="textview">窗口</string>
     <string name="delete">删除</string>
     <string name="game_setting">游戏设置</string>
     <string name="how_many_questions">** 多少个问题?</string>
@@ -78,5 +78,6 @@
     <string name="state_true">正确</string>
     <string name="state_false">错误</string>
     <string name="state_unanswered">未回答</string>
+    <string name="save_to_favourite">添加喜好</string>
 
 </resources>
