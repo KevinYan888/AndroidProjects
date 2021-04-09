@@ -22,7 +22,7 @@ public class TriviaSettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting_trivia);
+        setContentView(R.layout.trivia_activity_setting);
 
         //Number of questions
         EditText textEditNumberQuestion = findViewById(R.id.textEditAmountOfQuestion);

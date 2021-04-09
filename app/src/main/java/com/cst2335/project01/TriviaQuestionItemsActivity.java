@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -63,7 +62,7 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_load_questions);
+        setContentView(R.layout.trivia_activity_load_questions);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -326,7 +325,7 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
 
 
             if(thisRow.getStrTypeOfQuestion().equals("boolean") ){
-                newView = inflater.inflate(R.layout.activity_trivia_boolean_question, viewGroup, false);
+                newView = inflater.inflate(R.layout.trivia_activity_boolean_question, viewGroup, false);
 
                 TextView nameQuestion = newView.findViewById(R.id.textNameOfQuestion);
                 nameQuestion.setText(position+1+". "+thisRow.getStrQuestion());
@@ -367,7 +366,7 @@ public class TriviaQuestionItemsActivity extends AppCompatActivity {
 
             }
             else {
-                newView = inflater.inflate(R.layout.activity_trivia_multiple_question, viewGroup, false);
+                newView = inflater.inflate(R.layout.trivia_activity_multiple_question, viewGroup, false);
 
                 TextView nameQuestion = newView.findViewById(R.id.textNameOfQuestion);
                 nameQuestion.setText(position+1+". "+thisRow.getStrQuestion());

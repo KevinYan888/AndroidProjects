@@ -26,7 +26,7 @@ public class TriviaRankItemsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trivia_rank_items);
+        setContentView(R.layout.trivia_activity_rank_items);
 
         //Get the fields from the screen:
         TextView textRankNumber = findViewById(R.id.rankNumber);

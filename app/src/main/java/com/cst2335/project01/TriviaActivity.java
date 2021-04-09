@@ -1,7 +1,6 @@
 package com.cst2335.project01;
 
 
-        import android.content.Context;
         import android.content.Intent;
         import android.os.Bundle;
         import android.view.Menu;
@@ -27,7 +26,7 @@ public class TriviaActivity extends AppCompatActivity implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trivia_toolbar);
+        setContentView(R.layout.trivia_activity_toolbar);
 
         //This gets the toolbar from the layout:
         Toolbar myToolBar = (Toolbar)findViewById(R.id.toolbar);
