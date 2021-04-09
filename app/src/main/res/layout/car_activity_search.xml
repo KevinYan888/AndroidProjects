@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".CarSearchActivity">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"/>
+
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:openDrawer="start">
+            <!-- THIS IS WHAT IS VISIBLE ON SCREEN:-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/sListView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="500dp"/>
+
+                <TextView
+                    android:textSize="20dp"
+                    android:id="@+id/searchText"
+                    android:text="manufacturer name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/sListView"/>
+
+                <EditText
+                    android:id="@+id/searchEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="company name"
+                    android:autofillHints=""
+                    android:layout_below="@+id/searchText"
+                    />
+
+                <Button
+                    android:id="@+id/searchBtn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="search"
+                    android:layout_below="@+id/searchText"
+                    android:layout_toRightOf="@+id/searchEdit"/>
+
+
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="hello drawer"/>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bnv"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu="@menu/project_menu"/>
+            </LinearLayout>
+
+            <!-- THIS IS WHAT IS WHAT POPS OUT FROM THE SIDE:-->
+            <com.google.android.material.navigation.NavigationView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:fitsSystemWindows="true"
+
+                app:menu="@menu/project_nmenu"
+                android:id="@+id/nav_view"/>
+
+        </androidx.drawerlayout.widget.DrawerLayout>
+    </LinearLayout>
+
+    </RelativeLayout>
