@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragmentLocation"
+    tools:context=".SongDetailFragment">
+
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar_song"/>
+
+
+
+
+        <TextView
+            android:id="@+id/row_head"
+            android:layout_below="@+id/toolbar_song"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="0dp"
+            android:text="Song detail: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/row_songId_f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/row_head"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:hint="SongID "
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/row_songTitle_f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/row_songId_f"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/row_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/row_songTitle_f"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text=" aritist:"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/row_artistId_f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/row_label"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/row_artistName_f"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/row_artistId_f"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="407dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="92dp"
+            android:text="Save to favourate" />
+
+        <Button
+            android:id="@+id/button_dele"
+            android:layout_width="399dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginBottom="135dp"
+            android:text="remove song from db"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/button_goto"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="135dp"
+            android:layout_marginBottom="38dp"
+            android:text="gotofavourate" />
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>

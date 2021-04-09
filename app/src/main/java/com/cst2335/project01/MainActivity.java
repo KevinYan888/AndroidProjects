@@ -27,14 +27,33 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goToTriviaActivity);
             }
         });
-//        btnSongster = findViewById(R.id.btnSongster);
-//        btnSongster.setOnClickListener(new View.OnClickListener(){
+        btnSongster = findViewById(R.id.btnSongster);
+        btnSongster.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+//            Intent goToChat = new Intent();
+//            goToChat.setClass(ProfileActivity.this, ChatRoomActivity.class);
+                Intent goToChat = new Intent(MainActivity.this, SongSecondActivity.class);
+                startActivity(goToChat);
+            }
+        });
+//        btnTrivia.setOnClickListener(new View.OnClickListener(){
 //            @Override
 //            public void onClick(View v) {
 ////            Intent goToChat = new Intent();
 ////            goToChat.setClass(ProfileActivity.this, ChatRoomActivity.class);
-//                Intent goToChat = new Intent(MainActivity.this, SongsterActivity.class);
+//                Intent goToChat = new Intent(MainActivity.this, TriviaActivity.class);
 //                startActivity(goToChat);
+//            }
+//        });
+//        btnSongster = findViewById(R.id.btnSongster);
+//       btnSongster.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//           public void onClick(View v) {
+//     //       Intent goToChat = new Intent();
+//     //       goToChat.setClass(MainActivity.this, SongActivity.class);
+//                Intent goToSong = new Intent(MainActivity.this, SongActivity.class);
+//                startActivity(goToSong);
 //            }
 //        });
         btnCar = findViewById(R.id.btnCar);

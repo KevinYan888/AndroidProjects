@@ -45,6 +45,18 @@
         <activity android:name=".TriviaQuestionItemsActivity" />
         <activity android:name=".TriviaSettingActivity" />
         <activity android:name=".TriviaRankItemsActivity" />
+        android:theme="@style/Theme.Project01"
+        android:usesCleartextTraffic="true"
+        android:windowSoftInputMode="stateVisible">
+        <activity android:name=".SongThirdActivity"></activity>
+
+
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,6 +64,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SongSecondActivity" />
     </application>
 
 </manifest>
