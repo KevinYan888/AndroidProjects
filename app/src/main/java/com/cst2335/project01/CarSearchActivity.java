@@ -1,15 +1,10 @@
 package com.cst2335.project01;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,8 +25,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -44,7 +37,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class SearchActivity extends AppCompatActivity {
+public class CarSearchActivity extends AppCompatActivity {
 //    ListView modelID;
 //    TextView modelID;
 //    TextView modelName;
@@ -70,7 +63,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.car_activity_search);
 
         Intent fromCarData = getIntent();
 //        fromMain.getStringExtra("typeEmail");
@@ -121,7 +114,7 @@ public class SearchActivity extends AppCompatActivity {
             }
             else //isPhone
             {
-                Intent nextActivity = new Intent(SearchActivity.this, EmptyActivity.class);
+                Intent nextActivity = new Intent(CarSearchActivity.this, CarEmptyActivity.class);
                 nextActivity.putExtras(dataToPass); //send data to next activity
 //look at the startActivity() call from step 7 and change the Intent object so that it will transition to EmptyActivity.class.
                 startActivity(nextActivity); //make the transition
@@ -131,7 +124,7 @@ public class SearchActivity extends AppCompatActivity {
 
         myList.setOnItemLongClickListener((parent, view, position, id) -> {
             Object selectedContact = list.get(position);
-            View extraStuff = getLayoutInflater().inflate(R.layout.search_list, null);
+            View extraStuff = getLayoutInflater().inflate(R.layout.car_search_list, null);
             //get the TextViews
             TextView modelName = extraStuff.findViewById(R.id.modelName);
             TextView makeName = extraStuff.findViewById(R.id.makeName);
@@ -296,7 +289,7 @@ public class SearchActivity extends AppCompatActivity {
 //        make a new row in choose gender or send receive button
             View newRow = convertView;//msg.getGender()==0)
 
-            newRow = inflater.inflate(R.layout.search_list, parent, false);
+            newRow = inflater.inflate(R.layout.car_search_list, parent, false);
 
             CarListItem listCar = (CarListItem) getItem(position);
 

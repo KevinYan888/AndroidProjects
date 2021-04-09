@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,9 +31,8 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 
 import static com.cst2335.project01.CarActivity.RESULT_CHAT;
-import static com.cst2335.project01.CarActivity.RESULT_LOGIN;
 
-public class SavingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener{
+public class CarSavingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener{
 
     private static final String NULL = null;
     SQLiteDatabase db;
@@ -55,7 +52,7 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_saving);
+        setContentView(R.layout.car_activity_saving);
 
         myAdapter = new MyListAdapter();
         ListView myList = (ListView) findViewById(R.id.sListView);
@@ -90,7 +87,7 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
             }
             else //isPhone
             {
-                Intent nextActivity = new Intent(SavingActivity.this, EmptyActivity.class);
+                Intent nextActivity = new Intent(CarSavingActivity.this, CarEmptyActivity.class);
                 nextActivity.putExtras(dataToPass); //send data to next activity
 //look at the startActivity() call from step 7 and change the Intent object so that it will transition to EmptyActivity.class.
                 startActivity(nextActivity); //make the transition
@@ -101,7 +98,7 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
 
         myList.setOnItemLongClickListener((parent, view, position, id) -> {
             Object selectedContact = list.get(position);
-            View extraStuff = getLayoutInflater().inflate(R.layout.save_list, null);
+            View extraStuff = getLayoutInflater().inflate(R.layout.car_save_list, null);
             //get the TextViews
             TextView modelName = extraStuff.findViewById(R.id.modelName);
             TextView makeName = extraStuff.findViewById(R.id.makeName);
@@ -169,22 +166,22 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
     {
         //get a database connection:
 //        MyOpener dbOpener = new MyOpener(cf.parentActivity);
-        MyOpener dbOpener = new MyOpener(this);
+        CarOpener dbOpener = new CarOpener(this);
         Log.e("saving","2222222222222222");
         db = dbOpener.getWritableDatabase(); //This calls onCreate() if you've never built the table before, or onUpgrade if the version here is newer
 
 
         // We want to get all of the columns. Look at MyOpener.java for the definitions:
-        String [] columns = {MyOpener.COL_ID, MyOpener.COL_MODELID, MyOpener.COL_MAKE, MyOpener.COL_NAME};
+        String [] columns = {CarOpener.COL_ID, CarOpener.COL_MODELID, CarOpener.COL_MAKE, CarOpener.COL_NAME};
         //query all the results from the database:
-        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+        Cursor results = db.query(false, CarOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
         //Now the results object has rows of results that match the query.
         //find the column indices:
-        int nameColIndex = results.getColumnIndex(MyOpener.COL_NAME);
-        int makeColumnIndex = results.getColumnIndex(MyOpener.COL_MAKE);
-        int idColIndex = results.getColumnIndex(MyOpener.COL_MODELID);
-        int idIndex = results.getColumnIndex(MyOpener.COL_ID);
+        int nameColIndex = results.getColumnIndex(CarOpener.COL_NAME);
+        int makeColumnIndex = results.getColumnIndex(CarOpener.COL_MAKE);
+        int idColIndex = results.getColumnIndex(CarOpener.COL_MODELID);
+        int idIndex = results.getColumnIndex(CarOpener.COL_ID);
         //iterate over the results, return true if there is a next item:
         while(results.moveToNext())
         {
@@ -229,7 +226,7 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
 //        make a new row in choose gender or send receive button
             View newRow = convertView;//msg.getGender()==0)
 
-            newRow = inflater.inflate(R.layout.save_list, parent, false);
+            newRow = inflater.inflate(R.layout.car_save_list, parent, false);
 
             CarListItem listCar = (CarListItem) getItem(position);
 
@@ -312,14 +309,14 @@ public class SavingActivity extends AppCompatActivity implements NavigationView.
             case R.id.main:
                 message = "You clicked on Main Page";
 
-                SavingActivity.this.setResult(RESULT_CHAT,intent);
-                Intent goToMain = new Intent(SavingActivity.this, MainActivity.class);
+                CarSavingActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToMain = new Intent(CarSavingActivity.this, MainActivity.class);
                 startActivity(goToMain);
                 break;
             case R.id.searchCar:
                 message = "You clicked on the search ";
-                SavingActivity.this.setResult(RESULT_WEATHER,intent);
-                Intent goToWeather = new Intent(SavingActivity.this,CarActivity.class);
+                CarSavingActivity.this.setResult(RESULT_WEATHER,intent);
+                Intent goToWeather = new Intent(CarSavingActivity.this,CarActivity.class);
                 startActivity(goToWeather);
                 break;
         }

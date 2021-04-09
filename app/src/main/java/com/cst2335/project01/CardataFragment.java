@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,7 +53,7 @@ public class CardataFragment extends Fragment {
         modelId = dataFromActivity.getInt("modelId");
         make = dataFromActivity.getString("make");
         modelName = dataFromActivity.getString("name");
-        View extraStuff = inflater.inflate(R.layout.fragment_cardata, container, false);
+        View extraStuff = inflater.inflate(R.layout.car_fragment, container, false);
 //        getLayoutInflater().inflate(R.layout.activity_empty, container, false);
         //get the TextViews
         TextView rowName = extraStuff.findViewById(R.id.modelName);
@@ -64,7 +63,7 @@ public class CardataFragment extends Fragment {
         TextView rowId = extraStuff.findViewById(R.id.modelID);
         rowId.setText("modelID= "+modelId);
 
-        MyOpener myOpener = new MyOpener(container.getContext());
+        CarOpener myOpener = new CarOpener(container.getContext());
         db = myOpener.getWritableDatabase();
 
 
@@ -79,7 +78,7 @@ public class CardataFragment extends Fragment {
                 newRow.put(myOpener.COL_MAKE, make);
                 newRow.put(myOpener.COL_NAME, modelName);
                 db.insert(myOpener.TABLE_NAME, NULL, newRow);
-                Intent goToSave = new Intent(getActivity(),SavingActivity.class);
+                Intent goToSave = new Intent(getActivity(), CarSavingActivity.class);
                 startActivity(goToSave);
 //            Toast.makeText(saving,"save car type in database",Toast.LENGTH_LONG).show();
 
@@ -97,7 +96,7 @@ public class CardataFragment extends Fragment {
                         db.delete(myOpener.TABLE_NAME, myOpener.COL_MODELID+ "=?", new String[]{String.valueOf(modelId)});
 //                        list.remove(id);
 
-                        Intent goToMove = new Intent(getActivity(), SavingActivity.class);
+                        Intent goToMove = new Intent(getActivity(), CarSavingActivity.class);
                         startActivity(goToMove);
 
             });
