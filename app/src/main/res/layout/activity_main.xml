@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnCar"
-        android:text="Soccer games API"/>
+        android:text="@string/Soccer_games_API"/>
 
 
 </RelativeLayout>

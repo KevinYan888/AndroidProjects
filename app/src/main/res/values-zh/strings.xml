@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">工程一</string>
+    <string name="show">看我的收藏</string>
+    <string name="cst2335_final_project">CST2335 最终工程</string>
+
+    <string name="soc_saveAsFav">收藏</string>
+    <string name="Soccer_games_API">足球游戏</string>
+    <string name="add_Rating">评价我们</string>
+    <!-- strings used by Soccer games api  -->
+    <string name="soccer_alert_title">你选择的游戏是:  </string>
+    <string name="soccer_alert_msg">你想去看详细的游戏吗?</string>
+    <string name="soccer_postive">是的</string>
+    <string name="soccer_toast_txt">你正在前往详细的页面</string>
+    <string name="soccer_negative">不要</string>
+    <string name="soccer_snackbar_msg">你将要停留这个页面</string>
+    <string name="soccer_dateTXT">游戏时间:</string>
+    <string name="soc_gohome">去游戏列表</string>
+    <string name="soc_goFav">去我的收藏列表</string>
+    <string name="soccer_neu">从我的收藏列表移除</string>
+    <string name="soc_delete_msg">成功删除</string>
+    <string name="gotourl">去网页b</string>
+    <string name="save">收藏</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="menuTxt">关于这个工程</string>
+    <string name="geo_toolbar">去工具栏</string>
+    <string name= "Rate">投票</string>
+    <string name="deezer_toolbar_str">\"\"</string>
+    <string name="soc_tbar_msg">这是足球游戏API,戴力写的</string>
+    <string name="soc_version_nav">版本 1.0</string>
+    <string name="soc_author_nav">作者: 戴力</string>
+    <string name="Instructions_for_this_app">这个APP的说明</string>
+    <string name="about_API">关于这个API</string>
+    <string name="author">作者：戴力</string>
+    <string name="Soccer_games_api">足球游戏</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="soc_instruction_title">"这是足球游戏api活动. "</string>
+    <string name="soc_intro_msg">你可以点击标题观看游戏细节，如果你对游戏感兴趣，你可以点击保存按钮来收藏游戏.</string>
+    <string name="soc_intro_positive">明白了</string>
+    <string name="rate_alert_msg">感谢您的使用，请指教</string>
+    <string name="rate_msg">请您给我们的产品做一些反馈</string>
+    <string name="soc_removeBtn">从收藏列表中删除</string>
+    <string name="soc_removeQue">确认删除信息</string>
+    <string name="soc_removeMsg">您确定要删除此记录吗？</string>
+    <string name="soc_removeToast">删除成功</string>
+    <string name="help">帮助</string>
+    <string name="btn_cancel_text">取消</string>
+</resources>

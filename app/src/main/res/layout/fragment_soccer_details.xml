@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:padding="5dp">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/soc_fragdetail_toolbar"></androidx.appcompat.widget.Toolbar>
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/fragtail_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="start">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gametitle"
+                />
+            <ImageView
+                android:layout_width="500dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:padding="2dp"
+                android:id="@+id/image" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:id="@+id/date"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="10dp"
+                android:textColor="#ff5e9cff"
+                android:id="@+id/url"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/description"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/soc_saveBtn"
+                android:text="@string/save"
+                android:gravity="bottom"/>
+           <Button
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="bottom"
+               android:text="@string/gotourl"
+               android:id="@+id/gotourl"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/soc_goFav"
+                android:text="@string/soc_goFav"
+                android:gravity="bottom"/>
+
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:id="@+id/pb2"/>
+        </LinearLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/soc_header_layout"
+            app:menu="@menu/soc_nav_menu"
+            android:id="@+id/soc_fragdetail_nav"/>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>
