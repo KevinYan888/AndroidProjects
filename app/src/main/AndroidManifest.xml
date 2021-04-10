@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cst2335.project01">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,6 +15,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project01">
+        <activity android:name=".CarShoppingActivity" />
+        <activity android:name=".CarViewingActivity" />
+        <activity android:name=".CarSavingActivity" />
+        <activity android:name=".CarEmptyActivity" />
+        <activity
+            android:name=".CarSearchActivity"
+            android:label="@string/title_activity_search">
+
+
+        </activity> <!-- <uses-library -->
+
+        <activity android:name=".CarActivity" />
+        <activity android:name=".TriviaActivity"></activity>
+        <activity android:name=".TriviaEmptyActivity" />
+        <activity android:name=".TriviaDetailFragment"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".TriviaQuestionItemsActivity" />
+        <activity android:name=".TriviaSettingActivity" />
+        <activity android:name=".TriviaRankItemsActivity" />
+
+        <activity android:name=".SongThirdActivity"></activity>
+
+
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +54,8 @@
         <activity android:name=".Favorite_Game_List" />
         <activity android:name=".GameDetailActivity" />
         <activity android:name=".GameList" />
+        <activity android:name=".SongActivity" />
+        <activity android:name=".SongSecondActivity" />
     </application>
 
 </manifest>

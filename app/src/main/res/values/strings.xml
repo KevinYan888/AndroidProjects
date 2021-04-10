@@ -48,4 +48,87 @@
         <string name="btn_cancel_text">Cancel</string>
 
 
+    <string name="unanswered">Unanswered</string>
+    <string name="navigationdrawer">NavigationDrawer</string>
+    <string name="click_items_go_to_the_other_activities">Click items go to the other Activities</string>
+    <string name="easy">easy</string>
+    <string name="rank_list">Rank List</string>
+    <string name="rank">Rank</string>
+    <string name="score">Score</string>
+    <string name="name">Name</string>
+    <string name="level">Level</string>
+    <string name="id">ID</string>
+    <string name="one_more_game">One more game</string>
+    <string name="exit">Exit</string>
+    <string name="difficulty_level">** Difficulty Level</string>
+    <string name="both">both</string>
+    <string name="multiple_choice">multiple choice</string>
+    <string name="true_false">true / false</string>
+    <string name="type_of_question">** Type of question?</string>
+    <string name="_1_1000">1-1000</string>
+    <string name="medium">medium</string>
+    <string name="hard">hard</string>
+    <string name="play_now">Play Now</string>
+    <string name="go_back">Go Back</string>
+    <string name="textview">TextView</string>
+    <string name="delete">Delete</string>
+    <string name="game_setting">Game setting</string>
+    <string name="how_many_questions">** How many questions?</string>
+    <string name="triviaactivity">TriviaActivity</string>
+    <string name="hongwen_li">Hongwen Li</string>
+    <string name="v1_0_3">V1.0.3</string>
+    <string name="incorrect">Incorrect:</string>
+    <string name="submit">Submit</string>
+    <string name="fished_all_of_questions_befor_you_submit">Fished all of questions befor you submit!</string>
+    <string name="total">Total:</string>
+    <string name="correct">Correct:</string>
+    <string name="car_database">car database</string>
+    <string name="View_Rank">View Rank</string>
+    <string name="Go_to_Play">Go to Play</string>
+    <string name="Help">Help</string>
+    <string name="Play_Now">PLAY NOW</string>
+    <string name="textUnanswered">Unanswered</string>
+    <string name="state_true">True</string>
+    <string name="state_false">False</string>
+    <string name="state_unanswered">Unanswered</string>
+
+    <string name="title_activity_search">SearchActivity</string>
+
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_the_car_manufacturer_you_want">input the car manufacturer you want:</string>
+    <string name="type_manufacturer_name_here">type manufacturer name here</string>
+    <string name="search_your_car">search your car</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="model_id">Model_ID</string>
+    <string name="model_name">Model_Name</string>
+    <string name="make_name">Make_Name</string>
+
+    <string name="Trivia_API">Trivia API</string>
+    <string name="Songster_search_page">Songster search page</string>
+    <string name="Soccer_games_API">Soccer games API</string>
+
+    <string name="saving_to_database">saving to database</string>
+    <string name="viewing">viewing</string>
+    <string name="shopping">shopping</string>
+    <string name="HIDE">HIDE</string>
+
+    <string name="remove_from_database">remove from  database</string>
+
+
+
+
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+
+    <!-- TODO: Remove or change this placeholder text -->
+
 </resources>

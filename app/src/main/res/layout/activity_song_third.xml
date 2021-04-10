@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/songroom"
+    tools:context=".SongActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".listvity">
+
+        <ImageView
+            android:id="@+id/imageViewSong"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:contentDescription="TODO" />
+
+
+        <ListView
+            android:id="@+id/Favourate_listViewSong"
+            android:layout_width="match_parent"
+            android:layout_height="648dp"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

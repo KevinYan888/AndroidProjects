@@ -20,40 +20,27 @@ public class MainActivity extends AppCompatActivity {
         Button btnCar;
         Button btnSoccer;
         btnTrivia = findViewById(R.id.btnTrivia);
-//        btnTrivia.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-////            Intent goToChat = new Intent();
-////            goToChat.setClass(ProfileActivity.this, ChatRoomActivity.class);
-//                Intent goToChat = new Intent(MainActivity.this, TriviaActivity.class);
-//                startActivity(goToChat);
-//            }
-//        });
-//        btnSongster = findViewById(R.id.btnSongster);
-//        btnSongster.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-////            Intent goToChat = new Intent();
-////            goToChat.setClass(ProfileActivity.this, ChatRoomActivity.class);
-//                Intent goToChat = new Intent(MainActivity.this, SongsterActivity.class);
-//                startActivity(goToChat);
-//            }
-//        });
-        btnCar = findViewById(R.id.btnCar);
-//        Intent goToCar = new Intent(MainActivity.this, CarActivity.class);
-//        btnCar.setOnClickListener( bt->{
-//            startActivity(goToCar);
-//        });
-
-        btnCar.setOnClickListener(new View.OnClickListener(){
+        btnTrivia.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-//            Intent goToChat = new Intent();
-//            goToChat.setClass(ProfileActivity.this, ChatRoomActivity.class);
-//                Intent goToCar = new Intent(MainActivity.this, CarActivity.class);
-//                startActivity(goToCar);
+                Intent goToTriviaActivity = new Intent(MainActivity.this, TriviaActivity.class);
+                startActivity(goToTriviaActivity);
             }
         });
+
+
+        btnSongster = findViewById(R.id.btnSongster);
+        Intent goToSong = new Intent(MainActivity.this, SongActivity.class);
+        btnSongster.setOnClickListener( bt->{
+            startActivity(goToSong);
+        });
+
+        btnCar = findViewById(R.id.btnCar);
+        Intent goToCar = new Intent(MainActivity.this, CarActivity.class);
+        btnCar.setOnClickListener( bt->{
+            startActivity(goToCar);
+        });
+
 
         btnSoccer = findViewById(R.id.btnSoccer);
         btnSoccer.setOnClickListener(new View.OnClickListener(){
