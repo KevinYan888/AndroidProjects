@@ -19,6 +19,8 @@
             android:id="@+id/imageViewSong"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:src="@drawable/headv1"
+            android:scaleType="fitXY"
             android:contentDescription="TODO" />
 
 
