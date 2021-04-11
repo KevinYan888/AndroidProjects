@@ -42,16 +42,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-//        btnSoccer = findViewById(R.id.btnSoccer);
-//        btnSoccer.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-////            Intent goToChat = new Intent();
-////            goToChat.setClass(ProfileActivity.this, ChatRoomActivity.class);
-//                Intent goToChat = new Intent(MainActivity.this, SoccerActivity.class);
-//                startActivity(goToChat);
-//            }
-//        });
+        btnSoccer = findViewById(R.id.btnSoccer);
+        btnSoccer.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+//            Intent goToChat = new Intent();
+//            goToChat.setClass(MainActivity.this, ChatRoomActivity.class);
+                Intent goToChat = new Intent(MainActivity.this, GameList.class);
+                startActivity(goToChat);
+
+            }
+        });
 
     }
 }
