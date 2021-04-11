@@ -86,7 +86,7 @@ public class GameList extends AppCompatActivity implements NavigationView.OnNavi
         boolean isTablet = findViewById(R.id.soc_fragmentLocation) != null;
         if(!isTablet){
             Toolbar tBar = findViewById(R.id.soc_list_toolbar);
-        //    setSupportActionBar(tBar);
+            setSupportActionBar(tBar);
             DrawerLayout drawer = findViewById(R.id.list_drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
                     drawer, tBar, R.string.open, R.string.close);
@@ -185,17 +185,25 @@ public class GameList extends AppCompatActivity implements NavigationView.OnNavi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.item1:
-
+                Intent goToCar = new Intent(GameList.this, CarActivity.class);
+                startActivity(goToCar);
                 break;
-            case R.id.item2:
 
+            case R.id.item2:
+                Intent goToTrival = new Intent(GameList.this, TriviaActivity.class);
+                startActivity(goToTrival);
                 break;
             case R.id.item3:
-
+                Intent goToSong = new Intent(GameList.this, SongActivity.class);
+                startActivity(goToSong);
                 break;
             case R.id.item4:
                 Toast.makeText(this, R.string.soc_tbar_msg, Toast.LENGTH_LONG).show();
                 break;
+//            case R.id.item5:
+//                Intent gotofav = new Intent(GameList.this, Favorite_Game_List.class);
+//                startActivity(gotofav);
+//                break;
         }
 
         return true;
@@ -235,6 +243,10 @@ public class GameList extends AppCompatActivity implements NavigationView.OnNavi
                         })
                         .setNegativeButton("cancel", null)
                         .show();
+                break;
+            case R.id.fav:
+                Intent gotofav = new Intent(GameList.this, Favorite_Game_List.class);
+                startActivity(gotofav);
                 break;
         }
 

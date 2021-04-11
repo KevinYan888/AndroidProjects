@@ -16,8 +16,5 @@
         android:icon="@drawable/rate"
         android:orderInCategory="150"
         app:showAsAction="always"/>
-    <item android:id="@+id/fav"
-        android:title="@string/fav"
-        android:icon="@drawable/heart"
-        />
+
 </menu>

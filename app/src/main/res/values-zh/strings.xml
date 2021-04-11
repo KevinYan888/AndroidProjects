@@ -3,7 +3,6 @@
     <string name="app_name">工程一</string>
     <string name="show">看我的收藏</string>
     <string name="cst2335_final_project">CST2335 最终工程</string>
-
     <string name="soc_saveAsFav">收藏</string>
     <string name="Soccer_games_API">足球游戏</string>
     <string name="add_Rating">评价我们</string>
@@ -21,7 +20,7 @@
     <string name="soc_delete_msg">成功删除</string>
     <string name="gotourl">去网页b</string>
     <string name="save">收藏</string>
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
     <string name="menuTxt">关于这个工程</string>
     <string name="geo_toolbar">去工具栏</string>
     <string name= "Rate">投票</string>
@@ -33,8 +32,7 @@
     <string name="about_API">关于这个API</string>
     <string name="author">作者：戴力</string>
     <string name="Soccer_games_api">足球游戏</string>
-    <string name="open">open</string>
-    <string name="close">close</string>
+
     <string name="soc_instruction_title">"这是足球游戏api活动. "</string>
     <string name="soc_intro_msg">你可以点击标题观看游戏细节，如果你对游戏感兴趣，你可以点击保存按钮来收藏游戏.</string>
     <string name="soc_intro_positive">明白了</string>
@@ -46,8 +44,7 @@
     <string name="soc_removeToast">删除成功</string>
     <string name="help">帮助</string>
     <string name="btn_cancel_text">取消</string>
-<resources>
-    <string name="app_name">Project01</string>
+
     <string name="title_activity_search">搜索</string>
 
 
@@ -71,7 +68,7 @@
 
     <string name="Trivia_API">小游戏 API</string>
     <string name="Songster_search_page">歌曲港湾</string>
-    <string name="Soccer_games_API">足球之夜 API</string>
+
 
     <string name="saving_to_database">存入数据库</string>
 
@@ -127,5 +124,6 @@
     <string name="state_false">错误</string>
     <string name="state_unanswered">未回答</string>
     <string name="save_to_favourite">添加喜好</string>
-
+    <string name="fav">去我的收藏</string>
+    <string name="goback">返回我的之列表</string>
 </resources>

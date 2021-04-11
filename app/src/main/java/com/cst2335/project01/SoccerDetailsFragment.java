@@ -90,12 +90,11 @@ public class SoccerDetailsFragment extends Fragment implements NavigationView.On
         dataFromActivity = getArguments();
         View result = inflater.inflate(R.layout.fragment_soccer_details, container, false);
         Toolbar tbar = result.findViewById(R.id.soc_fragdetail_toolbar);
-//        ((AppCompatActivity) getActivity()).setSupportActionBar(tbar);
-
+       ((AppCompatActivity) getActivity()).setSupportActionBar(tbar);
 
         DrawerLayout drawer = result.findViewById(R.id.fragtail_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this.getActivity(),
-                drawer, tbar, R.string.open, R.string.close);
+                drawer,tbar,  R.string.open, R.string.close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = result.findViewById(R.id.soc_fragdetail_nav);
@@ -195,7 +194,7 @@ public class SoccerDetailsFragment extends Fragment implements NavigationView.On
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.toolbar_menu, menu);
+        inflater.inflate(R.menu.fav_tool_bar, menu);
 
     }
 
@@ -204,28 +203,30 @@ public class SoccerDetailsFragment extends Fragment implements NavigationView.On
      * this method is used to finish different function when user
      * selected different menu on toolbar
      *
-     * @param item
+     * @param
      * @return
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1:
-
+                Intent goTohome = new Intent(this.getContext(), GameList.class);
+                startActivity(goTohome);
                 break;
+
             case R.id.item2:
 
-                break;
-            case R.id.item3:
-
-                break;
-            case R.id.item4:
                 Toast.makeText(this.getContext(), R.string.soc_tbar_msg, Toast.LENGTH_LONG).show();
                 break;
-        }
-
-        return true;
+//
+//            case R.id.item5:
+//                Intent gotofav = new Intent(SoccerDetailsFragment.this.class);
+//                startActivity(gotofav);
+//
     }
+
+       return true;
+   }
 
     @Override
     public void onAttach(Context context) {
@@ -267,6 +268,11 @@ public class SoccerDetailsFragment extends Fragment implements NavigationView.On
                         .setNegativeButton("cancel", null)
                         .show();
                   break;
+            case R.id.fav:
+                Intent goTofav = new Intent(this.getContext(), Favorite_Game_List.class);
+                startActivity(goTofav);
+                break;
+
         }
         //DrawerLayout drawerLayout = findViewById(R.id.list_drawer_layout);
         //drawerLayout.closeDrawer(GravityCompat.START);

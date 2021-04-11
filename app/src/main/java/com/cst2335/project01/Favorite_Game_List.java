@@ -67,7 +67,7 @@ public class Favorite_Game_List extends AppCompatActivity implements NavigationV
         boolean isTablet = findViewById(R.id.soc_fav_fragmentLocation) != null;
         if(!isTablet){
             Toolbar tBar = findViewById(R.id.soc_favlist_toolbar);
-//            setSupportActionBar(tBar);
+           setSupportActionBar(tBar);
             DrawerLayout drawer = findViewById(R.id.favlist_drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
                     drawer, tBar, R.string.open, R.string.close);
@@ -144,7 +144,6 @@ public class Favorite_Game_List extends AppCompatActivity implements NavigationV
                     Snackbar.make(myList, R.string.soc_delete_msg, Snackbar.LENGTH_SHORT).show();
                    myAdapter.notifyDataSetChanged();
                 }).create().show();
-
             }
         }));
         goToListbtn = findViewById(R.id.soc_gohome_btn);
@@ -163,7 +162,7 @@ public class Favorite_Game_List extends AppCompatActivity implements NavigationV
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar_menu, menu);
+        inflater.inflate(R.menu.fav_tool_bar, menu);
         return true;
     }
 
@@ -171,17 +170,15 @@ public class Favorite_Game_List extends AppCompatActivity implements NavigationV
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.item1:
-
+                Intent goTohome = new Intent(Favorite_Game_List.this, GameList.class);
+                startActivity(goTohome);
                 break;
+
+
             case R.id.item2:
-
-                break;
-            case R.id.item3:
-
-                break;
-            case R.id.item4:
                 Toast.makeText(this, R.string.soc_tbar_msg, Toast.LENGTH_LONG).show();
                 break;
+
         }
 
         return true;
@@ -213,10 +210,13 @@ public class Favorite_Game_List extends AppCompatActivity implements NavigationV
                         })
                         .setNegativeButton("cancel", null)
                         .show();
+            case R.id.nfav:
+                Intent gotohome = new Intent(Favorite_Game_List.this, GameList.class);
+                startActivity(gotohome);
                 break;
         }
 
-        DrawerLayout drawerLayout = findViewById(R.id.list_drawer_layout);
+        DrawerLayout drawerLayout = findViewById(R.id.favlist_drawer_layout);
         drawerLayout.closeDrawer(GravityCompat.START);
         return false;
 
