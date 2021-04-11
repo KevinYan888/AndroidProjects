@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/item1"
+        android:title="Trivia API "
+        android:icon="@drawable/idea"
+        android:orderInCategory="50"
+        app:showAsAction="always"/>  <!-- This uses showAsAction=always, so look at icon= parameter -->
+
+    <item android:id="@+id/item2"
+        android:title="Car database "
+        android:icon="@drawable/car"
+        android:orderInCategory="100"
+        app:showAsAction="always"/>
+
+    <item   android:id="@+id/item3"
+        android:title="Songster search page"
+        android:icon="@drawable/smusic"
+        android:orderInCategory="150"
+        app:showAsAction="always"/>
+
+<!--    <item android:id="@+id/item5"-->
+<!--        android:title="fav"-->
+<!--        android:icon="@drawable/heart"-->
+<!--        android:orderInCategory="200"-->
+<!--        app:showAsAction="always"/>-->
+
+    <item       android:id="@+id/item4"
+        android:title="@string/menuTxt"
+        app:showAsAction="never"
+        android:orderInCategory="400"/> <!-- This uses showAsAction=never, so look at title= parameter -->
+
+</menu>

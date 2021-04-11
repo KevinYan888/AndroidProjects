@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TriviaSettingActivity">
+
+    <TextView
+        android:id="@+id/textGameSetting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/game_setting"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
+    <TextView
+        android:layout_below="@+id/textGameSetting"
+        android:id="@+id/textEpt"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+
+    <TextView
+        android:layout_below="@+id/textEpt"
+        android:id="@+id/textNumberQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/how_many_questions"
+        android:textSize="20sp"
+        android:textColor="@color/purple_700" />
+    <TextView
+        android:layout_below="@id/textNumberQuestion"
+        android:id="@+id/textEpt2"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+
+    <EditText
+        android:layout_below="@+id/textEpt2"
+        android:id="@+id/textEditAmountOfQuestion"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_border"
+        android:hint="@string/_1_1000"
+        android:text=""
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="34dp"
+        android:autofillHints=""
+        android:inputType="" />
+
+    <TextView
+        android:layout_below="@+id/textEditAmountOfQuestion"
+        android:id="@+id/textEpt3"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+
+    <RadioGroup
+        android:layout_below="@+id/textEpt3"
+        android:id="@+id/radioGroupType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="164dp">
+
+        <TextView
+            android:id="@+id/textTypeOfQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/type_of_question"
+            android:textSize="20sp"
+            android:textColor="@color/purple_700" />
+
+        <RadioButton
+            android:id="@+id/rbtnTypeTrue"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:text="@string/true_false"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnTypeMultiple"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:text="@string/multiple_choice"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnTypeBoth"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:text="@string/both"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_below="@+id/radioGroupType"
+        android:id="@+id/radioGroupDifficulty"
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:text="@string/difficulty_level"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="164dp">
+
+        <TextView
+            android:id="@+id/textDifficulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/difficulty_level"
+            android:textSize="20sp"
+            android:textColor="@color/purple_700" />
+
+        <RadioButton
+            android:id="@+id/rbtnDifficultyEasy"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:text="@string/easy"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnDifficultyMedium"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:text="@string/medium"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnDifficultyHard"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:text="@string/hard"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+    </RadioGroup>
+
+    <Button
+        android:layout_below="@+id/radioGroupDifficulty"
+        android:id="@+id/btnPlayNow"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/play_now" />
+
+    <Button
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btnPlayNow"
+        android:id="@+id/btnGoBack"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/go_back" />
+
+
+</RelativeLayout>

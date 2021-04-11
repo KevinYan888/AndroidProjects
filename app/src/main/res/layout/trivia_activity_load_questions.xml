@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".TriviaSettingActivity">
+
+
+    <TextView
+        android:id="@+id/titleQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="@string/fished_all_of_questions_befor_you_submit"
+        android:gravity="start"
+        android:layout_toEndOf="@+id/totalQuestion"
+        android:textSize="28sp"
+      android:textStyle="bold"
+        android:textColor="@color/purple_700" />
+    <TextView
+        android:id="@+id/totalQuestion"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:gravity="start"
+        android:text="@string/total"
+        android:textSize="15sp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
+    <TextView
+        android:id="@+id/unansweredQuestion"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:gravity="start"
+        android:text="@string/textUnanswered"
+        android:layout_below="@+id/totalQuestion"
+        android:textSize="15sp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
+    <TextView
+        android:id="@+id/getPointQuestion"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:gravity="start"
+        android:text="@string/correct"
+        android:layout_below="@+id/unansweredQuestion"
+        android:textSize="15sp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
+    <TextView
+        android:id="@+id/losePointQuestion"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:gravity="start"
+        android:text="@string/incorrect"
+        android:layout_below="@+id/getPointQuestion"
+        android:textSize="15sp"
+        android:textColorHighlight="#ff5e9cff"
+        android:textColor="@color/purple_700" />
+
+    <ProgressBar
+        android:id="@+id/proBar"
+        android:layout_below="@+id/losePointQuestion"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/proBar"
+        android:layout_above="@+id/btnGoBack"
+        android:id="@+id/refresher">
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="583dp"
+        android:layout_below="@+id/proBar"
+        android:layout_above="@+id/btnGoBack"
+
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="284dp" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/submit" />
+
+    <Button
+        android:id="@+id/btnGoBack"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/go_back" />
+    </RelativeLayout>

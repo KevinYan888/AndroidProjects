@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants" >
+<!-- The ListView Listener doesn't work if no above attribution -->
+
+    <TextView
+        android:id="@+id/textStateOfQuestion"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="unanswered"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="86dp"
+        android:layout_alignParentTop="true"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupMulti"
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/textStateOfQuestion"
+
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="164dp">
+
+        <TextView
+            android:id="@+id/textNameOfQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/purple_700" />
+
+        <RadioButton
+            android:id="@+id/rbtnMult1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text=""
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnMult2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text=""
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnMult3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text=""
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+        <RadioButton
+            android:id="@+id/rbtnMult4"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text=""
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="300dp" />
+
+    </RadioGroup>
+</RelativeLayout>

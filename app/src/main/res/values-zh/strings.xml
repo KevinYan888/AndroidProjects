@@ -1,6 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Project01</string>
-    <string name="title_activity_search">SearchActivity</string>
+    <string name="app_name">工程一</string>
+    <string name="show">看我的收藏</string>
+    <string name="cst2335_final_project">CST2335 最终工程</string>
+    <string name="soc_saveAsFav">收藏</string>
+    <string name="Soccer_games_API">足球游戏</string>
+    <string name="add_Rating">评价我们</string>
+    <!-- strings used by Soccer games api  -->
+    <string name="soccer_alert_title">你选择的游戏是:  </string>
+    <string name="soccer_alert_msg">你想去看详细的游戏吗?</string>
+    <string name="soccer_postive">是的</string>
+    <string name="soccer_toast_txt">你正在前往详细的页面</string>
+    <string name="soccer_negative">不要</string>
+    <string name="soccer_snackbar_msg">你将要停留这个页面</string>
+    <string name="soccer_dateTXT">游戏时间:</string>
+    <string name="soc_gohome">去游戏列表</string>
+    <string name="soc_goFav">去我的收藏列表</string>
+    <string name="soccer_neu">从我的收藏列表移除</string>
+    <string name="soc_delete_msg">成功删除</string>
+    <string name="gotourl">去网页b</string>
+    <string name="save">收藏</string>
+
+    <string name="menuTxt">关于这个工程</string>
+    <string name="geo_toolbar">去工具栏</string>
+    <string name= "Rate">投票</string>
+    <string name="deezer_toolbar_str">\"\"</string>
+    <string name="soc_tbar_msg">这是足球游戏API,戴力写的</string>
+    <string name="soc_version_nav">版本 1.0</string>
+    <string name="soc_author_nav">作者: 戴力</string>
+    <string name="Instructions_for_this_app">这个APP的说明</string>
+    <string name="about_API">关于这个API</string>
+    <string name="author">作者：戴力</string>
+    <string name="Soccer_games_api">足球游戏</string>
+
+    <string name="soc_instruction_title">"这是足球游戏api活动. "</string>
+    <string name="soc_intro_msg">你可以点击标题观看游戏细节，如果你对游戏感兴趣，你可以点击保存按钮来收藏游戏.</string>
+    <string name="soc_intro_positive">明白了</string>
+    <string name="rate_alert_msg">感谢您的使用，请指教</string>
+    <string name="rate_msg">请您给我们的产品做一些反馈</string>
+    <string name="soc_removeBtn">从收藏列表中删除</string>
+    <string name="soc_removeQue">确认删除信息</string>
+    <string name="soc_removeMsg">您确定要删除此记录吗？</string>
+    <string name="soc_removeToast">删除成功</string>
+    <string name="help">帮助</string>
+    <string name="btn_cancel_text">取消</string>
+
+    <string name="title_activity_search">搜索</string>
 
 
 
@@ -9,22 +54,21 @@
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
-    <string name="hello_world">Hello Square World!</string>
+    <string name="hello_world">你好</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">空白</string>
     <string name="input_the_car_manufacturer_you_want">输入你想要汽车厂商的名字:</string>
     <string name="type_manufacturer_name_here">输入汽车厂商</string>
     <string name="search_your_car">搜索你要的汽车</string>
     <string name="open">打开</string>
     <string name="close">关闭</string>
-    <string name="model_id">Model_ID</string>
+    <string name="model_id">型号</string>
     <string name="model_name">型号</string>
     <string name="make_name">制造商</string>
 
     <string name="Trivia_API">小游戏 API</string>
     <string name="Songster_search_page">歌曲港湾</string>
-    <string name="car_database">靓车集</string>
-    <string name="Soccer_games_API">足球之夜 API</string>
+
 
     <string name="saving_to_database">存入数据库</string>
 
@@ -34,5 +78,52 @@
     <string name="HIDE">隐藏</string>
 
 
+    <string name="unanswered">未回答</string>
 
+    <string name="navigationdrawer">NavigationDrawer</string>
+    <string name="v1_0_3">版本号：1.0.3</string>
+    <string name="click_items_go_to_the_other_activities">点击条目进入另一个活动</string>
+    <string name="easy">容易</string>
+    <string name="rank_list">排行榜</string>
+    <string name="rank">排名</string>
+    <string name="score">分数</string>
+    <string name="name">名字</string>
+    <string name="level">等级</string>
+    <string name="id">编号</string>
+    <string name="one_more_game">再玩一局</string>
+    <string name="exit">退出</string>
+    <string name="difficulty_level">** 难易等级</string>
+
+    <string name="both">混合</string>
+    <string name="multiple_choice">多项选择</string>
+    <string name="true_false">对 / 错</string>
+    <string name="type_of_question">** 问题类型?</string>
+    <string name="_1_1000">1-1000</string>
+    <string name="medium">中等</string>
+    <string name="hard">困难</string>
+    <string name="play_now">马上玩</string>
+    <string name="go_back">返回</string>
+    <string name="textview">窗口</string>
+    <string name="delete">删除</string>
+    <string name="game_setting">游戏设置</string>
+    <string name="how_many_questions">** 多少个问题?</string>
+    <string name="triviaactivity">知识游戏</string>
+    <string name="hongwen_li">李洪文</string>
+    <string name="incorrect">答错:</string>
+    <string name="submit">提交</string>
+    <string name="fished_all_of_questions_befor_you_submit">答完所有才能提交!</string>
+    <string name="total">总计:</string>
+    <string name="correct">正确:</string>
+    <string name="View_Rank">查看排行榜</string>
+    <string name="car_database">汽车数据库</string>
+    <string name="Go_to_Play">马上玩</string>
+    <string name="Help">帮助</string>
+    <string name="Play_Now">马上玩</string>
+    <string name="textUnanswered">未回答</string>
+    <string name="state_true">正确</string>
+    <string name="state_false">错误</string>
+    <string name="state_unanswered">未回答</string>
+    <string name="save_to_favourite">添加喜好</string>
+    <string name="fav">去我的收藏</string>
+    <string name="goback">返回我的之列表</string>
 </resources>

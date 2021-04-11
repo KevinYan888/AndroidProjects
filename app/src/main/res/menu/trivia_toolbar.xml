@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/item1"
+        android:title="@string/View_Rank"
+        android:icon="@drawable/toolbar1"
+        android:orderInCategory="10"
+        app:showAsAction="always"/>  <!-- This uses showAsAction=always, so look at icon= parameter -->
+
+
+    <item android:id="@+id/item2"
+        android:orderInCategory="50"
+        android:icon="@drawable/toolbar2"
+        app:showAsAction="always"
+        android:title="@string/Go_to_Play"/>    <!-- This uses showAsAction=always, so look at icon= parameter -->
+
+
+    <item android:id="@+id/item3"
+        android:icon="@drawable/toolbar3"
+        android:title="@string/Help"
+        app:showAsAction="never"
+        android:orderInCategory="400"/> <!-- This uses showAsAction=never, so look at title= parameter -->
+
+    <!--    <item android:id="@+id/mail"-->
+    <!--        android:icon="@drawable/mail"-->
+    <!--        android:orderInCategory="75"-->
+    <!--        app:showAsAction="always"-->
+    <!--        android:title="Not used, since showAsAction=always"/>-->
+    <!--    <item android:id="@+id/search_item"-->
+    <!--        android:orderInCategory="50"-->
+    <!--        app:actionViewClass="android.widget.SearchView"-->
+    <!--        android:icon="@drawable/Toolbar2"-->
+    <!--        app:showAsAction="always|collapseActionView"-->
+    <!--        android:title="Choice 2"/>    &lt;!&ndash; This uses showAsAction=always, so look at icon= parameter &ndash;&gt;-->
+
+</menu>
