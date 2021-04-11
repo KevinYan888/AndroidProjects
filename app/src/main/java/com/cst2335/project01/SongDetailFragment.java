@@ -176,10 +176,11 @@ public class SongDetailFragment extends Fragment {
                 //  msg = "You clicked on backtosearch page";
                 break;
 
-
-
-
-
+            case R.id.main_item:
+                Intent mainhome = new Intent( getContext(), MainActivity.class);
+                startActivity(mainhome);
+                //  msg = "You clicked on backtosearch page";
+                break;
         }
        // makeToastnotice(msg);
 
