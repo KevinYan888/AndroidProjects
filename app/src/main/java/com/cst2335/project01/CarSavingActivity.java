@@ -282,16 +282,31 @@ public class CarSavingActivity extends AppCompatActivity implements NavigationVi
         {
             //what to do when the menu item is selected:
             case R.id.item1:
-                message = "You clicked item 1";
+                message = "You clicked Trivia page";
+                CarSavingActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToTrivia = new Intent(CarSavingActivity.this, TriviaActivity.class);
+                startActivity(goToTrivia);
                 break;
             case R.id.search_item:
-                message = "You clicked on the search";
+                message = "You clicked on the song page";
+                CarSavingActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToSong = new Intent(CarSavingActivity.this,SongActivity.class);
+                startActivity(goToSong);
+                break;
+            case R.id.search_car:
+                message = "You clicked on the car page";
+                CarSavingActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToCar = new Intent(CarSavingActivity.this, CarActivity.class);
+                startActivity(goToCar);
                 break;
             case R.id.help_item:
                 message = "You clicked on help";
                 break;
             case R.id.mail:
-                message = "You clicked on mail";
+                message = "You clicked on soccer page";
+                CarSavingActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToSoccer = new Intent(CarSavingActivity.this, GameList.class);
+                startActivity(goToSoccer);
                 break;
         }
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();

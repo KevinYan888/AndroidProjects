@@ -22,6 +22,7 @@ public class CarActivity extends AppCompatActivity {
 
     EditText companyName;
 
+    Intent intent = new Intent();
 
 
     public static final int RESULT_CHAT =100;
@@ -121,16 +122,31 @@ public class CarActivity extends AppCompatActivity {
         {
             //what to do when the menu item is selected:
             case R.id.item1:
-                message = "You clicked item 1";
+                message = "You clicked Trivia page";
+                CarActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToTrivia = new Intent(CarActivity.this, TriviaActivity.class);
+                startActivity(goToTrivia);
                 break;
             case R.id.search_item:
-                message = "You clicked on the search";
+                message = "You clicked on the song page";
+                CarActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToSong = new Intent(CarActivity.this,SongActivity.class);
+                startActivity(goToSong);
+                break;
+            case R.id.search_car:
+                message = "You clicked on the car page";
+                CarActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToCar = new Intent(CarActivity.this, CarActivity.class);
+                startActivity(goToCar);
                 break;
             case R.id.help_item:
                 message = "You clicked on help";
                 break;
             case R.id.mail:
-                message = "You clicked on mail";
+                message = "You clicked on soccer page";
+                CarActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToSoccer = new Intent(CarActivity.this, GameList.class);
+                startActivity(goToSoccer);
                 break;
         }
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();

@@ -37,6 +37,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.cst2335.project01.CarActivity.RESULT_CHAT;
+
 public class CarSearchActivity extends AppCompatActivity {
 //    ListView modelID;
 //    TextView modelID;
@@ -326,16 +328,31 @@ public class CarSearchActivity extends AppCompatActivity {
         {
             //what to do when the menu item is selected:
             case R.id.item1:
-                message = "You clicked item 1";
+                message = "You clicked Trivia page";
+                CarSearchActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToTrivia = new Intent(CarSearchActivity.this, TriviaActivity.class);
+                startActivity(goToTrivia);
                 break;
             case R.id.search_item:
-                message = "You clicked on the search";
+                message = "You clicked on the song page";
+                CarSearchActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToSong = new Intent(CarSearchActivity.this,SongActivity.class);
+                startActivity(goToSong);
+                break;
+            case R.id.search_car:
+                message = "You clicked on the car page";
+                CarSearchActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToCar = new Intent(CarSearchActivity.this, CarActivity.class);
+                startActivity(goToCar);
                 break;
             case R.id.help_item:
                 message = "You clicked on help";
                 break;
             case R.id.mail:
-                message = "You clicked on mail";
+                message = "You clicked on soccer page";
+                CarSearchActivity.this.setResult(RESULT_CHAT,intent);
+                Intent goToSoccer = new Intent(CarSearchActivity.this, GameList.class);
+                startActivity(goToSoccer);
                 break;
         }
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
