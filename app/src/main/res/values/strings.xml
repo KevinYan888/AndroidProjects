@@ -90,7 +90,8 @@
     <string name="state_unanswered">Unanswered</string>
 
     <string name="title_activity_search">SearchActivity</string>
-
+    <string name="saving_to_databases">save to database</string>
+    <string name="remove_from_databases">remove from databases</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.

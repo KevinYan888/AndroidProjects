@@ -126,4 +126,7 @@
     <string name="save_to_favourite">添加喜好</string>
     <string name="fav">去我的收藏</string>
     <string name="goback">返回我的之列表</string>
+    <string name="saving_to_databases">存入数据库</string>
+    <string name="remove_from_databases">从数据库删除</string>
+
 </resources>

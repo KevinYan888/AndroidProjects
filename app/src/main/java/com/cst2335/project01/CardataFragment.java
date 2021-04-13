@@ -69,7 +69,7 @@ public class CardataFragment extends Fragment {
 
         Button saving =extraStuff.findViewById(R.id.saving);
         if(source.equals("search")) {
-            saving.setText("saving to database");
+            saving.setText(R.string.saving_to_databases);
             saving.setOnClickListener(sb -> {
                 Snackbar snackbar = Snackbar.make(saving,"Save to database",Snackbar.LENGTH_LONG);
                 snackbar.show();
@@ -85,7 +85,7 @@ public class CardataFragment extends Fragment {
             });
 //        Button moving =extraStuff.findViewById((R.id.moving);
         }else if (source.equals("move")){
-            saving.setText("remove from  database");
+            saving.setText(R.string.remove_from_databases);
             saving.setOnClickListener(sb -> {
                 Snackbar snackbar = Snackbar.make(saving,"Save to database",Snackbar.LENGTH_LONG);
                 snackbar.show();
@@ -115,7 +115,7 @@ public class CardataFragment extends Fragment {
         });
         Button shopping = extraStuff.findViewById(R.id.shopping);
         shopping.setOnClickListener( shb->{
-            Snackbar snackbar = Snackbar.make(shopping,"Save to database",Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(shopping,"go to shopping",Snackbar.LENGTH_LONG);
             snackbar.show();
             Intent goToShop = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.autotrader.ca/cars/?mdl="+modelName+"&make="+make+"&loc=K2G1V8"));
             startActivity(goToShop);
