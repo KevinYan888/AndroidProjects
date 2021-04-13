@@ -17,6 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+/**
+ * this page content the database to show the favourate song saved ,
+ * a pop dialoge will show if cklick the song list it self
+ */
 public class SongThirdActivity extends AppCompatActivity {
     ArrayList<SongEntity> songFavourateList = new ArrayList<>( );
     ListView songFaveListV ;
@@ -48,6 +52,9 @@ public class SongThirdActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * nest class song adapter for ListView extended baseadapter
+     */
     class FavoSongListAdapter extends BaseAdapter {
 
         public int getCount() { return songFavourateList.size();}
@@ -82,6 +89,11 @@ public class SongThirdActivity extends AppCompatActivity {
             return newView;
         }
     }
+
+    /**
+     * hi is the pup up dialoge reflect the click on item on listview
+     * @param position is the item been clicked on the songList 
+     */
     protected void showSong(int position)
     {
 
@@ -118,28 +130,23 @@ public class SongThirdActivity extends AppCompatActivity {
                     myFaveSongAdapter.notifyDataSetChanged();
                 })
                 .setNegativeButton("No", (click, b) -> {
-                    //  //remove the contact from database
-                    //  contactsList.remove(position); //remove the contact from contact list
-                    //  //there is one less item so update the list
+
                 })
                 .setNeutralButton("back to pre-page", (click, b) -> {
-                   // Intent backtoLogin = new Intent();
-                  //  backtoLogin.putExtras( dataToPass ); //send data to intent
-                  //  setResult( 500, backtoLogin );
-                   // finish();
 
                     Intent backActivity = new Intent( SongThirdActivity.this, SongSecondActivity.class );
                     backActivity.putExtras( dataToPass ); //send data to next activity
-                    //setResult( 500, backActivity );
-                   // startActivityForResult( backActivity,222, dataToPass ); //make the transition
                     startActivity(backActivity);
-                  //  finish();
+
                 })
                 .create().show();
 
-
     }
 
+    /**
+     * song list favoritate database setup and save data
+     * once invoke this activity will load song list to listarray and show out through listView
+     */
     private void loadDataFromDatabase()
     {
         //get a database connection:
@@ -181,14 +188,10 @@ public class SongThirdActivity extends AppCompatActivity {
         //At this point, the contactsList array has loaded every row from the cursor.
     }
 
-
-
-
-
-
-
-
-
+    /**
+     * do database update fresh
+     * @param s
+     */
     protected void updateSong(SongEntity s)
     {
         //Create a ContentValues object to represent a database row:
@@ -203,12 +206,13 @@ public class SongThirdActivity extends AppCompatActivity {
         db.update( SongOpener.TABLE_NAME, updatedValues, SongOpener.COL_ID + "= ?", new String[] {Long.toString(s.getId())});
     }
 
+    /**
+     * delet raw from database
+     * @param s
+     */
     public  void  deleteSongEntityFromDB(SongEntity s)
     {
         db.delete( SongOpener.TABLE_NAME, SongOpener.COL_ID + "= ?", new String[] {Long.toString(s.getId())});
     }
-
-
-
 
 }
