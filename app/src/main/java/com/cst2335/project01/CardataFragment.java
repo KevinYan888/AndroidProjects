@@ -87,7 +87,7 @@ public class CardataFragment extends Fragment {
         }else if (source.equals("move")){
             saving.setText(R.string.remove_from_databases);
             saving.setOnClickListener(sb -> {
-                Snackbar snackbar = Snackbar.make(saving,"Save to database",Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(saving,"Move from database",Snackbar.LENGTH_LONG);
                 snackbar.show();
                         ContentValues newRow = new ContentValues();
                         newRow.put(myOpener.COL_MODELID, modelId);
@@ -107,7 +107,7 @@ public class CardataFragment extends Fragment {
 
         Button viewing = extraStuff.findViewById(R.id.viewing);
         viewing.setOnClickListener(vb-> {
-            Snackbar snackbar = Snackbar.make(viewing,"Save to database",Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(viewing,"go to view",Snackbar.LENGTH_LONG);
             snackbar.show();
             Intent goToView = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/search?q="+make+"+"+modelName));
             startActivity(goToView);
@@ -127,7 +127,7 @@ public class CardataFragment extends Fragment {
         Button hide = (Button)extraStuff.findViewById(R.id.hide);
         hide.setOnClickListener( clk -> {
             //Tell the parent activity to remove
-            Snackbar snackbar = Snackbar.make(hide,"Save to database",Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(hide,"cleaning screen",Snackbar.LENGTH_LONG);
             snackbar.show();
             parentActivity.getSupportFragmentManager().beginTransaction().remove(this).commit();
         });
