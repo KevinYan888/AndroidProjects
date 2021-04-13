@@ -67,8 +67,7 @@ public class SongDetailFragment extends Fragment {
         songHelpBar=(Toolbar)resultViewFinal.findViewById( R.id.toolbar_song );
         songHelpBar.inflateMenu( R.menu.song_menu );
         songMenu=songHelpBar.getMenu();
-        // ((AppCompatActivity) getActivity()).getDelegate().setSupportActionBar(songHelpBar);
-        //parentActivity.getDelegate().setSupportActionBar(songHelpBar);
+
         songHelpBar.setOnMenuItemClickListener( new Toolbar.OnMenuItemClickListener(){
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -133,7 +132,9 @@ public class SongDetailFragment extends Fragment {
             Snackbar.make(resultView, "It deleted from your database forever",
                     Snackbar.LENGTH_INDEFINITE).show();
 
-                });
+            });
+
+
 
 
         Button gotoBtn = (Button) resultViewFinal.findViewById( R.id.button_goto);
@@ -176,10 +177,11 @@ public class SongDetailFragment extends Fragment {
                 //  msg = "You clicked on backtosearch page";
                 break;
 
-
-
-
-
+            case R.id.main_item:
+                Intent mainhome = new Intent( getContext(), MainActivity.class);
+                startActivity(mainhome);
+                //  msg = "You clicked on backtosearch page";
+                break;
         }
        // makeToastnotice(msg);
 
@@ -215,7 +217,7 @@ public class SongDetailFragment extends Fragment {
                 msg,
                // HtmlCompact.fromHtml("<font color='red'> msg </font>".
               //          HtmlCompact.FROM_HTML_MODE_LEGACY);
-                Toast.LENGTH_LONG);
+                Toast.LENGTH_SHORT);
        // View view=toast.getView();
         // TextView text=view.findViewById( android.R.id.message );
         // text.setTextColor(getResources().getColor(android.R.color.white, getActivity().getTheme()));

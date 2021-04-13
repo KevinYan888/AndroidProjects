@@ -1,5 +1,6 @@
 package com.cst2335.project01;//package com.cst2335.project01;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -65,6 +67,7 @@ public class SongActivity extends AppCompatActivity {
 
            // String searchterm = "";
             String searchterm = searchView.getText().toString();
+            closeKeyboard();
             // http://www.songsterr.com/a/ra/songs.xml?pattern=XXX
             // http://www.songsterr.com/a/ra/songs.json?pattern=XXX
             String songJsonURL = "https://www.songsterr.com/a/ra/songs.json?pattern=" + searchterm;
@@ -125,7 +128,13 @@ public class SongActivity extends AppCompatActivity {
 
     }
 
-
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService( Context.INPUT_METHOD_SERVICE );
+            imm.hideSoftInputFromWindow( view.getWindowToken(), 0 );
+        }
+    }
 
 
     class MySongListAdapter extends BaseAdapter {

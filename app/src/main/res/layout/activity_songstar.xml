@@ -18,6 +18,8 @@
         <ImageView
             android:id="@+id/imageViewSong"
             android:layout_width="match_parent"
+            android:src="@drawable/headsong"
+            android:scaleType="fitXY"
             android:layout_height="80dp" />
            <!-- android:src="@drawable/headv2"-->
 
