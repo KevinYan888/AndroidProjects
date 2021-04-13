@@ -126,4 +126,13 @@
     <string name="save_to_favourite">添加喜好</string>
     <string name="fav">去我的收藏</string>
     <string name="goback">返回我的之列表</string>
+    <string name="remove_d">从我的喜爱列表移除</string>
+    <string name="save_as">保存至我的收藏列表</string>
+    <string name="would">你想保存至收藏列表?</string>
+    <string name="scucceuss">保存成功</string>
+    <string name="selected">你选择了不</string>
+    <string name="seclect_yes">是</string>
+    <string name="seclect_no">不</string>
+    <string name="thank">谢谢</string>
+    <string name="cancel">取消</string>
 </resources>

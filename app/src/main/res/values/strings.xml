@@ -118,9 +118,15 @@
 
     <string name="remove_from_database">remove from  database</string>
     <string name="save_to_favourite">Save to favourite</string>
-
-
-
+    <string name="remove_d">Remove From the favorite list</string>
+    <string name="save_as">Save as favorite?</string>
+    <string name="would">would you like save this game to your favorite list?</string>
+    <string name="scucceuss">saved successfully</string>
+    <string name="selected">you selected no</string>
+    <string name="seclect_yes">yes</string>
+    <string name="seclect_no">no</string>
+    <string name="thank">thank you</string>
+    <string name="cancel">cancel</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.

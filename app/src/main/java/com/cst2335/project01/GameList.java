@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -68,6 +69,7 @@ public class GameList extends AppCompatActivity implements NavigationView.OnNavi
     private String imageUrl;
     private String articleUrl;
     static  boolean isShowDialog = false;
+
     /**
      * The Soccer details list.
      */
@@ -81,6 +83,12 @@ public class GameList extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+         ////
+
+//        prefs = getSharedPreferences("filename", Context.MODE_PRIVATE);
+//        String savedString = prefs.getString("ReserveName", "");
+//        et.setText(savedString);
+        ////
         if(isShowDialog == false){ ShowDialog();}
         setContentView(R.layout.activity_game_list);
         boolean isTablet = findViewById(R.id.soc_fragmentLocation) != null;
@@ -185,14 +193,15 @@ public class GameList extends AppCompatActivity implements NavigationView.OnNavi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.item1:
+                Intent goToTrival = new Intent(GameList.this, TriviaActivity.class);
+                startActivity(goToTrival);
+                break;
+
+            case R.id.item2:
                 Intent goToCar = new Intent(GameList.this, CarActivity.class);
                 startActivity(goToCar);
                 break;
 
-            case R.id.item2:
-                Intent goToTrival = new Intent(GameList.this, TriviaActivity.class);
-                startActivity(goToTrival);
-                break;
             case R.id.item3:
                 Intent goToSong = new Intent(GameList.this, SongActivity.class);
                 startActivity(goToSong);
@@ -233,15 +242,16 @@ public class GameList extends AppCompatActivity implements NavigationView.OnNavi
                         .create().show();
                 break;
             case R.id.rate:
-                final EditText et = new EditText(this);
+              final EditText  et = new EditText(this);
                 et.setHint("...");
 
                 new AlertDialog.Builder(this).setTitle(R.string.rate_alert_msg).setMessage(R.string.rate_msg)
                         .setView(et)
-                        .setPositiveButton("Thank you", (click,arg) ->{
+                        .setPositiveButton(R.string.thank, (click,arg) ->{
+//                            saveSharedPrefs(et.getText().toString());
 
                         })
-                        .setNegativeButton("cancel", null)
+                        .setNegativeButton(R.string.cancel, null)
                         .show();
                 break;
             case R.id.fav:
@@ -255,7 +265,11 @@ public class GameList extends AppCompatActivity implements NavigationView.OnNavi
 
         return false;
     }
-
+//    private void saveSharedPrefs (String stringToSave){
+//        prefs = getSharedPreferences("filename", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putString("ReserveName", stringToSave);
+//        editor.commit();}
     /**
      * class SoccerDetials
      * this class is used to store details of soccer game

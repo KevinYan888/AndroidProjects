@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:divider="@color/white"
-                android:dividerHeight="8dp"
+                android:dividerHeight="13dp"
                 android:cacheColorHint="#F0FFF0"
                 android:transcriptMode="alwaysScroll"
                 android:stackFromBottom="true"

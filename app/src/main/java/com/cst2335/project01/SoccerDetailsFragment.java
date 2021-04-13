@@ -64,7 +64,7 @@ public class SoccerDetailsFragment extends Fragment implements NavigationView.On
     private Bundle dataFromActivity;
     public SharedPreferences prefs;
     private AppCompatActivity parentActivity;
-
+    boolean isTablet;
 
     /**
      * no-arg constructor
@@ -127,13 +127,13 @@ public class SoccerDetailsFragment extends Fragment implements NavigationView.On
         String source = dataFromActivity.getString("sourcePage");
 
         saveOrRemoveBtn = result.findViewById(R.id.soc_saveBtn);
-        boolean isTablet = result.findViewById(R.id.soc_fav_fragmentLocation) != null;
+         isTablet = result.findViewById(R.id.soc_fav_fragmentLocation) != null;
         if (source.equals("listPage")) {
             //saveOrRemoveBtn.setText(@string/save);
             saveOrRemoveBtn.setOnClickListener(b -> {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(this.getContext());
-                alertDialog.setTitle("Save as favorite? ").setMessage("would you like save this game to your favorite list?"
-                ).setPositiveButton("Yes", (click, arg) -> {
+                alertDialog.setTitle(R.string.save_as).setMessage(R.string.would
+                ).setPositiveButton(R.string.seclect_yes, (click, arg) -> {
                     ContentValues newRowValue = new ContentValues();
                     newRowValue.put(SoccerDB.TITLE_COL, gt);
                     newRowValue.put(SoccerDB.DATE_COL, date);
@@ -142,22 +142,22 @@ public class SoccerDetailsFragment extends Fragment implements NavigationView.On
                     newRowValue.put(SoccerDB.DES_COL,descrip);
                     long id = db.insert(SoccerDB.TABLE_NAME, null, newRowValue);
                     if (id > 0)//if database insertion fails, id = -1
-                        Toast.makeText(this.getContext(), "saved successfully", Toast.LENGTH_SHORT).show();
-                }).setNegativeButton("No", (click, arg) -> {
-                    Snackbar.make(saveOrRemoveBtn, "you selected no", Snackbar.LENGTH_SHORT).show();
+                        Toast.makeText(this.getContext(), R.string.scucceuss, Toast.LENGTH_SHORT).show();
+                }).setNegativeButton(R.string.seclect_no, (click, arg) -> {
+                    Snackbar.make(saveOrRemoveBtn, R.string.selected, Snackbar.LENGTH_SHORT).show();
                 }).create().show();
             });
         } else if (source.equals("favList")) {
-            saveOrRemoveBtn.setText("Remove From the favorite list");
+            saveOrRemoveBtn.setText(R.string.remove_d);
             saveOrRemoveBtn.setOnClickListener(click -> {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(this.getContext());
                 alertDialog.setTitle((R.string.soc_removeQue)).setMessage(R.string.soc_removeMsg
-                ).setPositiveButton("Yes", (c, arg) -> {
+                ).setPositiveButton(R.string.seclect_yes, (c, arg) -> {
                     db.delete(SoccerDB.TABLE_NAME, SoccerDB.TITLE_COL + "=?", new String[]{gt});
                     parentActivity.getSupportFragmentManager().beginTransaction().remove(this).commit();
                     Toast.makeText(this.getContext(), R.string.soc_removeToast, Toast.LENGTH_SHORT).show();
-                }).setNegativeButton("No", (c, arg) -> {
-                    Snackbar.make(saveOrRemoveBtn, "you selected no", Snackbar.LENGTH_SHORT).show();
+                }).setNegativeButton(R.string.seclect_no, (c, arg) -> {
+                    Snackbar.make(saveOrRemoveBtn,  R.string.selected, Snackbar.LENGTH_SHORT).show();
                 }).create().show();
             });
 

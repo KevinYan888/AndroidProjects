@@ -34,6 +34,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/soc_pb3"
         android:layout_alignParentBottom="true"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:max="100" />
 </RelativeLayout>
