@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * database class
+ */
 public class SongOpener extends SQLiteOpenHelper {
 
     protected final static String DATABASE_NAME = "SongDB";
@@ -21,8 +24,11 @@ public class SongOpener extends SQLiteOpenHelper {
     }
 
 
-    //This function gets called if no database file exists.
-    //Look on your device in the /data/data/package-name/database directory.
+    /**
+     * This function gets called if no database file exists.
+     * Look on your device in the /data/data/package-name/database directory.
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db)
     {
@@ -34,7 +40,12 @@ public class SongOpener extends SQLiteOpenHelper {
     }
 
 
-//this function gets called if the database version on your device is lower than VERSION_NUM
+    /**
+     * this function gets called if the database version on your device is lower than VERSION_NUM
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {   //Drop the old table:
@@ -44,7 +55,9 @@ public class SongOpener extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //this function gets called if the database version on your device is higher than VERSION_NUM
+    /**
+     *  this function gets called if the database version on your device is higher than VERSION_NUM
+     */
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {   //Drop the old table:

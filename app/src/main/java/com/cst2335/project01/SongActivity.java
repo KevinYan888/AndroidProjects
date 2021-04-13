@@ -112,13 +112,19 @@ public class SongActivity extends AppCompatActivity {
         } );
     }
 
-
+    /**
+     * set shareperference in onresume() once back to this activity , value will presented
+     */
     protected void onResume(){
         super.onResume();
         SharedPreferences sh= getSharedPreferences( "MySharedPref", MODE_PRIVATE );
         String s1=sh.getString("searchView", " ");
         searchView.setText(s1);
     }
+
+    /**
+     * once onPause() invoked . data will kept in sharepreference for late use
+     */
     protected void onPause(){
         super.onPause();
         SharedPreferences sharedPreferences=getSharedPreferences( "MySharedPref", MODE_PRIVATE );
@@ -128,6 +134,9 @@ public class SongActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * it will close softkeyboard once shearch btn clicked
+     */
     private void closeKeyboard() {
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -136,7 +145,9 @@ public class SongActivity extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * adapter for listview to show song items shearched out
+     */
     class MySongListAdapter extends BaseAdapter {
 
         public int getCount() {
@@ -177,6 +188,9 @@ public class SongActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * nested class to put search in backtread
+     */
     class MySongHTTPRequest extends AsyncTask<String, Integer, String> {
         //Type3                Type1
         public String doInBackground(String... args) {

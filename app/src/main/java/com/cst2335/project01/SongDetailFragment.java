@@ -54,7 +54,13 @@ public class SongDetailFragment extends Fragment {
     Menu songMenu;
    // private Object AppCompatActivity;
 
-
+    /**
+     * onCreateView is main method for fregment class
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -134,9 +140,6 @@ public class SongDetailFragment extends Fragment {
 
             });
 
-
-
-
         Button gotoBtn = (Button) resultViewFinal.findViewById( R.id.button_goto);
         gotoBtn.setOnClickListener( clk -> {
 
@@ -157,6 +160,10 @@ public class SongDetailFragment extends Fragment {
         return resultViewFinal;
     }
 
+    /**
+     * set menu items reaction for toolbar item click
+     * @param item
+     */
     private void songHelpBarAction(MenuItem item) {
       //  String msg=null;
         switch(item.getItemId())
@@ -187,6 +194,9 @@ public class SongDetailFragment extends Fragment {
 
     }
 
+    /**
+     * a function invoke by menubar items click
+     */
     private void popHelpWindow() {
 
        StringBuilder helpMsg=new StringBuilder("HELP TIPS");
@@ -209,7 +219,10 @@ public class SongDetailFragment extends Fragment {
         alertDialog.show();
     }
 
-
+    /**
+     * will generate toast reacted by btn click
+     * @param msg
+     */
     private void makeToastnotice(String  msg) {
 
        // Toast toast = Toast.makeText( parentActivity.getApplicationContext(),
@@ -226,7 +239,14 @@ public class SongDetailFragment extends Fragment {
          toast.show();
     }
 
-
+    /**
+     * will save song to favoriate database
+     * @param songtitlets
+     * @param song_id_ts
+     * @param aritistnamets
+     * @param artist_id_ts
+     * @return
+     */
     private long saveTofavorateDBgetId( String songtitlets, int song_id_ts, String  aritistnamets, int artist_id_ts)
         {
             SongOpener dbOpener = new SongOpener(getContext());
@@ -243,6 +263,10 @@ public class SongDetailFragment extends Fragment {
             return Long.parseLong( null );
         }
 
+    /**
+     * delet song from favoriate database
+     * @param idDb
+     */
     public  void  deleteSongEntityFromDBbyID(long idDb)
     {
         SongOpener dbOpener = new SongOpener(getContext());
@@ -250,10 +274,10 @@ public class SongDetailFragment extends Fragment {
         songDb.delete( SongOpener.TABLE_NAME, SongOpener.COL_ID + "= ?", new String[] {Long.toString(idDb)});
     }
 
-
-
-
-
+    /**
+     * go to webpage for artist once atic id be clicked
+     * @param artist_id_url
+     */
     private void broweAritistPageById(int artist_id_url) {
         String  url="http://www.songsterr.com/a/wa/artist?id="+String.valueOf(artist_id_url);
         Intent ii =new Intent(Intent.ACTION_VIEW);
@@ -261,6 +285,10 @@ public class SongDetailFragment extends Fragment {
         startActivity( ii );
     }
 
+    /**
+     * go to  web page for song to play once clcick song ID
+     * @param song_id_url
+     */
     private void visitSongGitarPage(int song_id_url) {
         String  url="http://www.songsterr.com/a/wa/song?id="+String.valueOf(song_id_url);
         Intent i =new Intent(Intent.ACTION_VIEW);
@@ -268,6 +296,10 @@ public class SongDetailFragment extends Fragment {
         startActivity( i );
     }
 
+    /**
+     * for fragment get context()
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

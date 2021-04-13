@@ -1,5 +1,8 @@
 package com.cst2335.project01;
 
+/**
+ * java DOB JOB simple class
+ */
 public class SongEntity {
 
     //Android Studio hint: to create getter and setter, put mouse on variable and

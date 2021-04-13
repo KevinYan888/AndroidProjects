@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * this second activity call fregement layout
+ */
 public class SongSecondActivity extends AppCompatActivity {
 
     @Override
