@@ -15,3 +15,4 @@ When contributing to this repo, please remember to create a new branch for the f
 
 ## Basic Application Layout
 ![Diagram showing the basic application layout](./resources/BasicApplicationLayout.png)
+The SDS sheet database is a publicly hosted collection of Safety Data Sheets. The Node.js server can simply query that site in order to retreive the sheets meaning we wont need to store a billion of them on our hardware/google cloud. The site can be found [here](https://www.msdsonline.com/sds-search/).
