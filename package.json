@@ -1,0 +1,22 @@
+{
+  "name": "team-project-300-team-7",
+  "version": "0.0.1",
+  "description": "Simple react native application that serves as a means of providing SDS sheets to those who need them in an effective and efficient way",
+  "main": "WorkSafetyServer/server.js",
+  "scripts": {
+    "dev": "node WorkSafetyServer/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CST8334/team-project-300-team-7.git"
+  },
+  "author": "The Titans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CST8334/team-project-300-team-7/issues"
+  },
+  "homepage": "https://github.com/CST8334/team-project-300-team-7#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
